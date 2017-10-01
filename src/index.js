@@ -21,17 +21,17 @@ import express from 'express';
 import deepAssign from 'deep-assign';
 
 import defConf from './conf';
-import routers from './routers';
+import * as routers from './routers';
 
 export default function run (customConf = {}) {
     const conf = deepAssign(defConf, customConf);
     const app = express();
 
-    app.listen(conf.port, () => {
-        console.log('Metilo running on port %s', conf.port);
-    });
-
     for (let name in conf.routers) {
         app.use(conf.routers[name], routers[name]);
     }
+
+    app.listen(conf.port, () => {
+        console.log('Metilo running on port %s', conf.port);
+    });
 }
