@@ -26,28 +26,30 @@ import mustacheExpress from 'mustache-express';
 import defConf from './conf';
 import * as routers from './routers';
 
-export let conf = defConf;
-export let app = null;
+export default {
+    didInit: false,
+    conf: defConf,
+    app: null,
 
-export class Metilo {
-    constructor (_conf) {
-        conf = deepAssign(defConf, _conf)
-        app = express();
-        app.engine('mustache', mustacheExpress());
-        app.set('views', __dirname + '/web/html/' + conf.content.theme)
-        app.set('view engine', 'mustache');
-    }
+    init (_conf) {
+        this.didInit = true;
+        this.conf = deepAssign(defConf, _conf)
+        this.app = express();
+        this.app.engine('mustache', mustacheExpress());
+        this.app.set('views', __dirname + '/web/html/' + this.conf.content.theme)
+        this.app.set('view engine', 'mustache');
+    },
 
     /**
      * Starts Metilo
      */
     run () {
-        for (let name in conf.routers) {
-            app.use(conf.routers[name], routers[name]);
+        for (let name in this.conf.routers) {
+            this.app.use(this.conf.routers[name], routers[name]);
         }
 
-        app.listen(conf.port, () => {
-            console.log('Metilo running on port %s', conf.port);
+        this.app.listen(this.conf.port, () => {
+            console.log('Metilo running on port %s', this.conf.port);
         });
     }
-}
+};

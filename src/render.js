@@ -19,7 +19,7 @@
 
 import deepAssign from 'deep-assign';
 import {promisify} from 'util';
-import {app, conf} from '.';
+import metilo from '.';
 
 /**
  * Renders a page with the provided path
@@ -32,14 +32,14 @@ export async function renderPage (name, locale, format) {
     const localeData = require('../locale/' + locale);
 
     const globalFormat = deepAssign(
-        localeData.templates[conf.content.theme].pages.global,
-        localeData.templates[conf.content.theme].pages[name],
+        localeData.templates[metilo.conf.content.theme].pages.global,
+        localeData.templates[metilo.conf.content.theme].pages[name],
         format
     );
 
     // Get page
-    globalFormat.main = await promisify(app.render)(name, globalFormat);
+    globalFormat.main = await promisify(metilo.app.render)(name, globalFormat);
 
     // Get global
-    return await promisify(app.render)('global', globalFormat);
+    return await promisify(metilo.app.render)('global', globalFormat);
 };
