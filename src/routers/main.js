@@ -17,5 +17,13 @@
  * along with Metilo. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export { default as admin } from './admin';
-export { default as main } from './main';
+import express from 'express';
+
+const router = express.Router();
+
+// Frontpage
+router.get('/', (req, res) => {
+    res.send('Main site');
+});
+
+export default router;

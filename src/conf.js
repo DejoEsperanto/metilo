@@ -20,6 +20,7 @@
 export default {
     port: 80,
     routers: {
-        admin: '/admin'
+        admin: '/admin',
+        main: '/'
     }
 };
