@@ -18,11 +18,16 @@
   },
   "homepage": "https://github.com/DejoEsperanto/metilo#readme",
   "dependencies": {
+    "bcrypt": "^1.0.3",
+    "cookie-parser": "^1.4.3",
     "deep-assign": "^2.0.0",
     "express": "^4.16.1",
+    "express-session": "^1.15.6",
     "msgpack": "^1.0.2",
     "mustache": "^2.3.0",
-    "nodegit": "^0.20.2"
+    "nodegit": "^0.20.2",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
