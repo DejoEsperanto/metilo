@@ -17,9 +17,13 @@
  * along with Metilo. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export default {
-    port: 80,
-    routers: {
-        admin: '/admin'
-    }
-};
+import express from 'express';
+
+const router = express.Router();
+
+// Login page or site overview
+router.get('/', (req, res) => {
+    res.send('Admin panel');
+});
+
+export default router;

@@ -17,9 +17,4 @@
  * along with Metilo. If not, see <http://www.gnu.org/licenses/>.
  */
 
-export default {
-    port: 80,
-    routers: {
-        admin: '/admin'
-    }
-};
+export { default as admin } from './admin';
