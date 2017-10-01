@@ -4,6 +4,7 @@
   "description": "Retejmastrumadsistemo por esperantaj retejoj",
   "main": "index.js",
   "scripts": {
+    "prepare": "gulp compile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,18 +18,23 @@
   },
   "homepage": "https://github.com/DejoEsperanto/metilo#readme",
   "dependencies": {
+    "deep-assign": "^2.0.0",
     "express": "^4.16.1",
     "msgpack": "^1.0.2",
-    "mustache": "^2.3.0"
+    "mustache": "^2.3.0",
+    "nodegit": "^0.20.2"
   },
   "devDependencies": {
+    "babel-core": "^6.26.0",
     "babel-eslint": "^8.0.1",
     "babel-preset-latest": "^6.24.1",
     "eslint": "^4.8.0",
     "gulp": "^3.9.1",
     "gulp-babel": "^7.0.0",
+    "gulp-less": "^3.3.2",
     "gulp-plumber": "^1.1.0",
     "gulp-sourcemaps": "^2.6.1",
-    "gulp-watch": "^4.3.11"
+    "gulp-watch": "^4.3.11",
+    "less-plugin-autoprefix": "^1.5.1"
   }
 }
