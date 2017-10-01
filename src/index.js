@@ -25,5 +25,7 @@ export default function run (customConf = {}) {
     const conf = deepAssign(defConf, customConf);
     const app = express();
 
-
+    app.listen(conf.port, () => {
+        console.log('Metilo running on port %s', conf.port);
+    });
 }

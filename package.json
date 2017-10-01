@@ -4,7 +4,7 @@
   "description": "Retejmastrumadsistemo por esperantaj retejoj",
   "main": "index.js",
   "scripts": {
-    "prepare": "gulp compile",
+    "install": "gulp compile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
