@@ -2,7 +2,7 @@
   "name": "metilo",
   "version": "1.0.0",
   "description": "Retejmastrumadsistemo por esperantaj retejoj",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
     "install": "gulp compile",
     "test": "echo \"Error: no test specified\" && exit 1"
