@@ -18,12 +18,15 @@
  */
 
 import express from 'express';
+import {renderPage} from '../render';
 
 const router = express.Router();
 
 // Login page or site overview
 router.get('/', (req, res) => {
-    res.send('Admin panel');
+    renderPage('admin/login', 'eo')
+        .then(data => res.send(data))
+        .catch(); // TODO: Do something
 });
 
 export default router;

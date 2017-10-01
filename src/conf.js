@@ -22,5 +22,12 @@ export default {
     routers: {
         admin: '/admin',
         main: '/'
+    },
+    content: {
+        theme: 'default',
+        locales: {
+            main: [],
+            admin: []
+        }
     }
 };

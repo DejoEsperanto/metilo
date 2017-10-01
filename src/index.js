@@ -17,21 +17,37 @@
  * along with Metilo. If not, see <http://www.gnu.org/licenses/>.
  */
 
+process.on('unhandledRejection', (reason, promise) => console.error(reason));
+
 import express from 'express';
 import deepAssign from 'deep-assign';
+import mustacheExpress from 'mustache-express';
 
 import defConf from './conf';
 import * as routers from './routers';
 
-export default function run (customConf = {}) {
-    const conf = deepAssign(defConf, customConf);
-    const app = express();
+export let conf = defConf;
+export let app = null;
 
-    for (let name in conf.routers) {
-        app.use(conf.routers[name], routers[name]);
+export class Metilo {
+    constructor (_conf) {
+        conf = deepAssign(defConf, _conf)
+        app = express();
+        app.engine('mustache', mustacheExpress());
+        app.set('views', __dirname + '/web/html/' + conf.content.theme)
+        app.set('view engine', 'mustache');
     }
 
-    app.listen(conf.port, () => {
-        console.log('Metilo running on port %s', conf.port);
-    });
+    /**
+     * Starts Metilo
+     */
+    run () {
+        for (let name in conf.routers) {
+            app.use(conf.routers[name], routers[name]);
+        }
+
+        app.listen(conf.port, () => {
+            console.log('Metilo running on port %s', conf.port);
+        });
+    }
 }

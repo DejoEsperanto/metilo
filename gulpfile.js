@@ -26,6 +26,8 @@ const path = require('path');
 const sourcemaps = require('gulp-sourcemaps');
 const Prefix = require('less-plugin-autoprefix');
 const prefix = new Prefix({ browsers: [ "last 2 versions" ] });
+const header = require('gulp-header');
+
 const compileJS = function (source) {''
     return source
         .pipe(plumber())
@@ -47,7 +49,10 @@ const compileCSS = function (source) {
 const compileSrc = function (source) {
     return source
         .pipe(plumber())
+        .pipe(header("require('source-map-support').install();\nrequire('babel-core/register');\nrequire('babel-polyfill');\n"))
+        .pipe(sourcemaps.init())
         .pipe(babel())
+        .pipe(sourcemaps.write('.'))
         .pipe(gulp.dest('dist'));
 };
 

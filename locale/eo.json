@@ -1,0 +1,20 @@
+{
+    "templates": {
+        "default": {
+            "pages": {
+                "global": {
+                    "copyright": {
+                        "metilo": "Havebligita de <a href=\"https://github.com/DejoEsperanto/metilo\">Metilo</a>."
+                    }
+                },
+                "admin": {
+                    "login": {
+                        "username": "Uzantonomo",
+                        "password": "Pasvorto",
+                        "forgotPassword": "Se vi ne povas ensaluti aŭ se vi forgesis vian pasvorton, bonvolu kontakti vian retejadministranton."
+                    }
+                }
+            }
+        }
+    }
+}
