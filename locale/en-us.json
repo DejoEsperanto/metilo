@@ -7,12 +7,10 @@
                         "metilo": "Powered by <a href=\"https://github.com/DejoEsperanto/metilo\">Metilo</a>."
                     }
                 },
-                "admin": {
-                    "login": {
-                        "username": "Username",
-                        "password": "Password",
-                        "forgotPassword": "If you're unable to sign in or forgot your password, please contact your site administrator."
-                    }
+                "admin/login": {
+                    "username": "Username",
+                    "password": "Password",
+                    "forgotPassword": "If you're unable to sign in or forgot your password, please contact your site administrator."
                 }
             }
         }

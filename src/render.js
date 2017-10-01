@@ -28,18 +28,21 @@ import metilo from '.';
  * @param  {Object} [format] Values for page
  * @return {string} Rendered page
  */
-export async function renderPage (name, locale, format) {
+export async function renderPage (name, locale, format = {}) {
+    const render = promisify(metilo.app.render.bind(metilo.app));
+
     const localeData = require('../locale/' + locale);
 
+    // Get page
+    const main = await render(name, localeData.templates[metilo.conf.content.theme].pages[name]);
+
+    // Determine format
     const globalFormat = deepAssign(
         localeData.templates[metilo.conf.content.theme].pages.global,
-        localeData.templates[metilo.conf.content.theme].pages[name],
-        format
+        format,
+        { main: main }
     );
 
-    // Get page
-    globalFormat.main = await promisify(metilo.app.render)(name, globalFormat);
-
     // Get global
-    return await promisify(metilo.app.render)('global', globalFormat);
+    return await render('global', globalFormat);
 };

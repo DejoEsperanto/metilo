@@ -36,7 +36,7 @@ export default {
         this.conf = deepAssign(defConf, _conf)
         this.app = express();
         this.app.engine('mustache', mustacheExpress());
-        this.app.set('views', __dirname + '/web/html/' + this.conf.content.theme)
+        this.app.set('views', __dirname + '/../web/html/' + this.conf.content.theme)
         this.app.set('view engine', 'mustache');
     },
 
