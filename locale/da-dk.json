@@ -10,6 +10,7 @@
                 "admin/login": {
                     "username": "Brugernavn",
                     "password": "Adgangskode",
+                    "login": "Log ind",
                     "forgotPassword": "Hvis du ikke kan logge ind eller har glemt din adgangskode, så kontakt venligst din sideadministrator."
                 }
             }

@@ -10,6 +10,7 @@
                 "admin/login": {
                     "username": "Uzantonomo",
                     "password": "Pasvorto",
+                    "login": "Ensaluti",
                     "forgotPassword": "Se vi ne povas ensaluti aŭ se vi forgesis vian pasvorton, bonvolu kontakti vian retejadministranton."
                 }
             }

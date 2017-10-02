@@ -10,6 +10,7 @@
                 "admin/login": {
                     "username": "Username",
                     "password": "Password",
+                    "login": "Log in",
                     "forgotPassword": "If you're unable to sign in or forgot your password, please contact your site administrator."
                 }
             }
