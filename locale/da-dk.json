@@ -16,5 +16,8 @@
                 }
             }
         }
+    },
+    "error": {
+        "unauthorized": "Forkert brugernavn eller adgangskode"
     }
 }

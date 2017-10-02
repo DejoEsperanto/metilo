@@ -19,9 +19,9 @@
 
 import express from 'express';
 import passportLocal from 'passport-local';
-import bcrypt from 'bcrypt';
 import { promisify } from 'util';
 import passport from 'passport';
+import Mustache from 'mustache';
 
 import { renderPage } from '../render';
 import metilo from '..';
@@ -32,17 +32,25 @@ export default function () {
 
     // Login page or site overview
     const getMain = (req, res, next) => {
-        console.log(req.user);
-
-        const error = req.flash('error')[0] || false;
-        renderPage('admin/login', req, 'admin', { main: { error: error } })
-            .then(data => res.send(data))
-            .catch(err => next(err));
+        if (req.user) {
+            // Dashboard
+            res.send('Admin dashboard');
+        } else {
+            // Sign in
+            const error = req.flash('error')[0] || '';
+            const errorMessage = Mustache.render(error, require('../../locale/' + req.locale.admin)) || false;
+            renderPage('admin/login', req, 'admin', { main: { error: errorMessage } })
+                .then(data => res.send(data))
+                .catch(err => next(err));
+        }
     };
     router.get('/', getMain);
 
     // Login action
-    router.post('/', passport.authenticate('local', { failureFlash: '{{error.invalid}}' }), (req, res, next) => {
+    router.post('/', passport.authenticate('local', {
+        failureFlash: '{{error.unauthorized}}',
+        failureRedirect: metilo.conf.routers.admin
+    }), (req, res, next) => {
         res.redirect(metilo.conf.routers.admin);
     });
 
@@ -59,7 +67,7 @@ const superUser = () => new User({
     }
 });
 
-passport.use(new passportLocal.Strategy(async (username, password, cb) => {
+passport.use(new passportLocal.Strategy((username, password, cb) => {
     if (username === metilo.conf.superadmin.username && password === metilo.conf.superadmin.password) {
         const user = superUser();
         cb(null, user);

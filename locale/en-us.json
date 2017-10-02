@@ -16,5 +16,8 @@
                 }
             }
         }
+    },
+    "error": {
+        "unauthorized": "Incorrect username or password"
     }
 }

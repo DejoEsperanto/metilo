@@ -16,5 +16,8 @@
                 }
             }
         }
+    },
+    "error": {
+        "unauthorized": "Nevalida uzantonomo aŭ pasvorto"
     }
 }
