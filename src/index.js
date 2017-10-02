@@ -30,6 +30,8 @@ import helmet from 'helmet';
 import bodyParser from 'body-parser';
 import flash from 'connect-flash';
 import expressSession from 'express-session';
+import fs from 'fs-extra-promise';
+import passport from 'passport';
 
 import defConf from './conf';
 import * as routers from './routers';
@@ -64,6 +66,13 @@ export default {
         this.app.set('views', path.join(__dirname, '../web/html/', this.conf.content.theme))
         this.app.set('view engine', 'mustache');
 
+        const dbPath = path.join(this.conf.baseDir, this.conf.dbFile);
+        fs.ensureDirSync(this.conf.baseDir);
+        if (!fs.existsSync(dbPath)) {
+            fs.copyFileSync(path.join(__dirname, '../db_template.db'), dbPath);
+            console.log('Database not found, created new from template');
+        }
+
         if (this.conf.trustProxy) {
             app.enable('trust proxy');
         }
@@ -91,6 +100,8 @@ export default {
             saveUninitialized: false,
             secret: this.conf.sessionSecret
         }));
+        this.app.use(passport.initialize());
+        this.app.use(passport.session());
         this.app.use(flash());
 
         this.localeInfo = require('../locale');

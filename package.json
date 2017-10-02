@@ -27,6 +27,7 @@
     "express": "^4.16.1",
     "express-rate-limit": "^2.9.0",
     "express-session": "^1.15.6",
+    "fs-extra-promise": "^1.0.1",
     "helmet": "^3.8.2",
     "js-cookie": "^2.1.4",
     "minimist": "^1.2.0",
