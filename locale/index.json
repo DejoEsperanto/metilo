@@ -1,9 +1,10 @@
 {
-    "da-dk": {
-        "name": "Dansk (Danmark)"
-    },
+    
     "en-us": {
         "name": "English (United States)"
+    },
+    "da-dk": {
+        "name": "Dansk (Danmark)"
     },
     "eo": {
         "name": "Esperanto"

@@ -22,7 +22,13 @@
         <title>{{title}} | {{siteName}}</title>
     </head>
     <body>
-        <header></header>
+        <header>
+            <select id="select-language">
+                {{#locales}}
+                    <option value="{{code}}" {{#active}}selected{{/active}}>{{name}}</option>
+                {{/locales}}
+            </select>
+        </header>
         <div id="main">
             {{&main}}
         </div>

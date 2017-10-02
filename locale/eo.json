@@ -8,6 +8,7 @@
                     }
                 },
                 "admin/login": {
+                    "title": "Ensaluti al la stirpanelo",
                     "username": "Uzantonomo",
                     "password": "Pasvorto",
                     "login": "Ensaluti",

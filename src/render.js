@@ -23,25 +23,38 @@ import metilo from '.';
 
 /**
  * Renders a page with the provided path
- * @param  {string} name     Path of page to render
- * @param  {string} locale   Locale name
- * @param  {Object} [format] Values for page
- * @return {string} Rendered page
+ * @param  {string}  name     Path of page to render
+ * @param  {Request} req      Express request
+ * @param  {string}  subsite  Subsite name
+ * @param  {Object}  [format] Values for page
+ * @return {string}  Rendered page
  */
-export async function renderPage (name, locale, format = {}) {
+export async function renderPage (name, req, subsite, format = {}) {
     const render = promisify(metilo.app.render.bind(metilo.app));
 
+    const locale = req.locale[subsite];
     const localeData = require('../locale/' + locale);
 
     // Get page
-    const main = await render(name, localeData.templates[metilo.conf.content.theme].pages[name]);
+    const mainFormat = localeData.templates[metilo.conf.content.theme].pages[name];
+    const main = await render(name, mainFormat);
 
     // Determine format
     const globalFormat = deepAssign(
         localeData.templates[metilo.conf.content.theme].pages.global,
         metilo.conf.content.localeStrings[locale],
         format,
-        { main: main }
+        {
+            main: main,
+            title: mainFormat.title,
+            locales: metilo.locales[subsite].map(x => {
+                return {
+                    code: x,
+                    name: metilo.localeInfo[x].name,
+                    active: x === locale
+                };
+            })
+        }
     );
 
     // Get global

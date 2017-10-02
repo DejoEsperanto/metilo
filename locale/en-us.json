@@ -8,6 +8,7 @@
                     }
                 },
                 "admin/login": {
+                    "title": "Log in to the dashboard",
                     "username": "Username",
                     "password": "Password",
                     "login": "Log in",

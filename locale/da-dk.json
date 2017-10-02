@@ -8,6 +8,7 @@
                     }
                 },
                 "admin/login": {
+                    "title": "Log ind til kontrolpanelet",
                     "username": "Brugernavn",
                     "password": "Adgangskode",
                     "login": "Log ind",

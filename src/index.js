@@ -33,6 +33,8 @@ export default {
     conf: defConf,
     app: null,
     argv: minimist(process.argv.slice(2)),
+    locales: null,
+    localeInfo: null,
 
     init (_conf) {
         this.didInit = true;
@@ -47,6 +49,18 @@ export default {
             this.app.disable('view cache');
             console.warn('Running in no cache mode. This should only be used for development and never on production.');
         }
+
+        this.localeInfo = require('../locale');
+        const localeNames = Object.keys(this.localeInfo);
+
+        this.locales = {};
+        for (let subsite in this.conf.content.locales) {
+            if (this.conf.content.locales[subsite].length) {
+                this.locales[subsite] = this.conf.content.locales[subsite];
+            } else {
+                this.locales[subsite] = localeNames;
+            }
+        }
     },
 
     /**
@@ -58,15 +72,11 @@ export default {
             req.locale = {};
 
             for (let subsite in this.conf.content.locales) {
-                if (!this.conf.content.locales[subsite].length) {
-                    req.locale[subsite] = 'en-us';
+                const value = req.cookies[subsite + 'Locale'];
+                if (this.conf.content.locales[subsite].indexOf(value) > -1) {
+                    req.locale[subsite] = value;
                 } else {
                     req.locale[subsite] = this.conf.content.locales[subsite][0];
-                }
-
-                const value = req.cookies[subsite + 'Locale'];
-                if (!this.conf.content.locales[subsite].length || this.conf.content.locales[subsite].indexOf(value) > -1) {
-                    req.locale[subsite] = value;
                 }
             }
 
