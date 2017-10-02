@@ -39,6 +39,7 @@ export async function renderPage (name, locale, format = {}) {
     // Determine format
     const globalFormat = deepAssign(
         localeData.templates[metilo.conf.content.theme].pages.global,
+        metilo.conf.content.localeStrings[locale],
         format,
         { main: main }
     );
