@@ -25,6 +25,8 @@ import mustacheExpress from 'mustache-express';
 import minimist from 'minimist';
 import cookieParser from 'cookie-parser';
 import RateLimit from 'express-rate-limit';
+import path from 'path';
+import helmet from 'helmet';
 
 import defConf from './conf';
 import * as routers from './routers';
@@ -33,7 +35,15 @@ export default {
     didInit: false,
     conf: defConf,
     app: null,
-    argv: minimist(process.argv.slice(2)),
+    argv: minimist(process.argv.slice(2), {
+        default: {
+            cache: true,
+            helmet: true
+        },
+        alias: {
+            d: 'dev'
+        }
+    }),
     locales: null,
     localeInfo: null,
     limiter: new RateLimit({
@@ -49,16 +59,23 @@ export default {
         this.app.engine('mustache', mustacheExpress());
         this.app.set('views', path.join(__dirname, '../web/html/', this.conf.content.theme))
         this.app.set('view engine', 'mustache');
-        this.app.use(cookieParser());
 
         if (this.conf.trustProxy) {
             app.enable('trust proxy');
         }
 
-        if (!this.argv.cache) {
+        if (this.argv.helmet && !this.argv.dev) {
+            this.app.use(helmet());
+        } else {
+            console.warn('Running without helmet. This should only be used for development and never on production.');
+        }
+
+        if (!this.argv.cache || this.argv.dev) {
             this.app.disable('view cache');
             console.warn('Running in no cache mode. This should only be used for development and never on production.');
         }
+
+        this.app.use(cookieParser());
 
         this.localeInfo = require('../locale');
         const localeNames = Object.keys(this.localeInfo);
