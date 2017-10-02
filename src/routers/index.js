@@ -19,3 +19,5 @@
 
 export { default as admin } from './admin';
 export { default as main } from './main';
+
+export { default as assets } from './assets';

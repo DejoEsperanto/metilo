@@ -20,13 +20,15 @@
 import express from 'express';
 import {renderPage} from '../render';
 
-const router = express.Router();
+export default function () {
+    const router = express.Router();
 
-// Login page or site overview
-router.get('/', (req, res) => {
-    renderPage('admin/login', req, 'admin')
-        .then(data => res.send(data))
-        .catch(); // TODO: Do something
-});
+    // Login page or site overview
+    router.get('/', (req, res) => {
+        renderPage('admin/login', req, 'admin')
+            .then(data => res.send(data))
+            .catch(); // TODO: Do something
+    });
 
-export default router;
+    return router;
+};

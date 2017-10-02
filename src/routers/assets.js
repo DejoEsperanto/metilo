@@ -18,14 +18,15 @@
  */
 
 import express from 'express';
+import path from 'path';
+import metilo from '..';
 
 export default function () {
     const router = express.Router();
 
-    // Frontpage
-    router.get('/', (req, res) => {
-        res.send('Main site');
-    });
+    const base = path.join(__dirname, '../../dist/web/');
 
-     return router;
+    router.use('/css', express.static(path.join(base, 'css', metilo.conf.content.theme)));
+
+    return router;
 };

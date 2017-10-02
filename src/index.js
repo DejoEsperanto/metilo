@@ -34,14 +34,14 @@ export default {
     app: null,
     argv: minimist(process.argv.slice(2)),
     locales: null,
-    localeInfo: null,
+    localeInfo: null
 
     init (_conf) {
         this.didInit = true;
         this.conf = deepAssign(defConf, _conf)
         this.app = express();
         this.app.engine('mustache', mustacheExpress());
-        this.app.set('views', __dirname + '/../web/html/' + this.conf.content.theme)
+        this.app.set('views', path.join(__dirname, '../web/html/', this.conf.content.theme))
         this.app.set('view engine', 'mustache');
         this.app.use(cookieParser());
 
@@ -86,8 +86,10 @@ export default {
 
         // Routing
         for (let name in this.conf.routers) {
-            this.app.use(this.conf.routers[name], routers[name]);
+            this.app.use(this.conf.routers[name], routers[name]());
         }
+
+        this.app.use('/assets', routers['assets']());
 
         this.app.listen(this.conf.port, () => {
             console.log('Metilo running on port %s', this.conf.port);
