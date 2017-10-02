@@ -22,6 +22,7 @@ process.on('unhandledRejection', (reason, promise) => console.error(reason));
 import express from 'express';
 import deepAssign from 'deep-assign';
 import mustacheExpress from 'mustache-express';
+import minimist from 'minimist';
 
 import defConf from './conf';
 import * as routers from './routers';
@@ -30,6 +31,7 @@ export default {
     didInit: false,
     conf: defConf,
     app: null,
+    argv: minimist(process.argv.slice(2)),
 
     init (_conf) {
         this.didInit = true;
@@ -38,6 +40,11 @@ export default {
         this.app.engine('mustache', mustacheExpress());
         this.app.set('views', __dirname + '/../web/html/' + this.conf.content.theme)
         this.app.set('view engine', 'mustache');
+
+        if (!this.argv.cache) {
+            this.app.disable('view cache');
+            console.warn('Running in no cache mode. This should only be used for development and never on production.');
+        }
     },
 
     /**
