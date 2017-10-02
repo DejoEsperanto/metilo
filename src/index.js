@@ -23,6 +23,7 @@ import express from 'express';
 import deepAssign from 'deep-assign';
 import mustacheExpress from 'mustache-express';
 import minimist from 'minimist';
+import cookieParser from 'cookie-parser';
 
 import defConf from './conf';
 import * as routers from './routers';
@@ -40,6 +41,7 @@ export default {
         this.app.engine('mustache', mustacheExpress());
         this.app.set('views', __dirname + '/../web/html/' + this.conf.content.theme)
         this.app.set('view engine', 'mustache');
+        this.app.use(cookieParser());
 
         if (!this.argv.cache) {
             this.app.disable('view cache');
@@ -51,6 +53,30 @@ export default {
      * Starts Metilo
      */
     run () {
+        // Middleware
+        const getLocale = (req, res, next) => {
+            req.locale = {};
+
+            for (let subsite in this.conf.content.locales) {
+                if (!this.conf.content.locales[subsite].length) {
+                    req.locale[subsite] = 'en-us';
+                } else {
+                    req.locale[subsite] = this.conf.content.locales[subsite][0];
+                }
+
+                const value = req.cookies[subsite + 'Locale'];
+                if (!this.conf.content.locales[subsite].length || this.conf.content.locales[subsite].indexOf(value) > -1) {
+                    req.locale[subsite] = value;
+                }
+            }
+
+            console.log(req.locale);
+
+            next();
+        };
+        this.app.use(getLocale);
+
+        // Routing
         for (let name in this.conf.routers) {
             this.app.use(this.conf.routers[name], routers[name]);
         }

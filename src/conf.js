@@ -20,14 +20,34 @@
 export default {
     port: 80,
     routers: {
-        admin: '/admin',
-        main: '/'
+        main: '/',
+        admin: '/admin'
     },
     content: {
         theme: 'default',
         locales: {
             main: [],
             admin: []
+        },
+        localeStrings: {
+            'da-dk': {
+                copyright: {
+                    local: '&copy; 2017 . <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.da">CC BY-SA 4.0</a>'
+                },
+                siteName: 'Metilo'
+            },
+            'en-us': {
+                copyright: {
+                    local: '&copy; 2017 . <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a>'
+                },
+                siteName: 'Metilo'
+            },
+            'eo': {
+                copyright: {
+                    local: '&copy; 2017 . <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.eo">CC BY-SA 4.0</a>'
+                },
+                siteName: 'Metilo'
+            }
         }
     }
 };

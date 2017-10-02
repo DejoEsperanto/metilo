@@ -24,7 +24,7 @@ const router = express.Router();
 
 // Login page or site overview
 router.get('/', (req, res) => {
-    renderPage('admin/login', 'eo')
+    renderPage('admin/login', req.locale.admin)
         .then(data => res.send(data))
         .catch(); // TODO: Do something
 });
