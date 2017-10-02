@@ -24,8 +24,8 @@ export default function () {
     const router = express.Router();
 
     // Login page or site overview
-    const getMain = (req, res, next, error = false) => {
-        renderPage('admin/login', req, 'admin', { main: { error: error } })
+    const getMain = (req, res, next) => {
+        renderPage('admin/login', req, 'admin', { main: { error: req.flash('error')[0] || false } })
             .then(data => res.send(data))
             .catch(err => next(err));
     };
@@ -34,7 +34,8 @@ export default function () {
     // Login action
     router.post('/', (req, res, next) => {
         if (!req.body.username || !req.body.password) {
-            getMain(req, res, next, '<i class="material-icons">warning</i> Login request missing field');
+            req.flash('error', 'Login request missing field');
+            getMain(req, res, next);
             return;
         }
 

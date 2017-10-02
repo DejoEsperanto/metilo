@@ -23,6 +23,6 @@ const C = {
 
 // Header
 on(els.selectLanguage, 'change', e => {
-    Cookies.set(C.subsite + 'Locale', els.selectLanguage.value);
+    Cookies.set(C.subsite + 'Locale', els.selectLanguage.value, { expires: 365 });
     location.reload();
 });

@@ -28,6 +28,8 @@ import RateLimit from 'express-rate-limit';
 import path from 'path';
 import helmet from 'helmet';
 import bodyParser from 'body-parser';
+import flash from 'connect-flash';
+import expressSession from 'express-session';
 
 import defConf from './conf';
 import * as routers from './routers';
@@ -39,7 +41,8 @@ export default {
     argv: minimist(process.argv.slice(2), {
         default: {
             cache: true,
-            helmet: true
+            helmet: true,
+            'secure-cookie': true
         },
         alias: {
             d: 'dev'
@@ -82,6 +85,13 @@ export default {
 
         this.app.use(cookieParser());
         this.app.use(bodyParser.urlencoded({ extended: true }));
+        this.app.use(expressSession({
+            cookie: { maxAge: 60000 },
+            resave: false,
+            saveUninitialized: false,
+            secret: this.conf.sessionSecret
+        }));
+        this.app.use(flash());
 
         this.localeInfo = require('../locale');
         const localeNames = Object.keys(this.localeInfo);

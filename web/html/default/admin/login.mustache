@@ -2,7 +2,7 @@
     <form method="post">
         <div class="small-form">
             {{#error}}
-                <div class="no-form-align error">{{&.}}</div>
+                <div class="no-form-align error"><i class="material-icons">warning</i> {{.}}</div>
             {{/error}}
             <div>
                 <label for="username">{{username}}</label>
@@ -10,7 +10,7 @@
             </div>
             <div>
                 <label for="password">{{password}}</label>
-                <input name="password" id="password" placeholder="{{password}}" type="password" required>
+                <input name="passworda" id="password" placeholder="{{password}}" type="password" required>
             </div>
             <div class="no-form-align">
                 <input type="submit" value="{{login}}">
