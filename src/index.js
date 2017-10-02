@@ -24,6 +24,7 @@ import deepAssign from 'deep-assign';
 import mustacheExpress from 'mustache-express';
 import minimist from 'minimist';
 import cookieParser from 'cookie-parser';
+import RateLimit from 'express-rate-limit';
 
 import defConf from './conf';
 import * as routers from './routers';
@@ -34,7 +35,12 @@ export default {
     app: null,
     argv: minimist(process.argv.slice(2)),
     locales: null,
-    localeInfo: null
+    localeInfo: null,
+    limiter: new RateLimit({
+        windowMs: 15 * 60 * 1000, // 14 minutes,
+        max: 100,
+        delayMs: 100
+    }),
 
     init (_conf) {
         this.didInit = true;
@@ -44,6 +50,10 @@ export default {
         this.app.set('views', path.join(__dirname, '../web/html/', this.conf.content.theme))
         this.app.set('view engine', 'mustache');
         this.app.use(cookieParser());
+
+        if (this.conf.trustProxy) {
+            app.enable('trust proxy');
+        }
 
         if (!this.argv.cache) {
             this.app.disable('view cache');

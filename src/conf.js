@@ -19,6 +19,7 @@
 
 export default {
     port: 80,
+    trustProxy: false, // Only if you're behind a reverse proxy (Heroku, Bluemix, AWS if you use an ELB, custom Nginx setup, etc)
     routers: {
         main: '/',
         admin: '/admin'
