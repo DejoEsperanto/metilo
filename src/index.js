@@ -27,6 +27,7 @@ import cookieParser from 'cookie-parser';
 import RateLimit from 'express-rate-limit';
 import path from 'path';
 import helmet from 'helmet';
+import bodyParser from 'body-parser';
 
 import defConf from './conf';
 import * as routers from './routers';
@@ -64,6 +65,10 @@ export default {
             app.enable('trust proxy');
         }
 
+        if (this.argv.dev) {
+            console.warn('Running in development mode');
+        }
+
         if (this.argv.helmet && !this.argv.dev) {
             this.app.use(helmet());
         } else {
@@ -76,6 +81,7 @@ export default {
         }
 
         this.app.use(cookieParser());
+        this.app.use(bodyParser.urlencoded({ extended: true }));
 
         this.localeInfo = require('../locale');
         const localeNames = Object.keys(this.localeInfo);

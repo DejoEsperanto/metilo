@@ -36,14 +36,17 @@ export async function renderPage (name, req, subsite, format = {}) {
     const localeData = require('../locale/' + locale);
 
     // Get page
-    const mainFormat = localeData.templates[metilo.conf.content.theme].pages[name];
+    const mainFormat = deepAssign(
+        localeData.templates[metilo.conf.content.theme].pages[name],
+        format.main
+    );
     const main = await render(name, mainFormat);
 
     // Determine format
     const globalFormat = deepAssign(
         localeData.templates[metilo.conf.content.theme].pages.global,
         metilo.conf.content.localeStrings[locale],
-        format,
+        format.global,
         {
             main: main,
             title: mainFormat.title,

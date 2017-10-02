@@ -24,10 +24,21 @@ export default function () {
     const router = express.Router();
 
     // Login page or site overview
-    router.get('/', (req, res) => {
-        renderPage('admin/login', req, 'admin')
+    const getMain = (req, res, next, error = false) => {
+        renderPage('admin/login', req, 'admin', { main: { error: error } })
             .then(data => res.send(data))
-            .catch(); // TODO: Do something
+            .catch(err => next(err));
+    };
+    router.get('/', getMain);
+
+    // Login action
+    router.post('/', (req, res, next) => {
+        if (!req.body.username || !req.body.password) {
+            getMain(req, res, next, '<i class="material-icons">warning</i> Login request missing field');
+            return;
+        }
+
+        res.send('Gonna have to think about that one');
     });
 
     return router;

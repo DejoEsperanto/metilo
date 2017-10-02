@@ -18,6 +18,15 @@
  */
 
 export default {
+    // THE FOLLOWING SETTINGS MUST BE CHANGED FROM THEIR DEFAULTS
+    // LEAVING THESE UNCHANGED WILL RESULT IN HUGE SECURITY ISSUES
+    superadmin: {
+        username: 'admin',
+        password: 'admin'
+    },
+    sessionSecret: 'ehhoshanghochiujhaude',
+
+
     port: 80,
     trustProxy: false, // Only if you're behind a reverse proxy (Heroku, Bluemix, AWS if you use an ELB, custom Nginx setup, etc)
     routers: {

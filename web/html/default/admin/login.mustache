@@ -1,6 +1,9 @@
 <section class="full-height vhcenter">
-    <form method="post" action="/">
-        <div class="small-form"> 
+    <form method="post">
+        <div class="small-form">
+            {{#error}}
+                <div class="no-form-align error">{{&.}}</div>
+            {{/error}}
             <div>
                 <label for="username">{{username}}</label>
                 <input name="username" id="username" autofocus placeholder="{{username}}" required>

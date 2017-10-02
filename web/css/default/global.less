@@ -1,5 +1,8 @@
 @import 'reset.less';
 
+// COLORS
+@error-color: red;
+
 body {
     min-height: 100vh;
     display: flex;
@@ -64,5 +67,15 @@ footer {
             display: flex;
             align-items: center;
         }
+    }
+}
+
+.error {
+    display: flex;
+    align-items: center;
+    border-bottom: 2px solid @error-color;
+
+    &>i {
+        margin-right: 8px;
     }
 }
