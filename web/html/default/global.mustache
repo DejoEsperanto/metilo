@@ -23,14 +23,16 @@
         <link rel="stylesheet" href="/assets/css/global.css">
     </head>
     <body>
-        <header>
-            <select id="select-language">
-                {{#locales}}
-                    <option value="{{code}}" {{#active}}selected{{/active}}>{{name}}</option>
-                {{/locales}}
-            </select>
-        </header>
-        <div id="main">{{&main}}</div>
+        <div id="main-wrapper">
+            <header>
+                <select id="select-language">
+                    {{#locales}}
+                        <option value="{{code}}" {{#active}}selected{{/active}}>{{name}}</option>
+                    {{/locales}}
+                </select>
+            </header>
+            <main>{{&main}}</main>
+        </div>
         <footer>{{&copyright.local}}—{{&copyright.metilo}}</footer>
     </body>
 </html>

@@ -1,1 +1,68 @@
 @import 'reset.less';
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+#main-wrapper {
+    height: 300px;
+    min-height: calc(~"100vh - 32px");
+}
+
+header {
+    padding: 0 24px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+}
+
+main {
+    height: 0;
+    min-height: calc(~"100% - 64px");
+    padding: 0 24px;
+}
+
+footer {
+    padding: 0 24px;
+    height: 32px;
+    text-align: center;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.vhcenter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.small-form {
+    max-width: 450px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 24px;
+
+    &>:not(:first-child) {
+        margin-top: 16px;
+    }
+
+    &>:not(.no-form-align) {
+        width: 200px;
+        display: flex;
+        justify-content: flex-end;
+
+        &>label {
+            text-align: right;
+            margin-right: 8px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+    }
+}
