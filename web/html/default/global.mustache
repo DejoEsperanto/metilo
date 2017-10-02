@@ -22,7 +22,7 @@
         <title>{{title}} | {{siteName}}</title>
         <link rel="stylesheet" href="/assets/css/global.css">
     </head>
-    <body>
+    <body data-subsite="{{subsite}}">
         <div id="main-wrapper">
             <header>
                 <select id="select-language">
@@ -34,5 +34,7 @@
             <main>{{&main}}</main>
         </div>
         <footer>{{&copyright.local}}—{{&copyright.metilo}}</footer>
+        <script src="/assets/module/js.cookie.js"></script>
+        <script src="/assets/js/global.js"></script>
     </body>
 </html>

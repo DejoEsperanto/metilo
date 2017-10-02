@@ -71,6 +71,8 @@ export default {
         const getLocale = (req, res, next) => {
             req.locale = {};
 
+            // TODO: Use the HTTP Accept-Language header
+
             for (let subsite in this.conf.content.locales) {
                 const value = req.cookies[subsite + 'Locale'];
                 if (this.conf.content.locales[subsite].indexOf(value) > -1) {

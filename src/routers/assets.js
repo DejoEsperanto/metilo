@@ -24,9 +24,16 @@ import metilo from '..';
 export default function () {
     const router = express.Router();
 
+    // Static folders
     const base = path.join(__dirname, '../../dist/web/');
+    for (let folder of ['css', 'js']) {
+        router.use('/' + folder, express.static(path.join(base, folder, metilo.conf.content.theme)));
+    }
 
-    router.use('/css', express.static(path.join(base, 'css', metilo.conf.content.theme)));
+    // Static files
+    router.get('/module/js.cookie.js', (req, res) => {
+        res.sendFile(path.join(__dirname, '../../node_modules/js-cookie/src/js.cookie.js'));
+    });
 
     return router;
 };

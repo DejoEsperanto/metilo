@@ -47,6 +47,7 @@ export async function renderPage (name, req, subsite, format = {}) {
         {
             main: main,
             title: mainFormat.title,
+            subsite: subsite,
             locales: metilo.locales[subsite].map(x => {
                 return {
                     code: x,
