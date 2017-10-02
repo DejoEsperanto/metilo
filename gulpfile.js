@@ -49,7 +49,7 @@ const compileCSS = function (source) {
 const compileSrc = function (source) {
     return source
         .pipe(plumber())
-        .pipe(header("require('source-map-support').install();\nrequire('babel-core/register');\nrequire('babel-polyfill');\n"))
+        .pipe(header("require('source-map-support').install();require('babel-core/register');require('babel-polyfill');"))
         .pipe(sourcemaps.init())
         .pipe(babel())
         .pipe(sourcemaps.write('.'))

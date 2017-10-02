@@ -18,7 +18,7 @@
  */
 
 import deepAssign from 'deep-assign';
-import {promisify} from 'util';
+import { promisify } from 'util';
 import metilo from '.';
 
 /**

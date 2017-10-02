@@ -32,6 +32,7 @@ export default {
 
 
     // The following settings may be changed if needed
+    bcryptSaltRounds: 20000,
     baseDir: path.join(__dirname, '../data'),
     dbFile: 'db.db',
     port: 80,

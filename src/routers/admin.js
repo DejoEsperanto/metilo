@@ -18,29 +18,65 @@
  */
 
 import express from 'express';
-import {renderPage} from '../render';
+import passportLocal from 'passport-local';
+import bcrypt from 'bcrypt';
+import { promisify } from 'util';
+import passport from 'passport';
+
+import { renderPage } from '../render';
+import metilo from '..';
+import User from '../db/user';
 
 export default function () {
     const router = express.Router();
 
     // Login page or site overview
     const getMain = (req, res, next) => {
-        renderPage('admin/login', req, 'admin', { main: { error: req.flash('error')[0] || false } })
+        console.log(req.user);
+
+        const error = req.flash('error')[0] || false;
+        renderPage('admin/login', req, 'admin', { main: { error: error } })
             .then(data => res.send(data))
             .catch(err => next(err));
     };
     router.get('/', getMain);
 
     // Login action
-    router.post('/', (req, res, next) => {
-        if (!req.body.username || !req.body.password) {
-            req.flash('error', 'Login request missing field');
-            getMain(req, res, next);
-            return;
-        }
-
-        res.send('Gonna have to think about that one');
+    router.post('/', passport.authenticate('local', { failureFlash: '{{error.invalid}}' }), (req, res, next) => {
+        res.redirect(metilo.conf.routers.admin);
     });
 
     return router;
 };
+
+const superUser = () => new User({
+    data: {
+        id: 0,
+        nickname: 'Super Admin',
+        username: metilo.conf.superadmin.username,
+        password: metilo.conf.superadmin.password,
+        level: 0
+    }
+});
+
+passport.use(new passportLocal.Strategy(async (username, password, cb) => {
+    if (username === metilo.conf.superadmin.username && password === metilo.conf.superadmin.password) {
+        const user = superUser();
+        cb(null, user);
+    } else {
+        // TODO: Login for regular users
+        cb(null, false);
+    }
+}));
+
+passport.serializeUser((user, cb) => {
+    cb(null, user.data.id);
+});
+
+passport.deserializeUser((id, cb) => {
+    if (id === 0) {
+        cb(null, superUser());
+    } else {
+        cb(null, metilo.db.getUser('id = ?', id));
+    }
+});

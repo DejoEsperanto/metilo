@@ -35,6 +35,7 @@ import passport from 'passport';
 
 import defConf from './conf';
 import * as routers from './routers';
+import Database from './db/database.js';
 
 export default {
     didInit: false,
@@ -53,10 +54,11 @@ export default {
     locales: null,
     localeInfo: null,
     limiter: new RateLimit({
-        windowMs: 15 * 60 * 1000, // 14 minutes,
-        max: 100,
+        windowMs: 15 * 60 * 1000, // 15 minutes,
+        max: 20,
         delayMs: 100
     }),
+    db: null,
 
     init (_conf) {
         this.didInit = true;
@@ -72,6 +74,7 @@ export default {
             fs.copyFileSync(path.join(__dirname, '../db_template.db'), dbPath);
             console.log('Database not found, created new from template');
         }
+        this.db = new Database(dbPath);
 
         if (this.conf.trustProxy) {
             app.enable('trust proxy');
@@ -98,10 +101,13 @@ export default {
             cookie: { maxAge: 60000 },
             resave: false,
             saveUninitialized: false,
-            secret: this.conf.sessionSecret
+            secret: this.conf.sessionSecret,
+            name: 'metiloSession'
         }));
+
         this.app.use(passport.initialize());
         this.app.use(passport.session());
+
         this.app.use(flash());
 
         this.localeInfo = require('../locale');
