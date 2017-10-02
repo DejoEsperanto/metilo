@@ -70,8 +70,6 @@ export default {
                 }
             }
 
-            console.log(req.locale);
-
             next();
         };
         this.app.use(getLocale);
