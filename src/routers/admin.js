@@ -35,13 +35,15 @@ export default function () {
 
     const renderPage = async (name, req, subsite, format = {}, useSubglobal = 'subglobal') => {
         if (req.user) {
-            const urls = metilo.getURLs(req.locale.admin, 'admin');
+            const urls = metilo.getURLs('admin');
 
             format = deepAssign(format, {
                 global: {
                     name: req.user.name(),
                     profileLink$: `<a href="${admin}/${urls.profile}">`,
-                    $profileLink: '</a>'
+                    $profileLink: '</a>',
+                    logoutLink$: `<a href="${admin}?${urls.logout}">`,
+                    $logoutLink: '</a>'
                 },
                 subglobal: {
                     isAdmin: req.user.isAdmin()
@@ -56,7 +58,7 @@ export default function () {
     const getMain = (req, res, next) => {
         const locale = metilo.getLocale(req.locale.admin);
         const localeTheme = metilo.getLocaleTheme(req.locale.admin);
-        const urls = metilo.getURLs(req.locale.admin, 'admin');
+        const urls = metilo.getURLs('admin');
 
         if (req.user) {
             // Dashboard

@@ -36,10 +36,15 @@ export async function renderPage (name, req, subsite, format = {}, useSubglobal 
     const locale = req.locale[subsite];
     const localeData = metilo.getLocale(locale);
     const localeThemeData = metilo.getLocaleTheme(locale);
+    const urls = metilo.getAllURLs(subsite);
 
     // Get page
     let mainFormat = deepAssign(
         localeThemeData.pages[name] || {},
+        {
+            urls: urls,
+            subsiteURL: metilo.conf.routers[subsite]
+        },
         format.main || {}
     );
     mainFormat = formatRecursive(mainFormat, mainFormat);
@@ -51,7 +56,9 @@ export async function renderPage (name, req, subsite, format = {}, useSubglobal 
         let subglobalFormat = deepAssign(
             localeThemeData.pages[subsite],
             {
-                main: main
+                main: main,
+                urls: urls,
+                subsiteURL: metilo.conf.routers[subsite]
             },
             format.subglobal || {}
         );
@@ -69,6 +76,8 @@ export async function renderPage (name, req, subsite, format = {}, useSubglobal 
             main: subglobal,
             title: mainFormat.title,
             subsite: subsite,
+            urls: urls,
+            subsiteURL: metilo.conf.routers[subsite],
             locales: metilo.locales[subsite].map(x => {
                 return {
                     code: x,

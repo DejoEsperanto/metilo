@@ -9,16 +9,34 @@
                 },
                 "admin": {
                     "welcome": "Bonvenon, {{&profileLink$}}{{name}}{{&$profileLink}}!",
+                    "logout": "{{&logoutLink$}}Elsaluti{{&$logoutLink}}.",
                     "hideHeader": false,
                     "menu": {
-                        "aboutYou": "Pri vi",
-                        "aboutSite": "Pri la retejo",
-                        "siteContent": "Retejenhavo",
-                        "users": "Uzantoj"
+                        "aboutYou": {
+                            "main": "Pri vi",
+                            "profileSettings": "Profilo kaj agordoj"
+                        },
+                        "aboutSite": {
+                            "main": "Pri la retejo",
+                            "general": "La retejo ĝenerale",
+                            "seo": "Optimumigo de serĉiloj",
+                            "statistics": "Statistiko"
+                        },
+                        "siteContent": {
+                            "main": "Retejenhavo",
+                            "pages": "Paĝoj"
+                        },
+                        "users": {
+                            "main": "Uzantoj",
+                            "users": "Uzantoj"
+                        }
                     }
                 },
+                "admin/dashboard": {
+                    "title": "Stirpanelo"
+                },
                 "admin/login": {
-                    "title": "Ensaluti al la stirpanelo",
+                    "title": "Ensaluti en la stirpanelon",
                     "username": "Uzantonomo",
                     "password": "Pasvorto",
                     "login": "Ensaluti",
@@ -27,7 +45,13 @@
             },
             "urls": {
                 "admin": {
-                    "profile": "profilo"
+                    "profile": "profilo",
+                    "siteGeneral": "pri-retejo",
+                    "siteSEO": "seo",
+                    "siteStatistics": "statistiko",
+                    "contentPages": "paghoj",
+                    "users": "uzantoj",
+                    "logout": "elsaluti"
                 }
             }
         }

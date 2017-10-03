@@ -181,7 +181,11 @@ export default {
         return this.getLocale(locale).templates[this.conf.content.theme];
     },
 
-    getURLs (locale, subsite) {
-        return this.getLocaleTheme(locale).urls[subsite];
+    getAllURLs (subsite) {
+        return this.getLocaleTheme(this.locales[subsite][0]).urls;
+    },
+
+    getURLs (subsite) {
+        return this.getAllURLs(subsite)[subsite];
     }
 };

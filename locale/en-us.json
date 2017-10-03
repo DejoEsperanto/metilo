@@ -8,14 +8,32 @@
                     }
                 },
                 "admin": {
-                    "welcome": "Welcome, {{&profileLink$}}{{name}}{{&$profileLink}}!",
                     "hideHeader": false,
+                    "welcome": "Welcome, {{&profileLink$}}{{name}}{{&$profileLink}}!",
+                    "logout": "{{&logoutLink$}}Log out{{&$logoutLink}}.",
                     "menu": {
-                        "aboutYou": "About you",
-                        "aboutSite": "About the website",
-                        "siteContent": "Site content",
-                        "users": "Users"
+                        "aboutYou": {
+                            "main": "About you",
+                            "profileSettings": "Profile and settings"
+                        },
+                        "aboutSite": {
+                            "main": "About the website",
+                            "general": "General",
+                            "seo": "Search Engine Optimization",
+                            "statistics": "Statistics"
+                        },
+                        "siteContent": {
+                            "main": "Website content",
+                            "pages": "Sider"
+                        },
+                        "users": {
+                            "main": "Users",
+                            "users": "Users"
+                        }
                     }
+                },
+                "admin/dashboard": {
+                    "title": "Dashboard"
                 },
                 "admin/login": {
                     "title": "Log in to the dashboard",
@@ -27,7 +45,13 @@
             },
             "urls": {
                 "admin": {
-                    "profile": "profile"
+                    "profile": "profile",
+                    "siteGeneral": "about-site",
+                    "siteSEO": "seo",
+                    "siteStatistics": "statistics",
+                    "contentPages": "pages",
+                    "users": "users",
+                    "logout": "logout"
                 }
             }
         }

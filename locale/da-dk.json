@@ -8,14 +8,32 @@
                     }
                 },
                 "admin": {
-                    "welcome": "Velkommen, {{&profileLink$}}{{name}}{{&$profileLink}}!",
                     "hideHeader": false,
+                    "welcome": "Velkommen, {{&profileLink$}}{{name}}{{&$profileLink}}!",
+                    "logout": "{{&logoutLink$}}Log ud{{&$logoutLink}}.",
                     "menu": {
-                        "aboutYou": "Om dig",
-                        "aboutSite": "Om siden",
-                        "siteContent": "Sidens indhold",
-                        "users": "Brugere"
+                        "aboutYou": {
+                            "main": "Om dig",
+                            "profileSettings": "Profil og indstillinger"
+                        },
+                        "aboutSite": {
+                            "main": "Om hjemmesiden",
+                            "general": "Hjemmesiden generelt",
+                            "seo": "Søgemaskineoptimering",
+                            "statistics": "Statistik"
+                        },
+                        "siteContent": {
+                            "main": "Hjemmesidens indhold",
+                            "pages": "Sider"
+                        },
+                        "users": {
+                            "main": "Brugere",
+                            "users": "Brugere"
+                        }
                     }
+                },
+                "admin/dashboard": {
+                    "title": "Kontrolpanel"
                 },
                 "admin/login": {
                     "title": "Log ind til kontrolpanelet",
@@ -27,7 +45,13 @@
             },
             "urls": {
                 "admin": {
-                    "profile": "profil"
+                    "profile": "profil",
+                    "siteGeneral": "om-site",
+                    "siteSEO": "seo",
+                    "siteStatistics": "statistik",
+                    "contentPages": "sider",
+                    "users": "brugere",
+                    "logout": "logud"
                 }
             }
         }

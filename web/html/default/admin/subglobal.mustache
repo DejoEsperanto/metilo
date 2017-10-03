@@ -1,10 +1,32 @@
 <section class="left-bar full-height">
-    <ul>
-        <li>{{menu.aboutYou}}</li>
-        <li>{{menu.aboutSite}}</li>
-        <li>{{menu.siteContent}}</li>
+    <ul class="vmenu">
+        <li>
+            <span>{{menu.aboutYou.main}}</span>
+            <ul>
+                <li><a href="{{&subsiteURL}}/{{&urls.admin.profile}}">{{menu.aboutYou.profileSettings}}</a></li>
+            </ul>
+        </li>
+        <li>
+            <span>{{menu.aboutSite.main}}</span>
+            <ul>
+                <li><a href="{{&subsiteURL}}/{{&urls.admin.siteGeneral}}">{{menu.aboutSite.general}}</a></li>
+                <li><a href="{{&subsiteURL}}/{{&urls.admin.siteSEO}}">{{menu.aboutSite.seo}}</a></li>
+                <li><a href="{{&subsiteURL}}/{{&urls.admin.siteStatistics}}">{{menu.aboutSite.statistics}}</a></li>
+            </ul>
+        </li>
+        <li>
+            <span>{{menu.siteContent.main}}</span>
+            <ul>
+                <li><a href="{{&subsiteURL}}/{{&urls.admin.contentPages}}">{{menu.siteContent.pages}}</a></li>
+            </ul>
+        </li>
         {{#isAdmin}}
-            <li>{{menu.users}}</li>
+        <li>
+            <span>{{menu.users.main}}</span>
+            <ul>
+                <li><a href="{{&subsiteURL}}/{{&urls.admin.users}}">{{menu.users.users}}</a></li>
+            </ul>
+        </li>
         {{/isAdmin}}
     </ul>
 </section>

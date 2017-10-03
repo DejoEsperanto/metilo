@@ -28,13 +28,12 @@
             <header>
                 <select id="select-language">
                     {{#locales}}
-                        <option value="{{code}}" {{#active}}selected{{/active}}>{{name}}</option>
+                    <option value="{{code}}" {{#active}}selected{{/active}}>{{name}}</option>
                     {{/locales}}
                 </select>
                 {{^hideHeader}}
-                    <div>
-                        {{&welcome}}
-                    </div>
+                <div>{{&welcome}}</div>
+                <div>{{&logout}}</div>
                 {{/hideHeader}}
             </header>
             <main>{{&main}}</main>
