@@ -56,9 +56,16 @@ export default function () {
 
     // Login page or site overview
     const getMain = (req, res, next) => {
+        const urls = metilo.getURLs('admin');
+
+        if (urls.logout in req.query) {
+            req.logout();
+            res.redirect(admin);
+            return;
+        }
+
         const locale = metilo.getLocale(req.locale.admin);
         const localeTheme = metilo.getLocaleTheme(req.locale.admin);
-        const urls = metilo.getURLs('admin');
 
         if (req.user) {
             // Dashboard
