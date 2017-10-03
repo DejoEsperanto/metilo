@@ -66,6 +66,10 @@ class User {
         }
         return fullName;
     }
+
+    isAdmin () {
+        return this.data.level === 0;
+    }
 }
 
 export default User;

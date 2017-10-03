@@ -1,0 +1,11 @@
+<section class="left-bar full-height">
+    <ul>
+        <li>{{menu.aboutYou}}</li>
+        <li>{{menu.aboutSite}}</li>
+        <li>{{menu.siteContent}}</li>
+        {{#isAdmin}}
+            <li>{{menu.users}}</li>
+        {{/isAdmin}}
+    </ul>
+</section>
+<section class="remaining-width full-height">{{&main}}</section>

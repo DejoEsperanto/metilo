@@ -30,27 +30,43 @@ import metilo from '.';
  * @param  {Object}  [format] Values for page
  * @return {string}  Rendered page
  */
-export async function renderPage (name, req, subsite, format = {}) {
+export async function renderPage (name, req, subsite, format = {}, useSubglobal = false) {
     const render = promisify(metilo.app.render.bind(metilo.app));
 
     const locale = req.locale[subsite];
     const localeData = metilo.getLocale(locale);
+    const localeThemeData = metilo.getLocaleTheme(locale);
 
     // Get page
     let mainFormat = deepAssign(
-        localeData.templates[metilo.conf.content.theme].pages[name] || {},
+        localeThemeData.pages[name] || {},
         format.main || {}
     );
     mainFormat = formatRecursive(mainFormat, mainFormat);
     const main = await render(name, mainFormat);
 
-    // Determine format
+    // Get subglobal (if applicable)
+    let subglobal = main;
+    if (useSubglobal) {
+        let subglobalFormat = deepAssign(
+            localeThemeData.pages[subsite],
+            {
+                main: main
+            },
+            format.subglobal || {}
+        );
+        subglobalFormat = formatRecursive(subglobalFormat, subglobalFormat);
+
+        subglobal = await render(`${subsite}/${useSubglobal}`, subglobalFormat);
+    }
+
+    // Get global
     let globalFormat = deepAssign(
-        localeData.templates[metilo.conf.content.theme].pages.global,
+        localeThemeData.pages.global,
         metilo.conf.content.localeStrings[locale],
-        localeData.templates[metilo.conf.content.theme].pages[subsite],
+        localeThemeData.pages[subsite],
         {
-            main: main,
+            main: subglobal,
             title: mainFormat.title,
             subsite: subsite,
             locales: metilo.locales[subsite].map(x => {
@@ -66,7 +82,7 @@ export async function renderPage (name, req, subsite, format = {}) {
     globalFormat = formatRecursive(globalFormat, globalFormat);
 
     // Get global
-    return await render(subsite + '/global', globalFormat);
+    return await render(`${subsite}/global`, globalFormat);
 };
 
 export function formatRecursive (format, view) {

@@ -22,8 +22,9 @@ import passportLocal from 'passport-local';
 import { promisify } from 'util';
 import passport from 'passport';
 import Mustache from 'mustache';
+import deepAssign from 'deep-assign';
 
-import { renderPage } from '../render';
+import { renderPage as _renderPage } from '../render';
 import metilo from '..';
 import User from '../db/user';
 
@@ -31,6 +32,25 @@ export default function () {
     const admin = metilo.conf.routers.admin;
 
     const router = express.Router();
+
+    const renderPage = async (name, req, subsite, format = {}, useSubglobal = 'subglobal') => {
+        if (req.user) {
+            const urls = metilo.getURLs(req.locale.admin, 'admin');
+
+            format = deepAssign(format, {
+                global: {
+                    name: req.user.name(),
+                    profileLink$: `<a href="${admin}/${urls.profile}">`,
+                    $profileLink: '</a>'
+                },
+                subglobal: {
+                    isAdmin: req.user.isAdmin()
+                }
+            });
+        }
+
+        return await _renderPage(name, req, subsite, format, useSubglobal);
+    };
 
     // Login page or site overview
     const getMain = (req, res, next) => {
@@ -40,13 +60,7 @@ export default function () {
 
         if (req.user) {
             // Dashboard
-            renderPage('admin/dashboard', req, 'admin', {
-                global: {
-                    name: req.user.name(),
-                    profileLink$: `<a href="${admin}/${urls.profile}">`,
-                    $profileLink: '</a>'
-                }
-            })
+            renderPage('admin/dashboard', req, 'admin')
                 .then(data => res.send(data))
                 .catch(err => next(err));
         } else {
@@ -56,7 +70,7 @@ export default function () {
             renderPage('admin/login', req, 'admin', {
                 main: { error: errorMessage },
                 global: { hideHeader: true }
-            })
+            }, false)
                 .then(data => res.send(data))
                 .catch(err => next(err));
         }

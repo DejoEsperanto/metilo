@@ -9,14 +9,20 @@
                 },
                 "admin": {
                     "welcome": "Welcome, {{&profileLink$}}{{name}}{{&$profileLink}}!",
-                    "hideHeader": false
+                    "hideHeader": false,
+                    "menu": {
+                        "aboutYou": "About you",
+                        "aboutSite": "About the website",
+                        "siteContent": "Site content",
+                        "users": "Users"
+                    }
                 },
                 "admin/login": {
                     "title": "Log in to the dashboard",
                     "username": "Username",
                     "password": "Password",
                     "login": "Log in",
-                    "forgotPassword": "If you're unable to sign in or forgot your password, please contact your site administrator."
+                    "forgotPassword": "If you're unable to sign in or forgot your password, please contact your website administrator."
                 }
             },
             "urls": {

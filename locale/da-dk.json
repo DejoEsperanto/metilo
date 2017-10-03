@@ -9,7 +9,13 @@
                 },
                 "admin": {
                     "welcome": "Velkommen, {{&profileLink$}}{{name}}{{&$profileLink}}!",
-                    "hideHeader": false
+                    "hideHeader": false,
+                    "menu": {
+                        "aboutYou": "Om dig",
+                        "aboutSite": "Om siden",
+                        "siteContent": "Sidens indhold",
+                        "users": "Brugere"
+                    }
                 },
                 "admin/login": {
                     "title": "Log ind til kontrolpanelet",

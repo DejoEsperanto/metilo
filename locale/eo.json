@@ -9,7 +9,13 @@
                 },
                 "admin": {
                     "welcome": "Bonvenon, {{&profileLink$}}{{name}}{{&$profileLink}}!",
-                    "hideHeader": false
+                    "hideHeader": false,
+                    "menu": {
+                        "aboutYou": "Pri vi",
+                        "aboutSite": "Pri la retejo",
+                        "siteContent": "Retejenhavo",
+                        "users": "Uzantoj"
+                    }
                 },
                 "admin/login": {
                     "title": "Ensaluti al la stirpanelo",
