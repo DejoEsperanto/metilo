@@ -60,7 +60,30 @@
                         "actions": "Handlinger"
                     },
                     "noUsers": "Ingen brugere blev fundet.",
-                    "newUser": "Tilføj bruger"
+                    "newUser": "Tilføj ny bruger"
+                },
+                "admin/new-user": {
+                    "title": "Tilføj ny bruger",
+                    "newUserHeader": "Tilføj ny bruger",
+                    "fields": {
+                        "name": "Fulde navn",
+                        "surname": "Efternavn",
+                        "nickname": "Kaldenavn",
+                        "username": "Brugernavn",
+                        "email": "E-mail",
+                        "phoneNumber": "Telefonnummer",
+                        "role": "Rolle",
+                        "admin": "Administrator"
+                    },
+                    "fieldHelp": {
+                        "name": "Dette felt indeholder brugerens fulde navn. På dansk består dette af fornavn og eventuelle mellemnavne samt efternavne.",
+                        "surname": "Dette felt indeholder brugerens efternavn, hvis vedkommende har sådan et. Efternavnet skal også være en del af det fulde navn. Delen af det fulde navn, der er brugerens efternavn markeres således på sprog, hvor dette markeres specielt.",
+                        "nickname": "Dette felt indeholder brugeres kaldenavn. Et kaldenavn bruges når en person tiltales og kan f.eks. være et fornavn eller kælenavn.",
+                        "username": "Dette felt indeholder brugerens brugernavn som skal bruges ved login. Det anbefales, at dette felt ikke bruger mellemrum eller andre karakterer, der kan forvirre.",
+                        "email": "Dette felt indeholder brugerens email.",
+                        "phoneNumber": "Dette felt indeholder brugerens telefonnummer. Indtast den internationale telefonkode i feltet til venstre for telefonnummeret.",
+                        "role": "Dette felt indeholder en fritekstsbeskrivelse af brugerens rolle som præsenteret til andre brugere."
+                    }
                 }
             },
             "urls": {
@@ -71,6 +94,7 @@
                     "siteStatistics": "statistik",
                     "contentPages": "sider",
                     "users": "brugere",
+                    "newUser": "brugere/ny",
                     "logout": "logud"
                 }
             }

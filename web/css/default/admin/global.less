@@ -17,10 +17,11 @@
  * along with Metilo. If not, see <http://www.gnu.org/licenses/>.
  */
 
-@import 'reset.less';
+@import '../reset.less';
 
-// COLORS
+// Colors
 @error-color: red;
+@required-color: red;
 @table-color-odd: #a0dddd;
 @table-color-even: #ddd;
 
@@ -180,4 +181,94 @@ button {
     &>:not(:first-child) {
         margin-left: 4px;
     }
+}
+
+.big-form {
+    &>div {
+        display: flex;
+
+        &:not(:first-child) {
+            margin-top: 16px;
+        }
+
+        &>div {
+            display: flex;
+            flex-direction: column;
+            width: 200px;
+
+            &>div {
+                display: flex;
+                align-items: center;
+                justify-content: stretch;
+
+                &>:not(:first-child) {
+                    margin-left: 4px;
+                }
+
+                &>input.grow {
+                    width: auto;
+                    flex-grow: 1;
+                }
+            }
+
+            &:not(:first-child) {
+                margin-left: 24px;
+            }
+
+            &>label {
+                margin-bottom: 4px;
+
+                &.required:after {
+                    content: ' *';
+                    color: @required-color;
+                }
+            }
+
+            &>input:not([type=checkbox]) {
+                width: 100%;
+                box-sizing: border-box;
+            }
+
+            &>textarea {
+                resize: vertical;
+                height: 150px;
+                max-height: 300px;
+            }
+        }
+    }
+}
+
+input.phone-code {
+    width: 20px;
+    text-align: center;
+}
+
+.horizontal {
+    display: flex;
+
+    &.wide-spacing {
+        &>:not(:first-child) {
+            margin-left: 32px;
+        }
+    }
+
+    &>:not(:first-child) {
+        margin-left: 16px;
+    }
+}
+
+.remaining-width {
+    width: 100%;
+}
+
+.min-width-readable {
+    min-width: 400px;
+}
+
+.form-help-text {
+    width: 400px;
+}
+
+p {
+    text-align: justify;
 }

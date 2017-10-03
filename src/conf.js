@@ -30,6 +30,7 @@ export default {
     sessionSecret: 'ehhoshanghochiujhaude',
 
     // The following settings *should* be changed from their defaults
+    defaultPhoneCode: [ 'US', 1 ],
 
 
     // The following settings may be changed if needed

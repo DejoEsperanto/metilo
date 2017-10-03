@@ -1,0 +1,60 @@
+<h1>{{newUserHeader}}</h1>
+<div class="horizontal wide-spacing">
+    <form class="post">
+        <div class="big-form">
+            <div>
+                <div>
+                    <label for="name">1. {{fields.name}}</label>
+                    <input name="name" id="name" autofocus placeholder="{{fields.name}}">
+                </div>
+                <div>
+                    <label for="surname">2. {{fields.surname}}</label>
+                    <input name="surname" id="surname" placeholder="{{fields.surname}}">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label for="nickname">3. {{fields.nickname}}</label>
+                    <input name="nickname" id="nickname" placeholder="{{fields.nickname}}">
+                </div>
+                <div>
+                    <label for="username" class="required">4. {{fields.username}}</label>
+                    <input name="username" id="username" required placeholder="{{fields.username}}">
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label for="email">5. {{fields.email}}</label>
+                    <input name="email" id="email" type="email" placeholder="{{fields.email}}">
+                </div>
+                <div>
+                    <label for="phone">6. {{fields.phoneNumber}}</label>
+                    <div>
+                        <span>+</span>
+                        <input name="phone-code" id="phone-code" class="phone-code" placeholder="{{defaultPhoneCode}}" value="{{defaultPhoneCode}}">
+                        <input name="phone" id="phone" type="tel" class="grow" placeholder="{{fields.phoneNumber}}">
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div>
+                    <label for="role">7. {{fields.role}}</label>
+                    <textarea name="role" id="role"></textarea>
+                </div>
+                <div>
+                    <label for="admin">8. {{fields.admin}}</label>
+                    <input type="checkbox" name="admin" id="admin">
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="form-help-text">
+        <p class="help-text" data-name="name">{{fieldHelp.name}}</p>
+        <p class="help-text" data-name="surname">{{fieldHelp.surname}}</p>
+        <p class="help-text" data-name="nickname">{{fieldHelp.nickname}}</p>
+        <p class="help-text" data-name="username">{{fieldHelp.username}}</p>
+        <p class="help-text" data-name="email">{{fieldHelp.email}}</p>
+        <p class="help-text" data-name="phone">{{fieldHelp.phoneNumber}}</p>
+        <p class="help-text" data-name="role">{{fieldHelp.role}}</p>
+    </div>
+</div>

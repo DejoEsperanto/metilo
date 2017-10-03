@@ -17,7 +17,7 @@
  * along with Metilo. If not, see <http://www.gnu.org/licenses/>.
  */
 
-import deepAssign from 'deep-assign';
+import mergeOptions from 'merge-options';
 import { promisify } from 'util';
 import Mustache from 'mustache';
 import metilo from '.';
@@ -39,11 +39,12 @@ export async function renderPage (name, req, subsite, format = {}, useSubglobal 
     const urls = metilo.getAllURLs(subsite);
 
     // Get page
-    let mainFormat = deepAssign(
+    let mainFormat = mergeOptions(
         localeThemeData.pages[name] || {},
         {
             urls: urls,
-            subsiteURL: metilo.conf.routers[subsite]
+            subsiteURL: metilo.conf.routers[subsite],
+            defaultPhoneCode: metilo.conf.defaultPhoneCode[1]
         },
         format.main || {}
     );
@@ -53,7 +54,7 @@ export async function renderPage (name, req, subsite, format = {}, useSubglobal 
     // Get subglobal (if applicable)
     let subglobal = main;
     if (useSubglobal) {
-        let subglobalFormat = deepAssign(
+        let subglobalFormat = mergeOptions(
             localeThemeData.pages[subsite],
             {
                 main: main,
@@ -68,13 +69,14 @@ export async function renderPage (name, req, subsite, format = {}, useSubglobal 
     }
 
     // Get global
-    let globalFormat = deepAssign(
+    let globalFormat = mergeOptions(
         localeThemeData.pages.global,
         metilo.conf.content.localeStrings[locale],
         localeThemeData.pages[subsite],
         {
             main: subglobal,
-            title: mainFormat.title,
+            title: mainFormat.title || '',
+            includeScripts: [],
             subsite: subsite,
             urls: urls,
             subsiteURL: metilo.conf.routers[subsite],

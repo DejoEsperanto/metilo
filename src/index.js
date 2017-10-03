@@ -20,7 +20,7 @@
 process.on('unhandledRejection', (reason, promise) => console.error(reason));
 
 import express from 'express';
-import deepAssign from 'deep-assign';
+import mergeOptions from 'merge-options';
 import mustacheExpress from 'mustache-express';
 import minimist from 'minimist';
 import cookieParser from 'cookie-parser';
@@ -61,7 +61,7 @@ export default {
 
     init (_conf) {
         this.didInit = true;
-        this.conf = deepAssign(defConf, _conf)
+        this.conf = mergeOptions(defConf, _conf)
         this.app = express();
         this.app.engine('mustache', mustacheExpress());
         this.app.set('views', path.join(__dirname, '../web/html/', this.conf.content.theme))

@@ -60,7 +60,30 @@
                         "actions": "Actions"
                     },
                     "noUsers": "No users were found.",
-                    "newUser": "Add user"
+                    "newUser": "Add new user"
+                },
+                "admin/new-user": {
+                    "title": "Add new user",
+                    "newUserHeader": "Add new user",
+                    "fields": {
+                        "name": "Full name",
+                        "surname": "Efternavn",
+                        "nickname": "Nickname",
+                        "username": "Brugernavn",
+                        "email": "E-mail",
+                        "phoneNumber": "Telefonnummer",
+                        "role": "Rolle",
+                        "admin": "Administrator"
+                    },
+                    "fieldHelp": {
+                        "name": "This field contains the user's full name. In English this usually consists of a first name, eventually a middle name, and a last name.",
+                        "surname": "This field contains the user's surname, if they have one. The surname must also be part of the full name. The surname part of the full name will be marked as such in languages where this requires special formatting.",
+                        "nickname": "This field contains the user's nickname. A nickname is used in addressing people and can be e.g. a first name or pet name.",
+                        "username": "This field contains the user's username as used during login. It is recommended not to use spaces or other characters that may cause confusion.",
+                        "email": "This field contains the user's email.",
+                        "phoneNumber": "This field contains the user's phone number. Please put the international phone code in the field to the left of the phone number.",
+                        "role": "This field contains a free text description of the user's role as presented to other users."
+                    }
                 }
             },
             "urls": {
@@ -71,6 +94,7 @@
                     "siteStatistics": "statistics",
                     "contentPages": "pages",
                     "users": "users",
+                    "newUser": "users/new",
                     "logout": "logout"
                 }
             }

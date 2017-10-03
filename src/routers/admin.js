@@ -22,7 +22,7 @@ import passportLocal from 'passport-local';
 import { promisify } from 'util';
 import passport from 'passport';
 import Mustache from 'mustache';
-import deepAssign from 'deep-assign';
+import mergeOptions from 'merge-options';
 import { ensureLoggedIn } from 'connect-ensure-login';
 
 import { renderPage as _renderPage } from '../render';
@@ -40,7 +40,7 @@ export default function () {
         if (req.user) {
             const urls = metilo.getURLs('admin');
 
-            format = deepAssign(format, {
+            format = mergeOptions(format, {
                 global: {
                     name: req.user.name(),
                     profileLink$: `<a href="${admin}/${urls.profile}">`,
@@ -66,7 +66,6 @@ export default function () {
         }
 
         const locale = metilo.getLocale(req.locale.admin);
-        const localeTheme = metilo.getLocaleTheme(req.locale.admin);
 
         if (req.user) {
             // Dashboard
@@ -95,6 +94,19 @@ export default function () {
         res.redirect(admin);
     });
 
+    // New user page
+    router.get(`/${urls.newUser}`, ensureLoggedIn(admin), (req, res, next) => {
+        if (!req.user.isAdmin()) { res.redirect(admin); return; }
+
+        renderPage('admin/new-user', req, 'admin', {
+            global: {
+                includeScripts: '/assets/js/admin/new-user.js'
+            }
+        })
+            .then(data => res.send(data))
+            .catch(err => next(err));
+    });
+
     // Users page
     router.get(`/${urls.users}`, ensureLoggedIn(admin), (req, res, next) => {
         if (!req.user.isAdmin()) { res.redirect(admin); return; }
@@ -102,7 +114,7 @@ export default function () {
         renderPage('admin/users', req, 'admin')
             .then(data => res.send(data))
             .catch(err => next(err));
-    })
+    });
 
     return router;
 };

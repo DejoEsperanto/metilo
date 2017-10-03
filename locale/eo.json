@@ -60,7 +60,30 @@
                         "actions": "Agoj"
                     },
                     "noUsers": "Trovis neniujn uzantojn.",
-                    "newUser": "Krei uzanton"
+                    "newUser": "Krei novan uzanton"
+                },
+                "admin/new-user": {
+                    "title": "Kreado de nova uzanto",
+                    "newUserHeader": "Kreado de nova uzanto",
+                    "fields": {
+                        "name": "Plena nomo",
+                        "surname": "Familinomo",
+                        "nickname": "Kromnomo",
+                        "username": "Uzantonomo",
+                        "email": "Retpoŝtadreso",
+                        "phoneNumber": "Telefonnumero",
+                        "role": "Rolo",
+                        "admin": "Administranto"
+                    },
+                    "fieldHelp": {
+                        "name": "Ĉi tiu kampo enhavas la plenan nomon de la uzanto. Plena nomo povas enhavi ekzemple personnomojn, meznomojn aŭ familinomojn.",
+                        "surname": "Ĉi tiu kampo enhavas la familinomon de la uzanto, se tiu havas ion tian. La familinomo devas ankaŭ esti en la plena nomo. La parto de la plena nomo, kiu estas la familinomo estos tiel markita en lingvoj, kie tio postulas specialan markilon.",
+                        "nickname": "Ĉi tiu kampo enhavas la kromnomon de la uzanto. Kromnomo uziĝas kiam homo alparoliĝas kaj povas esti ekz. persona nomo aŭ karesnomo.",
+                        "username": "Ĉi tiu kampo enhavas la uzantonomon de la uzanto, kiu uzendas je ensaluto. Estas konsilinde ne uzi spacetojn aŭ aliajn signojn konfuzajn.",
+                        "email": "Ĉi tiu kampo enhavas la retpoŝtadreson de la uzanto.",
+                        "phoneNumber": "Ĉi tiu kampo enhavas la telefonnumeron de la uzanto. Bonvolu meti la internacian telefonkodon en la kampo maldekstre de la telefonnumero.",
+                        "role": "Ĉi tiu kampo enhavas libertekstan priskribon de la rolo de la uzanto kiel prezentite al aliaj uzantoj."
+                    }
                 }
             },
             "urls": {
@@ -71,6 +94,7 @@
                     "siteStatistics": "statistiko",
                     "contentPages": "paghoj",
                     "users": "uzantoj",
+                    "newUser": "uzantoj/nova",
                     "logout": "elsaluti"
                 }
             }
