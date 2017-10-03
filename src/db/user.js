@@ -17,6 +17,8 @@
  * along with Metilo. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import metilo from '..';
+
 class User {
     constructor ({
         data = {},
@@ -40,6 +42,29 @@ class User {
         }
 
         this.data = data;
+    }
+
+    /**
+     * Obtains the user's name. Escaped and formatted for HTML
+     * @return {string}
+     */
+    name () {
+        if (this.data.nickname) { return metilo.entities.encode(this.data.nickname); }
+        if (this.data.name) { return metilo.entities.encode(this.fullName()); }
+        return metilo.entities.encode(this.data.username);
+    }
+
+    /**
+     * Obtains the user's full name. Escaped and formatted for HTML
+     * @return {string}
+     */
+    fullName () {
+        let fullName = this.data.name;
+        if (this.data.surname) {
+            metilo.entities.encode(this.data.surname)
+            fullName = fullName.replace(this.data.surname, `<span class="surname">${encodedSurname}<span class="surname"></span>`);
+        }
+        return fullName;
     }
 }
 

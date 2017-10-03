@@ -19,12 +19,30 @@ header {
     height: 64px;
     display: flex;
     align-items: center;
+
+    &>:not(:first-child) {
+        margin-left: 24px;
+    }
 }
 
 main {
     height: 0;
     min-height: calc(~"100% - 64px");
     padding: 0 24px;
+    display: flex;
+
+    &>section  {
+        width: 100%;
+
+        &:not(:first-child) {
+            padding-left: 24px;
+        }
+
+        &.left-bar {
+            width: 20%;
+            min-width: 200px;
+        }
+    }
 }
 
 footer {

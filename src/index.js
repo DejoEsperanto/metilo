@@ -32,6 +32,7 @@ import flash from 'connect-flash';
 import expressSession from 'express-session';
 import fs from 'fs-extra-promise';
 import passport from 'passport';
+import Entities from 'html-entities';
 
 import defConf from './conf';
 import * as routers from './routers';
@@ -56,6 +57,7 @@ export default {
     localeInfo: null,
     limiter: null,
     db: null,
+    entities: new Entities.AllHtmlEntities(),
 
     init (_conf) {
         this.didInit = true;
@@ -112,7 +114,6 @@ export default {
         this.app.use(cookieParser());
         this.app.use(bodyParser.urlencoded({ extended: true }));
         this.app.use(expressSession({
-            cookie: { maxAge: 60000 },
             resave: false,
             saveUninitialized: false,
             secret: this.conf.sessionSecret,
@@ -170,5 +171,17 @@ export default {
         this.app.listen(this.conf.port, () => {
             console.log('Metilo running on port %s', this.conf.port);
         });
+    },
+
+    getLocale (locale) {
+        return require(`../locale/${locale}`);
+    },
+
+    getLocaleTheme (locale) {
+        return this.getLocale(locale).templates[this.conf.content.theme];
+    },
+
+    getURLs (locale, subsite) {
+        return this.getLocaleTheme(locale).urls[subsite];
     }
 };

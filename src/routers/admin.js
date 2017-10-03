@@ -28,18 +28,35 @@ import metilo from '..';
 import User from '../db/user';
 
 export default function () {
+    const admin = metilo.conf.routers.admin;
+
     const router = express.Router();
 
     // Login page or site overview
     const getMain = (req, res, next) => {
+        const locale = metilo.getLocale(req.locale.admin);
+        const localeTheme = metilo.getLocaleTheme(req.locale.admin);
+        const urls = metilo.getURLs(req.locale.admin, 'admin');
+
         if (req.user) {
             // Dashboard
-            res.send('Admin dashboard');
+            renderPage('admin/dashboard', req, 'admin', {
+                global: {
+                    name: req.user.name(),
+                    profileLink$: `<a href="${admin}/${urls.profile}">`,
+                    $profileLink: '</a>'
+                }
+            })
+                .then(data => res.send(data))
+                .catch(err => next(err));
         } else {
             // Sign in
             const error = req.flash('error')[0] || '';
-            const errorMessage = Mustache.render(error, require('../../locale/' + req.locale.admin)) || false;
-            renderPage('admin/login', req, 'admin', { main: { error: errorMessage } })
+            const errorMessage = Mustache.render(error, locale) || false;
+            renderPage('admin/login', req, 'admin', {
+                main: { error: errorMessage },
+                global: { hideHeader: true }
+            })
                 .then(data => res.send(data))
                 .catch(err => next(err));
         }
@@ -49,9 +66,9 @@ export default function () {
     // Login action
     router.post('/', metilo.limiter, passport.authenticate('local', {
         failureFlash: '{{error.unauthorized}}',
-        failureRedirect: metilo.conf.routers.admin
+        failureRedirect: admin
     }), (req, res, next) => {
-        res.redirect(metilo.conf.routers.admin);
+        res.redirect(admin);
     });
 
     return router;

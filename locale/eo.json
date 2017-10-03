@@ -7,12 +7,21 @@
                         "metilo": "Havebligita de <a href=\"https://github.com/DejoEsperanto/metilo\">Metilo</a>."
                     }
                 },
+                "admin": {
+                    "welcome": "Bonvenon, {{&profileLink$}}{{name}}{{&$profileLink}}!",
+                    "hideHeader": false
+                },
                 "admin/login": {
                     "title": "Ensaluti al la stirpanelo",
                     "username": "Uzantonomo",
                     "password": "Pasvorto",
                     "login": "Ensaluti",
                     "forgotPassword": "Se vi ne povas ensaluti aŭ se vi forgesis vian pasvorton, bonvolu kontakti vian retejadministranton."
+                }
+            },
+            "urls": {
+                "admin": {
+                    "profile": "profilo"
                 }
             }
         }

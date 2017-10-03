@@ -7,12 +7,21 @@
                         "metilo": "Drevet af <a href=\"https://github.com/DejoEsperanto/metilo\">Metilo</a>."
                     }
                 },
+                "admin": {
+                    "welcome": "Velkommen, {{&profileLink$}}{{name}}{{&$profileLink}}!",
+                    "hideHeader": false
+                },
                 "admin/login": {
                     "title": "Log ind til kontrolpanelet",
                     "username": "Brugernavn",
                     "password": "Adgangskode",
                     "login": "Log ind",
                     "forgotPassword": "Hvis du ikke kan logge ind eller har glemt din adgangskode, så kontakt venligst din sideadministrator."
+                }
+            },
+            "urls": {
+                "admin": {
+                    "profile": "profil"
                 }
             }
         }

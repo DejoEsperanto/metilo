@@ -19,6 +19,7 @@
 
 import deepAssign from 'deep-assign';
 import { promisify } from 'util';
+import Mustache from 'mustache';
 import metilo from '.';
 
 /**
@@ -33,20 +34,21 @@ export async function renderPage (name, req, subsite, format = {}) {
     const render = promisify(metilo.app.render.bind(metilo.app));
 
     const locale = req.locale[subsite];
-    const localeData = require('../locale/' + locale);
+    const localeData = metilo.getLocale(locale);
 
     // Get page
-    const mainFormat = deepAssign(
-        localeData.templates[metilo.conf.content.theme].pages[name],
-        format.main
+    let mainFormat = deepAssign(
+        localeData.templates[metilo.conf.content.theme].pages[name] || {},
+        format.main || {}
     );
+    mainFormat = formatRecursive(mainFormat, mainFormat);
     const main = await render(name, mainFormat);
 
     // Determine format
-    const globalFormat = deepAssign(
+    let globalFormat = deepAssign(
         localeData.templates[metilo.conf.content.theme].pages.global,
         metilo.conf.content.localeStrings[locale],
-        format.global,
+        localeData.templates[metilo.conf.content.theme].pages[subsite],
         {
             main: main,
             title: mainFormat.title,
@@ -58,9 +60,26 @@ export async function renderPage (name, req, subsite, format = {}) {
                     active: x === locale
                 };
             })
-        }
+        },
+        format.global || {}
     );
+    globalFormat = formatRecursive(globalFormat, globalFormat);
 
     // Get global
-    return await render('global', globalFormat);
+    return await render(subsite + '/global', globalFormat);
 };
+
+export function formatRecursive (format, view) {
+    const out = {};
+    for (let key in format) {
+        if (Object.getPrototypeOf(format[key]) === Object.prototype) {
+            out[key] = formatRecursive(format[key], view);
+        } else if (typeof format[key] === 'string') {
+            out[key] = Mustache.render(format[key], view);
+        } else {
+            out[key] = format[key];
+        }
+    }
+
+    return out;
+}
