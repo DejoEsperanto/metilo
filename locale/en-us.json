@@ -33,7 +33,9 @@
                     }
                 },
                 "admin/dashboard": {
-                    "title": "Dashboard"
+                    "title": "Dashboard",
+                    "dashboardHeader": "Dashboard",
+                    "dashboardText": "Navigate using the menu on the left. If you have questions regarding the use of the control panel, please ask your website administrator."
                 },
                 "admin/login": {
                     "title": "Log in to the dashboard",

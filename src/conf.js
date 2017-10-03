@@ -24,7 +24,8 @@ export default {
     // LEAVING THESE UNCHANGED WILL RESULT IN HUGE SECURITY ISSUES
     superadmin: {
         username: 'admin',
-        password: 'admin'
+        password: 'admin',
+        inheritID: null // The user ID of the user to inherit contact details from
     },
     sessionSecret: 'ehhoshanghochiujhaude',
 

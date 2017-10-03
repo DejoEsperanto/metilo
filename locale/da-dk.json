@@ -33,7 +33,9 @@
                     }
                 },
                 "admin/dashboard": {
-                    "title": "Kontrolpanel"
+                    "title": "Kontrolpanel",
+                    "dashboardHeader": "Kontrolpanel",
+                    "dashboardText": "Navigér ved brug af menuen på venstre side. Hvis du har spørgsmål om brug af kontrolpanelet, kan du spørge din sideadministrator."
                 },
                 "admin/login": {
                     "title": "Log ind til kontrolpanelet",
