@@ -1,0 +1,40 @@
+<h1>{{usersHeader}}</h1>
+<div class="spacing">
+    <button><i class="material-icons small-icon">person_add</i><span>{{newUser}}</span></button>
+</div>
+<table class="overview-table">
+    <thead>
+        <tr>
+            <th>{{head.id}}</th>
+            <th></th>
+            <th>{{head.username}}</th>
+            <th>{{head.fullName}}</th>
+            <th>{{head.nickname}}</th>
+            <th>{{head.email}}</th>
+            <th>{{head.phoneNumber}}</th>
+            <th>{{head.role}}</th>
+            <th colspan="2">{{head.actions}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#data}}
+        <tr>
+            <td>{{id}}</td>
+            <td title="{{head.isAdmin}}">{{#isAdmin}}<i class="material-icons">stars</i>{{/isAdmin}}</td>
+            <td><input value="{{username}}" readonly></td>
+            <td><input value="{{fullName}}" readonly></td>
+            <td><input value="{{nickname}}" readonly></td>
+            <td><input value="{{email}}" readonly></td>
+            <td><input value="{{phoneNumber}}" readonly></td>
+            <td><input value="{{role}}" readonly></td>
+            <td><button><i class="material-icons small-icon">settings_backup_restore</i><span>{{resetPassword}}</span></button></td>
+            <td><button><i class="material-icons small-icon">delete</i><span>{{delete}}</span></button></td>
+        </tr>
+        {{/data}}
+        {{^data}}
+        <tr>
+            <td colspan="9">{{noUsers}}</td>
+        </tr>
+        {{/data}}
+    </tbody>
+</table>

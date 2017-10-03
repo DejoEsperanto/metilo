@@ -12,6 +12,7 @@
                     "welcome": "Welcome, {{&profileLink$}}{{name}}{{&$profileLink}}!",
                     "logout": "{{&logoutLink$}}Log out{{&$logoutLink}}.",
                     "menu": {
+                        "dashboard": "Frontpage",
                         "aboutYou": {
                             "main": "About you",
                             "profileSettings": "Profile and settings"
@@ -43,6 +44,23 @@
                     "password": "Password",
                     "login": "Log in",
                     "forgotPassword": "If you're unable to sign in or forgot your password, please contact your website administrator."
+                },
+                "admin/users": {
+                    "title": "Users",
+                    "usersHeader": "Users",
+                    "head": {
+                        "id": "#",
+                        "isAdmin": "Admin",
+                        "username": "Username",
+                        "fullName": "Name",
+                        "nickname": "Nickname",
+                        "email": "Email",
+                        "phoneNumber": "Phone number",
+                        "role": "Role",
+                        "actions": "Actions"
+                    },
+                    "noUsers": "No users were found.",
+                    "newUser": "Add user"
                 }
             },
             "urls": {

@@ -23,6 +23,7 @@ import { promisify } from 'util';
 import passport from 'passport';
 import Mustache from 'mustache';
 import deepAssign from 'deep-assign';
+import { ensureLoggedIn } from 'connect-ensure-login';
 
 import { renderPage as _renderPage } from '../render';
 import metilo from '..';
@@ -30,6 +31,8 @@ import User from '../db/user';
 
 export default function () {
     const admin = metilo.conf.routers.admin;
+
+    const urls = metilo.getURLs('admin');
 
     const router = express.Router();
 
@@ -56,8 +59,6 @@ export default function () {
 
     // Login page or site overview
     const getMain = (req, res, next) => {
-        const urls = metilo.getURLs('admin');
-
         if (urls.logout in req.query) {
             req.logout();
             res.redirect(admin);
@@ -93,6 +94,15 @@ export default function () {
     }), (req, res, next) => {
         res.redirect(admin);
     });
+
+    // Users page
+    router.get(`/${urls.users}`, ensureLoggedIn(admin), (req, res, next) => {
+        if (!req.user.isAdmin()) { res.redirect(admin); return; }
+
+        renderPage('admin/users', req, 'admin')
+            .then(data => res.send(data))
+            .catch(err => next(err));
+    })
 
     return router;
 };

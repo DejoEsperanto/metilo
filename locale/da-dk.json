@@ -12,6 +12,7 @@
                     "welcome": "Velkommen, {{&profileLink$}}{{name}}{{&$profileLink}}!",
                     "logout": "{{&logoutLink$}}Log ud{{&$logoutLink}}.",
                     "menu": {
+                        "dashboard": "Startside",
                         "aboutYou": {
                             "main": "Om dig",
                             "profileSettings": "Profil og indstillinger"
@@ -43,6 +44,23 @@
                     "password": "Adgangskode",
                     "login": "Log ind",
                     "forgotPassword": "Hvis du ikke kan logge ind eller har glemt din adgangskode, så kontakt venligst din sideadministrator."
+                },
+                "admin/users": {
+                    "title": "Brugere",
+                    "usersHeader": "Brugere",
+                    "head": {
+                        "id": "Nr.",
+                        "isAdmin": "Administrator",
+                        "username": "Brugernavn",
+                        "fullName": "Navn",
+                        "nickname": "Kaldenavn",
+                        "email": "E-mail",
+                        "phoneNumber": "Telefonnummer",
+                        "role": "Rolle",
+                        "actions": "Handlinger"
+                    },
+                    "noUsers": "Ingen brugere blev fundet.",
+                    "newUser": "Tilføj bruger"
                 }
             },
             "urls": {

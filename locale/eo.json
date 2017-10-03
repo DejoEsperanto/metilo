@@ -12,6 +12,7 @@
                     "logout": "{{&logoutLink$}}Elsaluti{{&$logoutLink}}.",
                     "hideHeader": false,
                     "menu": {
+                        "dashboard": "Frontpaĝo",
                         "aboutYou": {
                             "main": "Pri vi",
                             "profileSettings": "Profilo kaj agordoj"
@@ -43,6 +44,23 @@
                     "password": "Pasvorto",
                     "login": "Ensaluti",
                     "forgotPassword": "Se vi ne povas ensaluti aŭ se vi forgesis vian pasvorton, bonvolu kontakti vian retejadministranton."
+                },
+                "admin/users": {
+                    "title": "Uzantoj",
+                    "usersHeader": "Uzantoj",
+                    "head": {
+                        "id": "N-ro",
+                        "isAdmin": "Administranto",
+                        "username": "Uzantonomo",
+                        "fullName": "Nomo",
+                        "nickname": "Kromnomo",
+                        "email": "Retpoŝtadreso",
+                        "phoneNumber": "Telefonnumero",
+                        "role": "Rolo",
+                        "actions": "Agoj"
+                    },
+                    "noUsers": "Trovis neniujn uzantojn.",
+                    "newUser": "Krei uzanton"
                 }
             },
             "urls": {

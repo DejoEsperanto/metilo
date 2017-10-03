@@ -21,6 +21,8 @@
 
 // COLORS
 @error-color: red;
+@table-color-odd: #a0dddd;
+@table-color-even: #ddd;
 
 body {
     min-height: 100vh;
@@ -134,8 +136,48 @@ footer {
     }
 }
 
+.small-icon {
+    font-size: 16px;
+}
+
 h1 {
     font-size: 30pt;
     margin-top: .83em;
     margin-bottom: .83em;
+}
+
+.overview-table {
+    width: 100%;
+
+    & th {
+        font-weight: bold;
+        text-align: left;
+    }
+
+    &>tbody {
+        border-top: 24px solid transparent; // Dirty hack
+
+        &>tr:not(:only-child) {
+            &:nth-child(odd) {
+                background-color: @table-color-odd;
+            }
+
+            &:nth-child(even) {
+                background-color: @table-color-even;
+            }
+        }
+    }
+}
+
+.spacing {
+    margin: 16px 8px;
+}
+
+button {
+    display: flex;
+    align-items: center;
+
+    &>:not(:first-child) {
+        margin-left: 4px;
+    }
 }
