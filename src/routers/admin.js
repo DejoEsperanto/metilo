@@ -47,7 +47,7 @@ export default function () {
     router.get('/', getMain);
 
     // Login action
-    router.post('/', passport.authenticate('local', {
+    router.post('/', metilo.limiter, passport.authenticate('local', {
         failureFlash: '{{error.unauthorized}}',
         failureRedirect: metilo.conf.routers.admin
     }), (req, res, next) => {

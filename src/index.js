@@ -45,7 +45,8 @@ export default {
         default: {
             cache: true,
             helmet: true,
-            'secure-cookie': true
+            'secure-cookie': true,
+            limiter: true
         },
         alias: {
             d: 'dev'
@@ -53,11 +54,7 @@ export default {
     }),
     locales: null,
     localeInfo: null,
-    limiter: new RateLimit({
-        windowMs: 15 * 60 * 1000, // 15 minutes,
-        max: 20,
-        delayMs: 100
-    }),
+    limiter: null,
     db: null,
 
     init (_conf) {
@@ -94,6 +91,23 @@ export default {
             this.app.disable('view cache');
             console.warn('Running in no cache mode. This should only be used for development and never on production.');
         }
+
+        let limiterMax;
+        if (!this.argv.limiter || this.argv.dev) {
+            limiterMax = 0;
+            console.warn('Running without login rate limiting. This should only be used for development and never on production.');
+        } else {
+            limiterMax = this.conf.loginLimit.max;
+        }
+        this.limiter = new RateLimit({
+            windowMs: this.conf.loginLimit.time * 1000,
+            max: limiterMax,
+            delayMs: this.conf.loginLimit.delay,
+            handler: (req, res, next) => {
+                res.setHeader('Retry-After', Math.ceil(this.conf.loginLimit.time));
+                next(new Error('tooManyRequests'));
+            }
+        })
 
         this.app.use(cookieParser());
         this.app.use(bodyParser.urlencoded({ extended: true }));

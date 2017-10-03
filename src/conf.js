@@ -32,6 +32,11 @@ export default {
 
 
     // The following settings may be changed if needed
+    loginLimit: {
+        max: 20,
+        time: 15 * 60, // 15 minutes
+        delay: 100 // milliseconds
+    },
     bcryptSaltRounds: 20000,
     baseDir: path.join(__dirname, '../data'),
     dbFile: 'db.db',
