@@ -147,7 +147,17 @@ export default function () {
     router.get(`/${urls.users}`, ensureLoggedIn(admin), (req, res, next) => {
         if (!req.user.isAdmin()) { res.redirect(admin); return; }
 
-        renderPage('admin/users', req, 'admin')
+        const users = metilo.db.getUsers().map(user => {
+            const data = user.data;
+            data.fullName = user.fullName();
+            data.isAdmin = user.isAdmin();
+            data.role = metilo.entities.encode(data.role).replace('\n', '<br>');
+            return data;
+        });
+
+        renderPage('admin/users', req, 'admin', {
+            main: { data: users }
+        })
             .then(data => res.send(data))
             .catch(err => next(err));
     });

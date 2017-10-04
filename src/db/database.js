@@ -54,10 +54,11 @@ export default class Database {
         }
 
         const statement = this.db.prepare(query);
+        let rows;
         if (first) {
-            const rows = [statement.get(...parameters)];
+            rows = [statement.get(...parameters)];
         } else {
-            const rows = [statement.all(...parameters)];
+            rows = statement.all(...parameters);
         }
 
         const users = rows.map(row => new User({ data: row }));

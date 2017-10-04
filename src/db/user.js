@@ -56,9 +56,9 @@ class User {
      */
     fullName () {
         let fullName = this.data.name;
-        if (fullName) { let encodedFullName = metilo.entities.encode(fullName); }
+        if (fullName) { var encodedFullName = metilo.entities.encode(fullName); }
         let surname = this.data.surname;
-        if (surname) { let encodedSurname = metilo.entities.encode(surname); }
+        if (surname) { var encodedSurname = metilo.entities.encode(surname); }
 
         if (fullName && surname) {
             return encodedFullName.replace(encodedSurname, `<span class="surname">${encodedSurname}<span class="surname"></span>`);

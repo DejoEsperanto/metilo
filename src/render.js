@@ -80,6 +80,7 @@ export async function renderPage (name, req, subsite, format = {}, useSubglobal 
             subsite: subsite,
             urls: urls,
             subsiteURL: metilo.conf.routers[subsite],
+            locale: req.locale[subsite],
             locales: metilo.locales[subsite].map(x => {
                 return {
                     code: x,

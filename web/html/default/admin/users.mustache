@@ -21,12 +21,12 @@
         <tr>
             <td>{{id}}</td>
             <td title="{{head.isAdmin}}">{{#isAdmin}}<i class="material-icons">stars</i>{{/isAdmin}}</td>
-            <td><input value="{{username}}" readonly></td>
-            <td><input value="{{fullName}}" readonly></td>
-            <td><input value="{{nickname}}" readonly></td>
-            <td><input value="{{email}}" readonly></td>
-            <td><input value="{{phoneNumber}}" readonly></td>
-            <td><input value="{{role}}" readonly></td>
+            <td>{{username}}</td>
+            <td>{{&fullName}}</td>
+            <td>{{nickname}}</td>
+            <td>{{email}}</td>
+            <td>{{phoneNumber}}</td>
+            <td>{{&role}}</td>
             <td><button><i class="material-icons small-icon">settings_backup_restore</i><span>{{resetPassword}}</span></button></td>
             <td><button><i class="material-icons small-icon">delete</i><span>{{delete}}</span></button></td>
         </tr>
