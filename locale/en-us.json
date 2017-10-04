@@ -104,4 +104,7 @@
     "error": {
         "unauthorized": "Incorrect username or password"
     }
+},
+"info": {
+    "userCreated": "User created. Password:"
 }

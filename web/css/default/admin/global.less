@@ -21,6 +21,7 @@
 
 // Colors
 @error-color: red;
+@info-color: lightblue;
 @required-color: red;
 @table-color-odd: #a0dddd;
 @table-color-even: #ddd;
@@ -110,14 +111,22 @@ footer {
     }
 }
 
-.error {
-    display: flex;
+.info,.error {
+    display: inline-flex;
     align-items: center;
-    border-bottom: 2px solid @error-color;
+    margin-bottom: 8px;
 
     &>i {
         margin-right: 8px;
     }
+}
+
+.info {
+    border-bottom: 2px solid @info-color;
+}
+
+.error {
+    border-bottom: 2px solid @error-color;
 }
 
 .vmenu {

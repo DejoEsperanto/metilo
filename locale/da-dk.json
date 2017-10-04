@@ -103,5 +103,8 @@
     },
     "error": {
         "unauthorized": "Forkert brugernavn eller adgangskode"
+    },
+    "info": {
+        "userCreated": "Bruger oprettet. Adgangskode:"
     }
 }

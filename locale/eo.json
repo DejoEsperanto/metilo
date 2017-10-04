@@ -103,5 +103,8 @@
     },
     "error": {
         "unauthorized": "Nevalida uzantonomo aŭ pasvorto"
+    },
+    "info": {
+        "userCreated": "Uzanto kreita. Pasvorto:"
     }
 }

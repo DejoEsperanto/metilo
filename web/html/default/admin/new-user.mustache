@@ -1,6 +1,9 @@
 <h1>{{newUserHeader}}</h1>
+{{#info}}
+    <div class="no-form-align info"><i class="material-icons">info_outline</i> {{.}}</div>
+{{/info}}
 <div class="horizontal wide-spacing">
-    <form class="post">
+    <form method="post">
         <div class="big-form form-with-help" data-name="form">
             <div>
                 <div>
@@ -31,7 +34,7 @@
                     <label for="phone">6. {{fields.phoneNumber}}</label>
                     <div>
                         <span>+</span>
-                        <input name="phone-code" id="phone-code" data-name="phone" class="phone-code" placeholder="{{defaultPhoneCode}}" value="{{defaultPhoneCode}}">
+                        <input name="phone-code" id="phone-code" data-name="phone" class="phone-code" placeholder="{{defaultPhoneCode}}" value="{{defaultPhoneCode}}" maxlength="2">
                         <input name="phone" id="phone" data-name="phone" type="tel" class="grow" placeholder="{{fields.phoneNumber}}">
                     </div>
                 </div>

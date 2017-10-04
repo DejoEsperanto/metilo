@@ -45,7 +45,7 @@ export default class Database {
      * @param  {string}  [where]      A where clause to include
      * @param  {Array}   [parameters] Parameters to include
      * @param  {boolean} [first]      Whether to only obtain the first user
-     * @return {User|User[]}          Return an array of users or a single user if `first`
+     * @return {User|User[]|null}     Return an array of users or a single user if `first`
      */
     getUsers (where = '', parameters = [], first = false) {
         let query = 'select * from users';
@@ -55,16 +55,43 @@ export default class Database {
 
         const statement = this.db.prepare(query);
         if (first) {
-            const rows = [statement.get(parameters)];
+            const rows = [statement.get(...parameters)];
         } else {
-            const rows = [statement.all(parameters)];
+            const rows = [statement.all(...parameters)];
         }
 
         const users = rows.map(row => new User({ data: row }));
         if (first) {
-            return users[0] || null;
+            return users ? users : null;
         } else {
             return users;
         }
+    }
+
+    /**
+     * Returns whether a username is taken
+     * @param  {string}  username The username to check
+     * @return {boolean} Whether the username is tkane
+     */
+    usernameTaken (username) {
+        return !!this.db.prepare('select 1 from users where username = ?').get(username);
+    }
+
+    insertUser (data) {
+        const parameters = [
+            data.name,
+            data.surname,
+            data.nickname,
+            data.username,
+            data.email,
+            data.phoneNumber,
+            data.role,
+            data.password,
+            data.level
+        ];
+
+        return this.db.prepare(`insert into users (name, surname, nickname, username, email,
+            phoneNumber, role, password, level) values (?, ?, ?, ?, ?, ?, ?, ?, ?)`)
+            .run(...parameters).lastInsertROWID;
     }
 }

@@ -39,7 +39,7 @@ export default {
         time: 15 * 60, // 15 minutes
         delay: 100 // milliseconds
     },
-    bcryptSaltRounds: 20000,
+    bcryptSaltRounds: 10,
     baseDir: path.join(__dirname, '../data'),
     dbFile: 'db.db',
     port: 80,

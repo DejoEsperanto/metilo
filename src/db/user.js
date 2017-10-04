@@ -17,12 +17,12 @@
  * along with Metilo. If not, see <http://www.gnu.org/licenses/>.
  */
 
+import bcrypt from 'bcrypt';
 import metilo from '..';
 
 class User {
     constructor ({
-        data = {},
-        insert = false
+        data = {}
     } = {}) {
         data = Object.assign({
             id: undefined,
@@ -36,10 +36,6 @@ class User {
             //password,
             level: 1
         }, data);
-
-        if (insert) {
-            // TODO: Insert
-        }
 
         this.data = data;
     }
@@ -60,15 +56,72 @@ class User {
      */
     fullName () {
         let fullName = this.data.name;
-        if (this.data.surname) {
-            metilo.entities.encode(this.data.surname)
-            fullName = fullName.replace(this.data.surname, `<span class="surname">${encodedSurname}<span class="surname"></span>`);
-        }
-        return fullName;
+        if (fullName) { let encodedFullName = metilo.entities.encode(fullName); }
+        let surname = this.data.surname;
+        if (surname) { let encodedSurname = metilo.entities.encode(surname); }
+
+        if (fullName && surname) {
+            return encodedFullName.replace(encodedSurname, `<span class="surname">${encodedSurname}<span class="surname"></span>`);
+        } else if (fullName) { return fullName; }
+
+        return surname;
     }
 
+    /**
+     * Retyrns whether the user is an administrator
+     * @return {boolean}
+     */
     isAdmin () {
         return this.data.level === 0;
+    }
+
+    static async createUser ({
+        name = null,
+        surname = null,
+        nickname = null,
+        username,
+        email = null,
+        phoneNumber = null,
+        role = null,
+        password,
+        level = 1
+    } = {}) {
+        if (name === '') { name = null; }
+        if (surname === '') { surname = null; }
+        if (nickname === '') { nickname = null; }
+        if (email === '') { email = null; }
+        if (phoneNumber === '') { phoneNumber = null; }
+        if (role === '') { role = null; }
+        if (level === '') { level = 1; }
+
+        if (name && surname) {
+            if (name.indexOf(surname) === -1) { throw new Error('surname'); }
+        }
+
+        // Determine if username taken
+        if (metilo.db.usernameTaken(username)) { throw new Error('usernameTaken'); }
+
+        // Generate salt
+        const hash = await bcrypt.hash(password, metilo.conf.bcryptSaltRounds);
+
+        const data = {
+            name: name,
+            surname: surname,
+            nickname: nickname,
+            username: username,
+            email: email,
+            phoneNumber: phoneNumber,
+            role: role,
+            password: hash,
+            level: level
+        };
+
+        // Insert into db
+        data.id = metilo.db.insertUser(data);
+
+        return new User({
+            data: data
+        });
     }
 }
 

@@ -24,6 +24,7 @@ import passport from 'passport';
 import Mustache from 'mustache';
 import mergeOptions from 'merge-options';
 import { ensureLoggedIn } from 'connect-ensure-login';
+import crypto from 'crypto';
 
 import { renderPage as _renderPage } from '../render';
 import metilo from '..';
@@ -98,13 +99,48 @@ export default function () {
     router.get(`/${urls.newUser}`, ensureLoggedIn(admin), (req, res, next) => {
         if (!req.user.isAdmin()) { res.redirect(admin); return; }
 
+        const locale = metilo.getLocale(req.locale.admin);
+
+        const info = req.flash('info')[0] || '';
+        const infoMessage = Mustache.render(info, locale) || false;
         renderPage('admin/new-user', req, 'admin', {
             global: {
                 includeScripts: '/assets/js/admin/new-user.js'
-            }
+            },
+            main: { info: infoMessage }
         })
             .then(data => res.send(data))
             .catch(err => next(err));
+    });
+
+    // New user action
+    router.post(`/${urls.newUser}`, ensureLoggedIn(admin), async (req, res, next) => {
+        if (!req.user.isAdmin()) { res.redirect(admin); return; }
+
+        if (!req.body.username) {
+            // No error needed as there's client side validation
+            res.redirect(`${admin}/${urls.newUser}`);
+            return;
+        }
+
+        // Determine password
+        let password = await promisify(crypto.randomBytes)(8);
+        password = password.toString('hex');
+
+        await User.createUser({
+            name: req.body.name,
+            surname: req.body.surname,
+            nickname: req.body.nickname,
+            username: req.body.username,
+            email: req.body.email,
+            phoneNumber: req.body.phone && req.body.phone !== '' ? `+${req.body['phone-code'] + req.body.phone}` : null,
+            password: password,
+            role: req.body.role,
+            level: req.body.admin === 'on' ? 0 : 1
+        });
+
+        req.flash('info', `{{info.userCreated}} ${password}`);
+        res.redirect(`${admin}/${urls.newUser}`);
     });
 
     // Users page
@@ -124,7 +160,6 @@ const superUser = () => new User({
         id: 0,
         nickname: 'Super Admin',
         username: metilo.conf.superadmin.username,
-        password: metilo.conf.superadmin.password,
         level: 0
     }
 });
