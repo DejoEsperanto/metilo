@@ -25,6 +25,7 @@ import Mustache from 'mustache';
 import mergeOptions from 'merge-options';
 import { ensureLoggedIn } from 'connect-ensure-login';
 import crypto from 'crypto';
+import { PhoneNumberFormat as PNF, PhoneNumberUtil } from 'google-libphonenumber';
 
 import { renderPage as _renderPage } from '../render';
 import metilo from '..';
@@ -148,10 +149,21 @@ export default function () {
         if (!req.user.isAdmin()) { res.redirect(admin); return; }
 
         const users = metilo.db.getUsers().map(user => {
-            const data = user.data;
+            const data = mergeOptions(user.data);
             data.fullName = user.fullName();
             data.isAdmin = user.isAdmin();
-            data.role = metilo.entities.encode(data.role).replace('\n', '<br>');
+            if (data.role) {
+                data.role = metilo.entities.encode(data.role).replace('\n', '<br>');
+            }
+            if (data.phoneNumber) {
+                let pnf = PNF.INTERNATIONAL;
+                if (data.phoneNumber.indexOf('+' + metilo.conf.defaultPhoneCode[1]) === 0) {
+                    pnf = PNF.NATIONAL;
+                }
+                const phoneUtil = PhoneNumberUtil.getInstance();
+                const phoneNumber = phoneUtil.parse(data.phoneNumber);
+                data.phoneNumber = phoneUtil.format(phoneNumber, pnf);
+            }
             return data;
         });
 
