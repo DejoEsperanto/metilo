@@ -73,7 +73,8 @@
                         "email": "Retpoŝtadreso",
                         "phoneNumber": "Telefonnumero",
                         "role": "Rolo",
-                        "admin": "Administranto"
+                        "admin": "Administranto",
+                        "create": "Krei uzanton"
                     },
                     "fieldHelp": {
                         "name": "Ĉi tiu kampo enhavas la plenan nomon de la uzanto. Plena nomo povas enhavi ekzemple personnomojn, meznomojn aŭ familinomojn.",

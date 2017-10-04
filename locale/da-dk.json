@@ -73,7 +73,8 @@
                         "email": "E-mail",
                         "phoneNumber": "Telefonnummer",
                         "role": "Rolle",
-                        "admin": "Administrator"
+                        "admin": "Administrator",
+                        "create": "Opret bruger"
                     },
                     "fieldHelp": {
                         "name": "Dette felt indeholder brugerens fulde navn. På dansk består dette af fornavn og eventuelle mellemnavne samt efternavne.",

@@ -67,13 +67,14 @@
                     "newUserHeader": "Add new user",
                     "fields": {
                         "name": "Full name",
-                        "surname": "Efternavn",
+                        "surname": "Last name",
                         "nickname": "Nickname",
-                        "username": "Brugernavn",
-                        "email": "E-mail",
-                        "phoneNumber": "Telefonnummer",
-                        "role": "Rolle",
-                        "admin": "Administrator"
+                        "username": "Username",
+                        "email": "Email",
+                        "phoneNumber": "Phone number",
+                        "role": "Role",
+                        "admin": "Administrator",
+                        "create": "Create user"
                     },
                     "fieldHelp": {
                         "name": "This field contains the user's full name. In English this usually consists of a first name, eventually a middle name, and a last name.",
