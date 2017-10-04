@@ -53,3 +53,19 @@ for (let button of $$('button[data-href]')) {
         document.location.href = href;
     })
 }
+
+// Form help
+for (let form of $$('.form-with-help')) {
+    const formName = form.dataset.name;
+    const textEl = $(`.form-help-text[data-name=${formName}]`);
+
+    for (let input of $$('[data-name]', form)) {
+        const text = $(`[data-name=${input.dataset.name}]`, textEl);
+        on(input, 'focus', e => {
+            text.style.display = 'block';
+        });
+        on(input, 'blur', e => {
+            text.style.display = 'none';
+        });
+    }
+}
