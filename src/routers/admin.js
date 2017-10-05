@@ -30,6 +30,7 @@ import bcrypt from 'bcrypt';
 import { renderPage as _renderPage } from '../render';
 import metilo from '..';
 import User from '../db/user';
+import { adminXHR } from '.';
 
 export default function () {
     const admin = metilo.conf.routers.admin;
@@ -59,6 +60,9 @@ export default function () {
         return await _renderPage(name, req, subsite, format, useSubglobal);
     };
 
+    // XHR
+    router.use('/xhr', adminXHR());
+
     // Login page or site overview
     const getMain = (req, res, next) => {
         if (urls.logout in req.query) {
@@ -71,7 +75,6 @@ export default function () {
 
         if (req.user) {
             // Dashboard
-
             const adminInfo = {};
             const adminID = metilo.conf.superadmin.inheritID;
             let admin;
@@ -127,12 +130,7 @@ export default function () {
 
         const info = req.flash('info')[0] || '';
         const infoMessage = Mustache.render(info, locale) || false;
-        renderPage('admin/new-user', req, 'admin', {
-            global: {
-                includeScripts: '/assets/js/admin/new-user.js'
-            },
-            main: { info: infoMessage }
-        })
+        renderPage('admin/new-user', req, 'admin', { main: { info: infoMessage } })
             .then(data => res.send(data))
             .catch(err => next(err));
     });
@@ -183,6 +181,9 @@ export default function () {
         });
 
         renderPage('admin/users', req, 'admin', {
+            global: {
+                includeScripts: '/assets/js/admin/users.js'
+            },
             main: { data: users }
         })
             .then(data => res.send(data))

@@ -76,6 +76,11 @@ export default class Database {
         return !!this.db.prepare('select 1 from users where username = ?').get(username);
     }
 
+    /**
+     * Inserts a user into the database
+     * @param  {Object} data User data
+     * @return {number} The user's ID
+     */
     insertUser (data) {
         const parameters = [
             data.name,
@@ -92,5 +97,15 @@ export default class Database {
         return this.db.prepare(`insert into users (name, surname, nickname, username, email,
             phoneNumber, role, password, level) values (?, ?, ?, ?, ?, ?, ?, ?, ?)`)
             .run(...parameters).lastInsertROWID;
+    }
+
+    /**
+     * Deletes users from the database
+     * @param  {string} where     Where statement
+     * @param  {Array} parameters Parameters
+     */
+    deleteUser (where, parameters) {
+        this.db.prepare(`delete from users where ${where}`)
+            .run(...parameters);
     }
 }

@@ -61,7 +61,15 @@
                         "actions": "Handlinger"
                     },
                     "noUsers": "Ingen brugere blev fundet.",
-                    "newUser": "Tilføj ny bruger"
+                    "newUser": "Tilføj ny bruger",
+                    "modal": {
+                        "deleteConfirm": "Er du sikker på, at du vil slette %s? Denne handling kan ikke nemt fortrydes.",
+                        "resetConfirm": "Er du sikker på, at du vil nulstille adgangskoden for %s? Denne handling kan ikke nemt fortrydes.",
+                        "buttons": {
+                            "yes": "Ja",
+                            "no": "Nej"
+                        }
+                    }
                 },
                 "admin/new-user": {
                     "title": "Tilføj ny bruger",

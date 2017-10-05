@@ -61,7 +61,15 @@
                         "actions": "Actions"
                     },
                     "noUsers": "No users were found.",
-                    "newUser": "Add new user"
+                    "newUser": "Add new user",
+                    "modal": {
+                        "deleteConfirm": "Are you sure you want to delete %s? This action is not easily undone.",
+                        "resetConfirm": "Are you sure you want to reset the password of %s? This action is not easily undone.",
+                        "buttons": {
+                            "yes": "Yes",
+                            "no": "No"
+                        }
+                    }
                 },
                 "admin/new-user": {
                     "title": "Add new user",

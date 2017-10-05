@@ -61,7 +61,15 @@
                         "actions": "Agoj"
                     },
                     "noUsers": "Trovis neniujn uzantojn.",
-                    "newUser": "Krei novan uzanton"
+                    "newUser": "Krei novan uzanton",
+                    "modal": {
+                        "deleteConfirm": "Ĉu vi certas, ke vi volas forigi je %s? Ĉi tiu ŝanĝo ne facile malfareblas.",
+                        "resetConfirm": "Ĉu vi certas, ke vi volas rekrei la pasvorton de %s? Ĉi tiu ŝanĝo ne facile malfareblas.",
+                        "buttons": {
+                            "yes": "Jes",
+                            "no": "Ne"
+                        }
+                    }
                 },
                 "admin/new-user": {
                     "title": "Kreado de nova uzanto",

@@ -30,6 +30,48 @@ const on = function (el, event, cb) {
     el.addEventListener(event, cb);
 }
 
+const jsonXHR = (url, params) =>  {
+    return new Promise((resolve, reject) => {
+        const req = new XMLHttpRequest();
+        req.open('POST', url, true);
+        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        req.onload = () => {
+            if (req.status >= 200 && req.status < 400) {
+                resolve(JSON.parse(req.response));
+            } else {
+                reject(req.status);
+            }
+        };
+        req.onerror = e => {
+            reject(e);
+        };
+        let paramsStr = '';
+        for (let key in params) {
+            if (paramsStr !== '') { paramsStr += '&'; }
+            paramsStr += `${key}=${encodeURIComponent(params[key])}`;
+        }
+        req.send(paramsStr);
+    });
+};
+
+const confirmDialog = text => {
+    return new Promise((resolve, reject) => {
+        picoModal({
+            content: text
+        }).afterCreate(modal => {
+            modal.modalElem().addEventListener('click', e => {
+                if (e.target && e.target.matches('.ok')) {
+                    modal.close(true);
+                } else if (e.target && e.target.matches('.cancel')) {
+                    modal.close(false);
+                }
+            });
+        }).afterClose((modal, e) => {
+            resolve(e.detail);
+        }).show();
+    });
+};
+
 // Elements
 const els = {
     selectLanguage: $('#select-language')

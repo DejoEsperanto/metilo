@@ -2,7 +2,7 @@
 <div class="spacing">
     <button data-href="{{&subsiteURL}}/{{&urls.admin.newUser}}"><i class="material-icons small-icon">person_add</i><span>{{newUser}}</span></button>
 </div>
-<table class="overview-table">
+<table class="overview-table" id="users-table">
     <thead>
         <tr>
             <th>{{head.id}}</th>
@@ -21,14 +21,14 @@
         <tr>
             <td>{{id}}</td>
             <td title="{{head.isAdmin}}">{{#isAdmin}}<i class="material-icons">stars</i>{{/isAdmin}}</td>
-            <td>{{username}}</td>
+            <td data-name="username">{{username}}</td>
             <td>{{&fullName}}</td>
             <td>{{nickname}}</td>
             <td>{{email}}</td>
             <td>{{phoneNumber}}</td>
             <td>{{&role}}</td>
-            <td><button><i class="material-icons small-icon">settings_backup_restore</i><span>{{resetPassword}}</span></button></td>
-            <td><button><i class="material-icons small-icon">delete</i><span>{{delete}}</span></button></td>
+            <td><button data-users-action="reset"><i class="material-icons small-icon">settings_backup_restore</i><span>{{resetPassword}}</span></button></td>
+            <td><button data-users-action="delete"><i class="material-icons small-icon">delete</i><span>{{delete}}</span></button></td>
         </tr>
         {{/data}}
         {{^data}}
@@ -38,3 +38,12 @@
         {{/data}}
     </tbody>
 </table>
+<div class="modal-content">
+    <div id="delete-modal">
+        <p>{{modal.deleteConfirm}}</p>
+        <p class="footer">
+            <button class="cancel">{{modal.buttons.no}}</button>
+            <button class="ok">{{modal.buttons.yes}}</button>
+        </p>
+    </div>
+</div>

@@ -35,5 +35,9 @@ export default function () {
         res.sendFile(path.join(__dirname, '../../node_modules/js-cookie/src/js.cookie.js'));
     });
 
+    router.get('/module/picomodal.js', (req, res) => {
+        res.sendFile(path.join(__dirname, '../../node_modules/picomodal/src/picoModal.js'));
+    });
+
     return router;
 };
