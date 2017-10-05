@@ -77,8 +77,8 @@ for (let user of $$('#users-table>tbody>tr')) {
                         const text = modals.role.innerHTML.replace('%s', action.innerText);
                         inputDialog(text).then(r => {
                             if (r === null) { return; }
-                            updateUser(username, { role: r[0] });
-                            action.innerText = r;
+                            updateUser(username, { role: r[0] })
+                                .then(() => { action.innerText = r; });
                         });
                     });
 
@@ -97,9 +97,11 @@ for (let user of $$('#users-table>tbody>tr')) {
                             } else {
                                 number = '';
                             }
-                            updateUser(username, { phoneNumber: number });
-                            // We'll just refresh here as formatting the phone number on the client side would require loading yet another library
-                            document.location.reload();
+                            updateUser(username, { phoneNumber: number })
+                                .then(() => {
+                                    // We'll just refresh here as formatting the phone number on the client side would require loading yet another library
+                                    document.location.reload();
+                                });
                         });
                     });
 
@@ -111,8 +113,8 @@ for (let user of $$('#users-table>tbody>tr')) {
                             .replace('%s', action.innerText);
                         inputDialog(text).then(r => {
                             if (r === null) { return; }
-                            updateUser(username, { email: r[0] });
-                            action.innerText = r[0];
+                            updateUser(username, { email: r[0] })
+                                .then(() => { action.innerText = r[0]; });
                         });
                     });
 
@@ -124,8 +126,8 @@ for (let user of $$('#users-table>tbody>tr')) {
                             .replace('%s', action.innerText);
                         inputDialog(text).then(r => {
                             if (r === null) { return; }
-                            updateUser(username, { nickname: r[0] });
-                            action.innerText = r[0];
+                            updateUser(username, { nickname: r[0] })
+                                .then(() => { action.innerText = r[0]; });
                         });
                     });
 
@@ -137,9 +139,11 @@ for (let user of $$('#users-table>tbody>tr')) {
                             .replace('%s', action.innerText);
                         inputDialog(text).then(r => {
                             if (r === null) { return; }
-                            updateUser(username, { username: r[0] });
-                            action.innerText = r[0];
-                            username = r[0];
+                            updateUser(username, { username: r[0] })
+                                .then(() => {
+                                    action.innerText = r[0];
+                                    username = r[0];
+                                });
                         });
                     });
 
@@ -151,8 +155,11 @@ for (let user of $$('#users-table>tbody>tr')) {
                         const text = modals['admin' + newValue].innerHTML.replace('%s', username);
                         confirmDialog(text).then(r => {
                             if (!r) { return; }
-                            updateUser(username, { level: newValue });
-                            action.firstChild.innerText = newValue ? 'account_outline' : 'stars';
+                            updateUser(username, { level: newValue })
+                                .then(() => {
+                                    action.firstChild.innerText = newValue ? 'account_circle' : 'stars';
+                                    action.dataset.value = newValue;
+                                });
                         });
                     });
 
