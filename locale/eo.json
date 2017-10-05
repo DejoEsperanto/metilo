@@ -72,7 +72,9 @@
                         "newPass": "La nova pasvorto de %s$1 estas: %s$2",
                         "buttons": {
                             "yes": "Jes",
-                            "no": "Ne"
+                            "no": "Ne",
+                            "cancel": "Nuligi",
+                            "save": "Konservi"
                         }
                     }
                 },

@@ -52,5 +52,64 @@ export default function () {
         }));
     });
 
+    router.post('/user-update', ensureLoggedIn(admin), (req, res, next) => {
+        if (req.body.user && !req.user.isAdmin()) {
+            res.send('{ error: "Regular users can only change their own settings." }');
+            return;
+        }
+
+        const allowedFields = [
+            'name',
+            'surname',
+            'nickname',
+            'username',
+            'email',
+            'phoneNumber'
+        ];
+
+        if (req.user.isAdmin()) {
+            allowedFields.push('level', 'role');
+        }
+
+        let user = req.user;
+        if (req.body.user) {
+            user = metilo.db.getUser('username = ?', req.body.user);
+            if (!user) {
+                res.send('{ error: "User not found." }');
+                return;
+            }
+        }
+
+        if (!req.body.fields) {
+            res.send('{ error: "Missing fields field." }');
+            return;
+        }
+
+        if (Object.getPrototypeOf(req.body.fields) !== Object.prototype) {
+            res.send('{ error: "fields must be an object." }');
+            return;
+        }
+
+        let set = '';
+        const parameters = [];
+
+        for (const field in req.body.fields) {
+            if (!field in allowedFields) {
+                res.send(`{ error: "Disallowed field \"${field}\"." }`);
+                return;
+            }
+
+            if (set !== '') { set += ', '; }
+            set += `${field} = ?`;
+            parameters.push(req.body.fields[field]);
+        }
+
+        parameters.push(user.data.username);
+
+        metilo.db.updateUser(set, 'username = ?', parameters);
+
+        res.send('{}');
+    });
+
     return router;
 };

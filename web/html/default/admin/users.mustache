@@ -26,7 +26,7 @@
             <td>{{nickname}}</td>
             <td>{{email}}</td>
             <td>{{phoneNumber}}</td>
-            <td>{{&role}}</td>
+            <td data-users-action="role" class="clickable">{{&role}}</td>
             <td><button data-users-action="reset" title="{{head.resetPassword}}"><i class="material-icons small-icon">settings_backup_restore</i><span>{{resetPassword}}</span></button></td>
             <td><button data-users-action="delete" title="{{head.delete}}"><i class="material-icons small-icon">delete</i><span>{{delete}}</span></button></td>
         </tr>
@@ -55,5 +55,12 @@
     </div>
     <div id="new-pass-modal">
         <p>{{modal.newPass}}</p>
+    </div>
+    <div id="role-modal">
+        <textarea style="width: 500px; height: 200px;" data-value>%s</textarea>
+        <p class="footer">
+            <button class="cancel">{{modal.buttons.cancel}}</button>
+            <button class="ok">{{modal.buttons.save}}</button>
+        </p>
     </div>
 </div>

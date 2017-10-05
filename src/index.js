@@ -113,6 +113,7 @@ export default {
 
         this.app.use(cookieParser());
         this.app.use(bodyParser.urlencoded({ extended: true }));
+        this.app.use(bodyParser.json());
         this.app.use(expressSession({
             resave: false,
             saveUninitialized: false,

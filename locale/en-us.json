@@ -72,7 +72,9 @@
                         "newPass": "The new password for %s$1 is: %s$2",
                         "buttons": {
                             "yes": "Yes",
-                            "no": "No"
+                            "no": "No",
+                            "cancel": "Cancel",
+                            "save": "Save"
                         }
                     }
                 },

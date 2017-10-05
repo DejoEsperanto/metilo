@@ -136,8 +136,12 @@ class User {
                 pnf = PNF.NATIONAL;
             }
             const phoneUtil = PhoneNumberUtil.getInstance();
-            const phoneNumber = phoneUtil.parse(this.data.phoneNumber);
-            return phoneUtil.format(phoneNumber, pnf);
+            try {
+                const phoneNumber = phoneUtil.parse(this.data.phoneNumber);
+                return phoneUtil.format(phoneNumber, pnf);
+            } catch (e) {
+                return this.data.phoneNumber;
+            }
         }
         return null;
     }

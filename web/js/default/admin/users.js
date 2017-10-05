@@ -20,8 +20,16 @@
 const modals = {
     delete:  $('#delete-modal'),
     reset:   $('#reset-modal'),
-    newPass: $('#new-pass-modal')
+    newPass: $('#new-pass-modal'),
+    role:    $('#role-modal')
 };
+
+const updateUser = (user, fields) => {
+    return jsonXHR(`${baseURL}/xhr/user-update`, {
+        user: user,
+        fields: fields
+    }, true);
+}
 
 for (let user of $$('#users-table>tbody>tr')) {
     (user => {
@@ -53,6 +61,18 @@ for (let user of $$('#users-table>tbody>tr')) {
                                         .replace('%s$2', res.password);
                                     textDialog(text);
                                 });
+                        });
+                    });
+
+                    break;
+
+                case 'role':
+                    on(action, 'click', () => {
+                        const text = modals.role.innerHTML.replace('%s', action.innerText);
+                        inputDialog(text).then(r => {
+                            if (r === null) { return; }
+                            updateUser(username, { role: r[0] });
+                            action.innerText = r;
                         });
                     });
             }

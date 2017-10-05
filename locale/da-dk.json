@@ -72,7 +72,9 @@
                         "newPass": "Den nye adgangskode for %s$1 er: %s$2",
                         "buttons": {
                             "yes": "Ja",
-                            "no": "Nej"
+                            "no": "Nej",
+                            "cancel": "Annuller",
+                            "save": "Gem"
                         }
                     }
                 },

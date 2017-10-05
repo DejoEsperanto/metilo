@@ -30,27 +30,37 @@ const on = function (el, event, cb) {
     el.addEventListener(event, cb);
 }
 
-const jsonXHR = (url, params) =>  {
+const jsonXHR = (url, params, json = false) =>  {
     return new Promise((resolve, reject) => {
         const req = new XMLHttpRequest();
         req.open('POST', url, true);
-        req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        if (json) {
+            req.setRequestHeader('Content-Type', 'application/json');
+        } else {
+            req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        }
         req.onload = () => {
             if (req.status >= 200 && req.status < 400) {
-                resolve(JSON.parse(req.response));
-            } else {
-                reject(req.status);
-            }
+                try {
+                    resolve(JSON.parse(req.response));
+                } catch (e) {
+                    reject(req.response);
+                }
+            } else { reject(req.status); }
         };
         req.onerror = e => {
             reject(e);
         };
-        let paramsStr = '';
-        for (let key in params) {
-            if (paramsStr !== '') { paramsStr += '&'; }
-            paramsStr += `${key}=${encodeURIComponent(params[key])}`;
+        if (json) {
+            req.send(JSON.stringify(params));
+        } else {
+            let paramsStr = '';
+            for (let key in params) {
+                if (paramsStr !== '') { paramsStr += '&'; }
+                paramsStr += `${key}=${encodeURIComponent(params[key])}`;
+            }
+            req.send(paramsStr);
         }
-        req.send(paramsStr);
     });
 };
 
@@ -74,6 +84,32 @@ const confirmDialog = text => {
 
 const textDialog = text => {
     picoModal({ content: text }).show();
+};
+
+const inputDialog = text => {
+    return new Promise((resolve, reject) => {
+        picoModal({
+            content: text
+        }).afterCreate(modal => {
+            modal.modalElem().addEventListener('click', e => {
+                if (e.target && e.target.matches('.ok')) {
+                    modal.close(true);
+                } else if (e.target && e.target.matches('.cancel')) {
+                    modal.close(false);
+                }
+            });
+        }).afterClose((modal, e) => {
+            if (e.detail) {
+                const elems = Array.from($$('[data-inner],[data-value]', modal.modalElem()));
+                resolve(elems.map(el => {
+                    if (typeof el.dataset.inner === 'string') { return el.innerText; }
+                    if (typeof el.dataset.value === 'string') { return el.value; }
+                }));
+            } else {
+                resolve(null);
+            }
+        }).show();
+    });
 };
 
 // Elements
