@@ -145,6 +145,40 @@ class User {
         }
         return null;
     }
+
+    /**
+     * Returns the country code for the phone number
+     * @return {number|null}
+     */
+    phoneCode () {
+        if (this.data.phoneNumber) {
+            const phoneUtil = PhoneNumberUtil.getInstance();
+            try {
+                const phoneNumber = phoneUtil.parse(this.data.phoneNumber);
+                return phoneNumber.getCountryCode();
+            } catch (e) {
+                return null;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns the formatted local phone number
+     * @return {[type]} [description]
+     */
+    phoneNumberLocal () {
+        if (this.data.phoneNumber) {
+            const phoneUtil = PhoneNumberUtil.getInstance();
+            try {
+                const phoneNumber = phoneUtil.parse(this.data.phoneNumber);
+                return phoneUtil.format(phoneNumber, PNF.NATIONAL);
+            } catch (e) {
+                return this.data.phoneNumber;
+            }
+        }
+        return null;
+    }
 }
 
 export default User;

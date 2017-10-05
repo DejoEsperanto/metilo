@@ -176,7 +176,9 @@ export default function () {
             if (data.role) {
                 data.role = metilo.entities.encode(data.role).replace('\n', '<br>');
             }
-            data.phoneNumber = user.phoneNumber();
+            data.phoneNumberFormatted = user.phoneNumber();
+            data.phoneCode = user.phoneCode();
+            data.phoneNumberLocal = user.phoneNumberLocal();
             return data;
         });
 

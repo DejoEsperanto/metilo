@@ -21,7 +21,8 @@ const modals = {
     delete:  $('#delete-modal'),
     reset:   $('#reset-modal'),
     newPass: $('#new-pass-modal'),
-    role:    $('#role-modal')
+    role:    $('#role-modal'),
+    phone:   $('#phone-modal')
 };
 
 const updateUser = (user, fields) => {
@@ -73,6 +74,27 @@ for (let user of $$('#users-table>tbody>tr')) {
                             if (r === null) { return; }
                             updateUser(username, { role: r[0] });
                             action.innerText = r;
+                        });
+                    });
+
+                    break;
+
+                case 'phone':
+                    on(action, 'click', () => {
+                        const text = modals.phone.innerHTML
+                            .replace('%s$1', action.dataset.phoneCode)
+                            .replace('%s$2', action.dataset.phone);
+                        inputDialog(text).then(r => {
+                            if (r === null) { return; }
+                            let number;
+                            if (r[1]) {
+                                number = `+${r[0] + r[1]}`;
+                            } else {
+                                number = '';
+                            }
+                            updateUser(username, { phoneNumber: number });
+                            // We'll just refresh here as formatting the phone number on the client side would require loading yet another library
+                            document.location.reload();
                         });
                     });
             }
