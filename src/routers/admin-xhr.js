@@ -19,6 +19,9 @@
 
 import express from 'express';
 import { ensureLoggedIn } from 'connect-ensure-login';
+import { promisify } from 'util';
+import crypto from 'crypto';
+import bcrypt from 'bcrypt';
 import metilo from '..';
 
 export default function () {
@@ -32,6 +35,21 @@ export default function () {
         metilo.db.deleteUser(`username = ?`, [req.body.username]);
 
         res.send('{}');
+    });
+
+    router.post('/user-reset-pass', ensureLoggedIn(admin), async (req, res, next) => {
+        if (!req.user.isAdmin()) { res.redirect(admin); return; }
+
+        let password = await promisify(crypto.randomBytes)(8);
+        password = password.toString('hex');
+
+        const hash = await bcrypt.hash(password, metilo.conf.bcryptSaltRounds);
+
+        metilo.db.updateUser('password = ?', 'username = ?', [hash, req.body.username]);
+
+        res.send(JSON.stringify({
+            password: password
+        }));
     });
 
     return router;

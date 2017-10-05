@@ -18,7 +18,9 @@
  */
 
 const modals = {
-    delete: $('#delete-modal')
+    delete:  $('#delete-modal'),
+    reset:   $('#reset-modal'),
+    newPass: $('#new-pass-modal')
 };
 
 for (let user of $$('#users-table>tbody>tr')) {
@@ -27,7 +29,7 @@ for (let user of $$('#users-table>tbody>tr')) {
 
         for (let action of $$('[data-users-action]', user)) {
             switch (action.dataset.usersAction) {
-                case 'delete': {
+                case 'delete':
                     on(action, 'click', () => {
                         const text = modals.delete.innerHTML.replace('%s', username);
                         confirmDialog(text).then(r => {
@@ -36,7 +38,23 @@ for (let user of $$('#users-table>tbody>tr')) {
                                 .then(() => { document.location.reload(); });
                         });
                     });
-                }
+
+                    break;
+
+                case 'reset':
+                    on(action, 'click', () => {
+                        const text = modals.reset.innerHTML.replace('%s', username);
+                        confirmDialog(text).then(r => {
+                            if (!r) { return; }
+                            jsonXHR(`${baseURL}/xhr/user-reset-pass`, { username: username })
+                                .then(res => {
+                                    const text = modals.newPass.innerHTML
+                                        .replace('%s$1', username)
+                                        .replace('%s$2', res.password);
+                                    textDialog(text);
+                                });
+                        });
+                    });
             }
         }
     })(user);

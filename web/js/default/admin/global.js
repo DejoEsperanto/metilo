@@ -72,6 +72,10 @@ const confirmDialog = text => {
     });
 };
 
+const textDialog = text => {
+    picoModal({ content: text }).show();
+};
+
 // Elements
 const els = {
     selectLanguage: $('#select-language')

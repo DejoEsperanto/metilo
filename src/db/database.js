@@ -108,4 +108,15 @@ export default class Database {
         this.db.prepare(`delete from users where ${where}`)
             .run(...parameters);
     }
+
+    /**
+     * Updates users in the database
+     * @param  {string} set       Set statement
+     * @param  {string} where     Where statement
+     * @param  {Array} parameters Parameters
+     */
+    updateUser (set, where, parameters) {
+        this.db.prepare(`update users set ${set} where ${where}`)
+            .run(...parameters);
+    }
 }
