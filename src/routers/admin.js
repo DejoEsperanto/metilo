@@ -74,8 +74,9 @@ export default function () {
 
             const adminInfo = {};
             const adminID = metilo.conf.superadmin.inheritID;
+            let admin;
             if (adminID) {
-                const admin = metilo.db.getUser('id = ?', adminID);
+                admin = metilo.db.getUser('id = ?', adminID);
                 if (admin) {
                     if (admin.data.role) { adminInfo.role = admin.data.role.replace('\n', '<br>'); }
                     adminInfo.name = admin.fullName();
@@ -85,11 +86,15 @@ export default function () {
                 }
             }
 
-            renderPage('admin/dashboard', req, 'admin', {
-                main: {
-                    adminContactInfo: adminInfo
-                }
-            })
+            const format = {
+                main: {}
+            };
+
+            if (adminID && admin) {
+                format.main.adminContactInfo = adminInfo;
+            }
+
+            renderPage('admin/dashboard', req, 'admin', format)
                 .then(data => res.send(data))
                 .catch(err => next(err));
         } else {

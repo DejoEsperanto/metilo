@@ -58,18 +58,12 @@ export default class Database {
         }
 
         const statement = this.db.prepare(query);
-        let rows;
         if (first) {
-            rows = [statement.get(...parameters)];
+            const row = statement.get(...parameters);
+            return row ? new User({ data: row }) : null;
         } else {
-            rows = statement.all(...parameters);
-        }
-
-        const users = rows.map(row => new User({ data: row }));
-        if (first) {
-            return users ? users[0] : null;
-        } else {
-            return users;
+            const rows = statement.all(...parameters);
+            return rows.map(row => new User({ data: row }));
         }
     }
 
