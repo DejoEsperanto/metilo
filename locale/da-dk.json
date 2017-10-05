@@ -25,6 +25,7 @@
                         },
                         "siteContent": {
                             "main": "Hjemmesidens indhold",
+                            "menu": "Menu",
                             "pages": "Sider"
                         },
                         "users": {
@@ -106,6 +107,7 @@
                     "siteGeneral": "om-site",
                     "siteSEO": "seo",
                     "siteStatistics": "statistik",
+                    "contentMenu": "menu",
                     "contentPages": "sider",
                     "users": "brugere",
                     "newUser": "brugere/ny",

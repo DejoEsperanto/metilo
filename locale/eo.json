@@ -25,6 +25,7 @@
                         },
                         "siteContent": {
                             "main": "Retejenhavo",
+                            "menu": "Menuo",
                             "pages": "Paĝoj"
                         },
                         "users": {
@@ -106,6 +107,7 @@
                     "siteGeneral": "pri-retejo",
                     "siteSEO": "seo",
                     "siteStatistics": "statistiko",
+                    "contentMenu": "menuo",
                     "contentPages": "paghoj",
                     "users": "uzantoj",
                     "newUser": "uzantoj/nova",

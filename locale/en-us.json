@@ -25,6 +25,7 @@
                         },
                         "siteContent": {
                             "main": "Website content",
+                            "menu": "Menu",
                             "pages": "Sider"
                         },
                         "users": {
@@ -106,6 +107,7 @@
                     "siteGeneral": "about-site",
                     "siteSEO": "seo",
                     "siteStatistics": "statistics",
+                    "contentMenu": "menu",
                     "contentPages": "pages",
                     "users": "users",
                     "newUser": "users/new",
