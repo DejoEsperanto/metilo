@@ -25,7 +25,9 @@ const modals = {
     phone:    $('#phone-modal'),
     email:    $('#email-modal'),
     nickname: $('#nickname-modal'),
-    username: $('#username-modal')
+    username: $('#username-modal'),
+    admin0:   $('#admin0-modal'),
+    admin1:   $('#admin1-modal')
 };
 
 const updateUser = (user, fields) => {
@@ -33,7 +35,7 @@ const updateUser = (user, fields) => {
         user: user,
         fields: fields
     }, true);
-}
+};
 
 for (let user of $$('#users-table>tbody>tr')) {
     (user => {
@@ -138,6 +140,19 @@ for (let user of $$('#users-table>tbody>tr')) {
                             updateUser(username, { username: r[0] });
                             action.innerText = r[0];
                             username = r[0];
+                        });
+                    });
+
+                    break;
+
+                case 'admin':
+                    on(action, 'click', () => {
+                        const newValue = +!+action.dataset.value;
+                        const text = modals['admin' + newValue].innerHTML.replace('%s', username);
+                        confirmDialog(text).then(r => {
+                            if (!r) { return; }
+                            updateUser(username, { level: newValue });
+                            action.firstChild.innerText = newValue ? 'account_outline' : 'stars';
                         });
                     });
 

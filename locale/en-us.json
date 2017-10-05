@@ -70,6 +70,8 @@
                         "deleteConfirm": "Are you sure you want to delete %s? This action is not easily undone.",
                         "resetConfirm": "Are you sure you want to reset the password of %s? This action is not easily undone.",
                         "newPass": "The new password for %s$1 is: %s$2",
+                        "makeAdminConfirm": "Are you sure you want to make %s an administrator?",
+                        "revokeAdminConfirm": "Are you sure you want to revoke all admin privileges for %s?",
                         "buttons": {
                             "yes": "Yes",
                             "no": "No",

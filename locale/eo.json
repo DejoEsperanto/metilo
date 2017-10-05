@@ -70,6 +70,8 @@
                         "deleteConfirm": "Ĉu vi certas, ke vi volas forigi je %s? Ĉi tiu ŝanĝo ne facile malfareblas.",
                         "resetConfirm": "Ĉu vi certas, ke vi volas rekrei la pasvorton de %s? Ĉi tiu ŝanĝo ne facile malfareblas.",
                         "newPass": "La nova pasvorto de %s$1 estas: %s$2",
+                        "makeAdminConfirm": "Ĉu vi certas, ke vi volas administrantigi je %s?",
+                        "revokeAdminConfirm": "Ĉu vi certas, ke vi volas maladministrantigi je %s?",
                         "buttons": {
                             "yes": "Jes",
                             "no": "Ne",

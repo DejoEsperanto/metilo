@@ -70,6 +70,8 @@
                         "deleteConfirm": "Er du sikker på, at du vil slette %s? Denne handling kan ikke nemt fortrydes.",
                         "resetConfirm": "Er du sikker på, at du vil nulstille adgangskoden for %s? Denne handling kan ikke nemt fortrydes.",
                         "newPass": "Den nye adgangskode for %s$1 er: %s$2",
+                        "makeAdminConfirm": "Er du sikker på, at du vil gøre %s til en administrator?",
+                        "revokeAdminConfirm": "Er du sikker på, at du vil fjerne alle administratorprivilegier for %s?",
                         "buttons": {
                             "yes": "Ja",
                             "no": "Nej",

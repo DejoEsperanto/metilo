@@ -20,7 +20,7 @@
         {{#data}}
         <tr>
             <td>{{id}}</td>
-            <td title="{{#isAdmin}}{{head.isAdmin}}{{/isAdmin}}{{^isAdmin}}{{head.isNotAdmin}}{{/isAdmin}}"><i class="material-icons">{{#isAdmin}}stars{{/isAdmin}}{{^isAdmin}}account_circle{{/isAdmin}}</i></td>
+            <td title="{{#isAdmin}}{{head.isAdmin}}{{/isAdmin}}{{^isAdmin}}{{head.isNotAdmin}}{{/isAdmin}}" data-value="{{level}}" data-users-action="admin" class="clickable"><i class="material-icons">{{#isAdmin}}stars{{/isAdmin}}{{^isAdmin}}account_circle{{/isAdmin}}</i></td>
             <td data-name="username" data-users-action="username" class="clickable">{{username}}</td>
             <td>{{&fullName}}</td>
             <td data-users-action="nickname" class="clickable">{{nickname}}</td>
@@ -89,6 +89,20 @@
         <p class="footer">
             <button class="cancel">{{modal.buttons.cancel}}</button>
             <button class="ok">{{modal.buttons.save}}</button>
+        </p>
+    </div>
+    <div id="admin0-modal">
+        <p>{{modal.makeAdminConfirm}}</p>
+        <p class="footer">
+            <button class="cancel">{{modal.buttons.no}}</button>
+            <button class="ok">{{modal.buttons.yes}}</button>
+        </p>
+    </div>
+    <div id="admin1-modal">
+        <p>{{modal.revokeAdminConfirm}}</p>
+        <p class="footer">
+            <button class="cancel">{{modal.buttons.no}}</button>
+            <button class="ok">{{modal.buttons.yes}}</button>
         </p>
     </div>
 </div>
