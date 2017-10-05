@@ -25,6 +25,7 @@ import Mustache from 'mustache';
 import mergeOptions from 'merge-options';
 import { ensureLoggedIn } from 'connect-ensure-login';
 import crypto from 'crypto';
+import bcrypt from 'bcrypt';
 
 import { renderPage as _renderPage } from '../render';
 import metilo from '..';
@@ -74,7 +75,7 @@ export default function () {
             const adminInfo = {};
             const adminID = metilo.conf.superadmin.inheritID;
             if (adminID) {
-                const admin = metilo.db.getUser('id = ?', [adminID]);
+                const admin = metilo.db.getUser('id = ?', adminID);
                 if (admin) {
                     if (admin.data.role) { adminInfo.role = admin.data.role.replace('\n', '<br>'); }
                     adminInfo.name = admin.fullName();
@@ -195,13 +196,25 @@ const superUser = () => new User({
     }
 });
 
-passport.use(new passportLocal.Strategy((username, password, cb) => {
-    if (username === metilo.conf.superadmin.username && password === metilo.conf.superadmin.password) {
-        const user = superUser();
-        cb(null, user);
+passport.use(new passportLocal.Strategy(async (username, password, cb) => {
+    if (username === metilo.conf.superadmin.username) {
+        if (password === metilo.conf.superadmin.password) {
+            const user = superUser();
+            cb(null, user);
+        } else {
+            cb(null, false);
+        }
     } else {
-        // TODO: Login for regular users
-        cb(null, false);
+        // Obtain user
+        const user = metilo.db.getUser('username = ?', username);
+
+        const isValid = await bcrypt.compare(password, user.data.password);
+
+        if (isValid) {
+            cb(null, user);
+        } else {
+            cb(null, false);
+        }
     }
 }));
 

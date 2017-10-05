@@ -53,6 +53,10 @@ export default class Database {
             query += ` where ${where}`;
         }
 
+        if (!(parameters instanceof Array)) {
+            parameters = [parameters];
+        }
+
         const statement = this.db.prepare(query);
         let rows;
         if (first) {
