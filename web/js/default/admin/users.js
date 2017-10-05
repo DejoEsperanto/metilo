@@ -18,11 +18,13 @@
  */
 
 const modals = {
-    delete:  $('#delete-modal'),
-    reset:   $('#reset-modal'),
-    newPass: $('#new-pass-modal'),
-    role:    $('#role-modal'),
-    phone:   $('#phone-modal')
+    delete:   $('#delete-modal'),
+    reset:    $('#reset-modal'),
+    newPass:  $('#new-pass-modal'),
+    role:     $('#role-modal'),
+    phone:    $('#phone-modal'),
+    email:    $('#email-modal'),
+    nickname: $('#nickname-modal')
 };
 
 const updateUser = (user, fields) => {
@@ -95,6 +97,32 @@ for (let user of $$('#users-table>tbody>tr')) {
                             updateUser(username, { phoneNumber: number });
                             // We'll just refresh here as formatting the phone number on the client side would require loading yet another library
                             document.location.reload();
+                        });
+                    });
+
+                    break;
+
+                case 'email':
+                    on(action, 'click', () => {
+                        const text = modals.email.innerHTML
+                            .replace('%s', action.innerText);
+                        inputDialog(text).then(r => {
+                            if (r === null) { return; }
+                            updateUser(username, { email: r[0] });
+                            action.innerText = r[0];
+                        });
+                    });
+
+                    break;
+
+                case 'nickname':
+                    on(action, 'click', () => {
+                        const text = modals.nickname.innerHTML
+                            .replace('%s', action.innerText);
+                        inputDialog(text).then(r => {
+                            if (r === null) { return; }
+                            updateUser(username, { nickname: r[0] });
+                            action.innerText = r[0];
                         });
                     });
             }

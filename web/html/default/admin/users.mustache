@@ -23,8 +23,8 @@
             <td title="{{#isAdmin}}{{head.isAdmin}}{{/isAdmin}}{{^isAdmin}}{{head.isNotAdmin}}{{/isAdmin}}"><i class="material-icons">{{#isAdmin}}stars{{/isAdmin}}{{^isAdmin}}account_circle{{/isAdmin}}</i></td>
             <td data-name="username">{{username}}</td>
             <td>{{&fullName}}</td>
-            <td>{{nickname}}</td>
-            <td>{{email}}</td>
+            <td data-users-action="nickname" class="clickable">{{nickname}}</td>
+            <td data-users-action="email" class="clickable">{{email}}</td>
             <td data-users-action="phone" class="clickable" data-phone-code="{{phoneCode}}" data-phone="{{phoneNumberLocal}}{{^phoneNumberLocal}}{{phoneNumber}}{{/phoneNumberLocal}}">{{phoneNumberFormatted}}</td>
             <td data-users-action="role" class="clickable">{{&role}}</td>
             <td><button data-users-action="reset" title="{{head.resetPassword}}"><i class="material-icons small-icon">settings_backup_restore</i><span>{{resetPassword}}</span></button></td>
@@ -65,6 +65,20 @@
     </div>
     <div id="phone-modal">
         +<input class="phone-code" value="%s$1" maxlength="2" data-value> <input value="%s$2" data-value>
+        <p class="footer">
+            <button class="cancel">{{modal.buttons.cancel}}</button>
+            <button class="ok">{{modal.buttons.save}}</button>
+        </p>
+    </div>
+    <div id="email-modal">
+        <input value="%s" data-value>
+        <p class="footer">
+            <button class="cancel">{{modal.buttons.cancel}}</button>
+            <button class="ok">{{modal.buttons.save}}</button>
+        </p>
+    </div>
+    <div id="nickname-modal">
+        <input value="%s" data-value>
         <p class="footer">
             <button class="cancel">{{modal.buttons.cancel}}</button>
             <button class="ok">{{modal.buttons.save}}</button>
