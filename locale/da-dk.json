@@ -58,7 +58,9 @@
                         "email": "E-mail",
                         "phoneNumber": "Telefonnummer",
                         "role": "Rolle",
-                        "actions": "Handlinger"
+                        "actions": "Handlinger",
+                        "delete": "Slet bruger",
+                        "resetPassword": "Nulstil adgangskode"
                     },
                     "noUsers": "Ingen brugere blev fundet.",
                     "newUser": "Tilføj ny bruger",

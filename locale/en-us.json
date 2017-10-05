@@ -58,7 +58,9 @@
                         "email": "Email",
                         "phoneNumber": "Phone number",
                         "role": "Role",
-                        "actions": "Actions"
+                        "actions": "Actions",
+                        "delete": "Delete user",
+                        "resetPassword": "Reset password"
                     },
                     "noUsers": "No users were found.",
                     "newUser": "Add new user",

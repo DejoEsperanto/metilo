@@ -58,7 +58,9 @@
                         "email": "Retpoŝtadreso",
                         "phoneNumber": "Telefonnumero",
                         "role": "Rolo",
-                        "actions": "Agoj"
+                        "actions": "Agoj",
+                        "delete": "Forigi uzanton",
+                        "resetPassword": "Rekrei pasvorton"
                     },
                     "noUsers": "Trovis neniujn uzantojn.",
                     "newUser": "Krei novan uzanton",

@@ -27,8 +27,8 @@
             <td>{{email}}</td>
             <td>{{phoneNumber}}</td>
             <td>{{&role}}</td>
-            <td><button data-users-action="reset"><i class="material-icons small-icon">settings_backup_restore</i><span>{{resetPassword}}</span></button></td>
-            <td><button data-users-action="delete"><i class="material-icons small-icon">delete</i><span>{{delete}}</span></button></td>
+            <td><button data-users-action="reset" title="{{head.resetPassword}}"><i class="material-icons small-icon">settings_backup_restore</i><span>{{resetPassword}}</span></button></td>
+            <td><button data-users-action="delete" title="{{head.delete}}"><i class="material-icons small-icon">delete</i><span>{{delete}}</span></button></td>
         </tr>
         {{/data}}
         {{^data}}

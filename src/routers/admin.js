@@ -214,10 +214,14 @@ passport.use(new passportLocal.Strategy(async (username, password, cb) => {
         // Obtain user
         const user = metilo.db.getUser('username = ?', username);
 
-        const isValid = await bcrypt.compare(password, user.data.password);
+        if (user) {
+            const isValid = await bcrypt.compare(password, user.data.password);
 
-        if (isValid) {
-            cb(null, user);
+            if (isValid) {
+                cb(null, user);
+            } else {
+                cb(null, false);
+            }
         } else {
             cb(null, false);
         }
