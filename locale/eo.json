@@ -35,6 +35,7 @@
                 },
                 "admin/dashboard": {
                     "title": "Stirpanelo",
+                    "siteAdmin": "Retejadministranto",
                     "dashboardHeader": "Stirpanelo",
                     "dashboardText": "Navigu pere de la ĉi-maldekstra menuo. Se vi havas demandojn pri la uzado de la stirpanelo, bonvolu demandi vian retejadministranton."
                 },

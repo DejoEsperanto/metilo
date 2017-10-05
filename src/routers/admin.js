@@ -25,7 +25,6 @@ import Mustache from 'mustache';
 import mergeOptions from 'merge-options';
 import { ensureLoggedIn } from 'connect-ensure-login';
 import crypto from 'crypto';
-import { PhoneNumberFormat as PNF, PhoneNumberUtil } from 'google-libphonenumber';
 
 import { renderPage as _renderPage } from '../render';
 import metilo from '..';
@@ -71,7 +70,25 @@ export default function () {
 
         if (req.user) {
             // Dashboard
-            renderPage('admin/dashboard', req, 'admin')
+
+            const adminInfo = {};
+            const adminID = metilo.conf.superadmin.inheritID;
+            if (adminID) {
+                const admin = metilo.db.getUser('id = ?', [adminID]);
+                if (admin) {
+                    if (admin.data.role) { adminInfo.role = admin.data.role.replace('\n', '<br>'); }
+                    adminInfo.name = admin.fullName();
+                    if (admin.data.email) { adminInfo.email = admin.data.email; }
+                    adminInfo.phoneNumber = admin.phoneNumber();
+                    adminInfo.phoneNumberFull = admin.data.phoneNumber;
+                }
+            }
+
+            renderPage('admin/dashboard', req, 'admin', {
+                main: {
+                    adminContactInfo: adminInfo
+                }
+            })
                 .then(data => res.send(data))
                 .catch(err => next(err));
         } else {
@@ -155,15 +172,7 @@ export default function () {
             if (data.role) {
                 data.role = metilo.entities.encode(data.role).replace('\n', '<br>');
             }
-            if (data.phoneNumber) {
-                let pnf = PNF.INTERNATIONAL;
-                if (data.phoneNumber.indexOf('+' + metilo.conf.defaultPhoneCode[1]) === 0) {
-                    pnf = PNF.NATIONAL;
-                }
-                const phoneUtil = PhoneNumberUtil.getInstance();
-                const phoneNumber = phoneUtil.parse(data.phoneNumber);
-                data.phoneNumber = phoneUtil.format(phoneNumber, pnf);
-            }
+            data.phoneNumber = user.phoneNumber();
             return data;
         });
 

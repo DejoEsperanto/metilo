@@ -63,7 +63,7 @@ export default class Database {
 
         const users = rows.map(row => new User({ data: row }));
         if (first) {
-            return users ? users : null;
+            return users ? users[0] : null;
         } else {
             return users;
         }

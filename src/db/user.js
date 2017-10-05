@@ -18,6 +18,7 @@
  */
 
 import bcrypt from 'bcrypt';
+import { PhoneNumberFormat as PNF, PhoneNumberUtil } from 'google-libphonenumber';
 import metilo from '..';
 
 class User {
@@ -61,7 +62,7 @@ class User {
         if (surname) { var encodedSurname = metilo.entities.encode(surname); }
 
         if (fullName && surname) {
-            return encodedFullName.replace(encodedSurname, `<span class="surname">${encodedSurname}<span class="surname"></span>`);
+            return encodedFullName.replace(encodedSurname, `<span class="surname">${encodedSurname}</span>`);
         } else if (fullName) { return fullName; }
 
         return surname;
@@ -122,6 +123,23 @@ class User {
         return new User({
             data: data
         });
+    }
+
+    /**
+     * Returns a formatted phone number
+     * @return {string|null}
+     */
+    phoneNumber () {
+        if (this.data.phoneNumber) {
+            let pnf = PNF.INTERNATIONAL;
+            if (this.data.phoneNumber.indexOf('+' + metilo.conf.defaultPhoneCode[1]) === 0) {
+                pnf = PNF.NATIONAL;
+            }
+            const phoneUtil = PhoneNumberUtil.getInstance();
+            const phoneNumber = phoneUtil.parse(this.data.phoneNumber);
+            return phoneUtil.format(phoneNumber, pnf);
+        }
+        return null;
     }
 }
 

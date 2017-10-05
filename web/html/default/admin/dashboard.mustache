@@ -1,2 +1,11 @@
 <h1>{{dashboardHeader}}</h1>
 <p>{{dashboardText}}</p>
+{{#adminContactInfo}}
+<div class="contactInfo spacing">
+    <b>{{siteAdmin}}</b> <br>
+    {{&name}} <br>
+    {{#role}}{{.}} <br>{{/role}}
+    {{#email}}<a href="mailto:{{.}}">{{.}}</a> <br>{{/email}}
+    {{#phoneNumber}}<a href="tel:{{phoneNumberFull}}">{{.}}</a>{{/phoneNumber}}
+</div>
+{{/adminContactInfo}}
