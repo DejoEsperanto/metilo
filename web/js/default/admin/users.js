@@ -24,7 +24,8 @@ const modals = {
     role:     $('#role-modal'),
     phone:    $('#phone-modal'),
     email:    $('#email-modal'),
-    nickname: $('#nickname-modal')
+    nickname: $('#nickname-modal'),
+    username: $('#username-modal')
 };
 
 const updateUser = (user, fields) => {
@@ -125,6 +126,22 @@ for (let user of $$('#users-table>tbody>tr')) {
                             action.innerText = r[0];
                         });
                     });
+
+                    break;
+
+                case 'username':
+                    on(action, 'click', () => {
+                        const text = modals.username.innerHTML
+                            .replace('%s', action.innerText);
+                        inputDialog(text).then(r => {
+                            if (r === null) { return; }
+                            updateUser(username, { username: r[0] });
+                            action.innerText = r[0];
+                            username = r[0];
+                        });
+                    });
+
+                    break;
             }
         }
     })(user);
