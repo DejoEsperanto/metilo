@@ -52,6 +52,7 @@
                     "head": {
                         "id": "Nr.",
                         "isAdmin": "Administrator",
+                        "isNotAdmin": "Bruger",
                         "username": "Brugernavn",
                         "fullName": "Navn",
                         "nickname": "Kaldenavn",

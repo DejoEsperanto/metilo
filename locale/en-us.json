@@ -52,6 +52,7 @@
                     "head": {
                         "id": "#",
                         "isAdmin": "Admin",
+                        "isNotAdmin": "User",
                         "username": "Username",
                         "fullName": "Name",
                         "nickname": "Nickname",

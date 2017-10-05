@@ -52,6 +52,7 @@
                     "head": {
                         "id": "N-ro",
                         "isAdmin": "Administranto",
+                        "isNotAdmin": "Uzanto",
                         "username": "Uzantonomo",
                         "fullName": "Nomo",
                         "nickname": "Kromnomo",
