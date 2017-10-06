@@ -55,14 +55,16 @@
                         "isAdmin": "Administrator",
                         "isNotAdmin": "Bruger",
                         "username": "Brugernavn",
-                        "fullName": "Navn",
+                        "name": "Navn",
                         "nickname": "Kaldenavn",
                         "email": "E-mail",
                         "phoneNumber": "Telefonnummer",
                         "role": "Rolle",
                         "actions": "Handlinger",
                         "delete": "Slet bruger",
-                        "resetPassword": "Nulstil adgangskode"
+                        "resetPassword": "Nulstil adgangskode",
+                        "fullName": "Fulde navn",
+                        "surname": "Efternavn"
                     },
                     "noUsers": "Ingen brugere blev fundet.",
                     "newUser": "Tilføj ny bruger",

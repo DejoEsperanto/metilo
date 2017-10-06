@@ -27,7 +27,8 @@ const modals = {
     nickname: $('#nickname-modal'),
     username: $('#username-modal'),
     admin0:   $('#admin0-modal'),
-    admin1:   $('#admin1-modal')
+    admin1:   $('#admin1-modal'),
+    name:     $('#name-modal')
 };
 
 const updateUser = (user, fields) => {
@@ -164,6 +165,33 @@ for (let user of $$('#users-table>tbody>tr')) {
                     });
 
                     break;
+
+                case 'name':
+                    on(action, 'click', () => {
+                        const text = modals.name.innerHTML
+                            .replace('%s$1', action.dataset.fullName)
+                            .replace('%s$2', action.dataset.surname);
+                        inputDialog(text).then(r => {
+                            if (r === null) { return; }
+                            if (r[0].indexOf(r[1]) === -1) { return; }
+                            let encodedName, encodedSurname;
+                            let newFullName = '';
+                            if (r[0]) { encodedName    = htmlEscape(r[0]) };
+                            if (r[1]) { encodedSurname = htmlEscape(r[1]) };
+                            if (r[0] && r[1]) {
+                                newFullName = encodedName.replace(encodedSurname, `<span class="surname">${encodedSurname}</span>`);
+                            } else if (r[0]) {
+                                newFullName = encodedName;
+                            } else if (r[1]) {
+                                newFullName = encodedSurname;
+                            }
+                            updateUser(username, {
+                                name: r[0],
+                                surname: r[1]
+                            })
+                                .then(() => { action.innerHTML = newFullName; });
+                        });
+                    });
             }
         }
     })(user);

@@ -8,7 +8,7 @@
             <th>{{head.id}}</th>
             <th></th>
             <th>{{head.username}}</th>
-            <th>{{head.fullName}}</th>
+            <th>{{head.name}}</th>
             <th>{{head.nickname}}</th>
             <th>{{head.email}}</th>
             <th>{{head.phoneNumber}}</th>
@@ -22,7 +22,7 @@
             <td>{{id}}</td>
             <td title="{{#isAdmin}}{{head.isAdmin}}{{/isAdmin}}{{^isAdmin}}{{head.isNotAdmin}}{{/isAdmin}}" data-value="{{level}}" data-users-action="admin" class="clickable"><i class="material-icons">{{#isAdmin}}stars{{/isAdmin}}{{^isAdmin}}account_circle{{/isAdmin}}</i></td>
             <td data-name="username" data-users-action="username" class="clickable">{{username}}</td>
-            <td>{{&fullName}}</td>
+            <td data-users-action="name" class="clickable" data-full-name="{{name}}" data-surname="{{surname}}">{{&fullName}}</td>
             <td data-users-action="nickname" class="clickable">{{nickname}}</td>
             <td data-users-action="email" class="clickable">{{email}}</td>
             <td data-users-action="phone" class="clickable" data-phone-code="{{phoneCode}}" data-phone="{{phoneNumberLocal}}{{^phoneNumberLocal}}{{phoneNumber}}{{/phoneNumberLocal}}">{{phoneNumberFormatted}}</td>
@@ -103,6 +103,14 @@
         <p class="footer">
             <button class="cancel">{{modal.buttons.no}}</button>
             <button class="ok">{{modal.buttons.yes}}</button>
+        </p>
+    </div>
+    <div id="name-modal">
+        {{head.name}}: <input value="%s$1" data-value> <br>
+        {{head.surname}}: <input value="%s$2" data-value>
+        <p class="footer">
+            <button class="cancel">{{modal.buttons.cancel}}</button>
+            <button class="ok">{{modal.buttons.save}}</button>
         </p>
     </div>
 </div>

@@ -55,14 +55,16 @@
                         "isAdmin": "Administranto",
                         "isNotAdmin": "Uzanto",
                         "username": "Uzantonomo",
-                        "fullName": "Nomo",
+                        "name": "Nomo",
                         "nickname": "Kromnomo",
                         "email": "Retpoŝtadreso",
                         "phoneNumber": "Telefonnumero",
                         "role": "Rolo",
                         "actions": "Agoj",
                         "delete": "Forigi uzanton",
-                        "resetPassword": "Rekrei pasvorton"
+                        "resetPassword": "Rekrei pasvorton",
+                        "fullName": "Plena nomo",
+                        "surname": "Familinomo"
                     },
                     "noUsers": "Trovis neniujn uzantojn.",
                     "newUser": "Krei novan uzanton",

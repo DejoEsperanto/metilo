@@ -55,14 +55,16 @@
                         "isAdmin": "Admin",
                         "isNotAdmin": "User",
                         "username": "Username",
-                        "fullName": "Name",
+                        "name": "Name",
                         "nickname": "Nickname",
                         "email": "Email",
                         "phoneNumber": "Phone number",
                         "role": "Role",
                         "actions": "Actions",
                         "delete": "Delete user",
-                        "resetPassword": "Reset password"
+                        "resetPassword": "Reset password",
+                        "fullName": "Full name",
+                        "surname": "Surname"
                     },
                     "noUsers": "No users were found.",
                     "newUser": "Add new user",
