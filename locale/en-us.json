@@ -105,6 +105,34 @@
                         "phoneNumber": "This field contains the user's phone number. Please put the international phone code in the field to the left of the phone number.",
                         "role": "This field contains a free text description of the user's role as presented to other users."
                     }
+                },
+                "admin/pages": {
+                    "title": "Pages",
+                    "pagesHeader": "Pages",
+                    "newPage": "Create new page"
+                },
+                "admin/new-page": {
+                    "title": "Create new page",
+                    "newPageHeader": "Create new page",
+                    "chooseColumn": "-Choose-",
+                    "columnTypes": [
+                        {
+                            "id": "text",
+                            "name": "Text"
+                        },
+                        {
+                            "id": "html",
+                            "name": "HTML"
+                        },
+                        {
+                            "id": "form",
+                            "name": "Form"
+                        },
+                        {
+                            "id": "calendar",
+                            "name": "Calendar"
+                        }
+                    ]
                 }
             },
             "urls": {
@@ -115,6 +143,7 @@
                     "siteStatistics": "statistics",
                     "contentMenu": "menu",
                     "contentPages": "pages",
+                    "contentNewPage": "pages/new",
                     "users": "users",
                     "newUser": "users/new",
                     "logout": "logout"

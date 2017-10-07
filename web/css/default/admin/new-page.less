@@ -1,0 +1,79 @@
+/*
+ * Copyright (C) 2017 Mia Nordentoft, Metilo contributors
+ *
+ * This file is part of Metilo.
+ *
+ * Metilo is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * Metilo is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with Metilo. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+#new-page-contents {
+    min-width: 500px;
+
+    &>.row {
+        width: 100%;
+        min-height: 128px;
+        display: flex;
+
+        &>.column {
+            width: 100%;
+
+            &[data-type=html] {
+                height: 300px;
+                margin-bottom: 24px;
+            }
+
+            &[data-type=text] {
+                margin-bottom: 64px;
+            }
+        }
+
+        &>.column:not(.nostyle) {
+            background: #ddd;
+            cursor: pointer;
+
+            &:not(:first-child) {
+                margin-left: 24px;
+            }
+
+            &[data-type=""] {
+                &>select {
+                    width: 60%;
+                    margin-left: 20%;
+                    height: 24px;
+                    visibility: hidden;
+                }
+
+                &:hover>select {
+                    visibility: visible;
+                }
+            }
+
+            &[data-type=""]:hover:before {
+                visibility: hidden;
+            }
+
+            &[data-type=""]:before {
+                content: '+';
+                display: block;
+                margin-bottom: calc(~"-64px - 12px");
+                font-size: 64px;
+                color: #555;
+                font-weight: bold;
+                line-height: 128px;
+                text-align: center;
+                width: 100%;
+            }
+        }
+    }
+}

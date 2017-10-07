@@ -105,6 +105,34 @@
                         "phoneNumber": "Ĉi tiu kampo enhavas la telefonnumeron de la uzanto. Bonvolu meti la internacian telefonkodon en la kampo maldekstre de la telefonnumero.",
                         "role": "Ĉi tiu kampo enhavas libertekstan priskribon de la rolo de la uzanto kiel prezentite al aliaj uzantoj."
                     }
+                },
+                "admin/pages": {
+                    "title": "Paĝoj",
+                    "pagesHeader": "Paĝoj",
+                    "newPage": "Krei paĝon"
+                },
+                "admin/new-page": {
+                    "title": "Krei paĝon",
+                    "newPageHeader": "Krei paĝon",
+                    "chooseColumn": "-Elekti-",
+                    "columnTypes": [
+                        {
+                            "id": "text",
+                            "name": "Teksto"
+                        },
+                        {
+                            "id": "html",
+                            "name": "HTML"
+                        },
+                        {
+                            "id": "form",
+                            "name": "Formularo"
+                        },
+                        {
+                            "id": "calendar",
+                            "name": "Kalendaro"
+                        }
+                    ]
                 }
             },
             "urls": {
@@ -115,6 +143,7 @@
                     "siteStatistics": "statistiko",
                     "contentMenu": "menuo",
                     "contentPages": "paghoj",
+                    "contentNewPage": "paghoj/nova",
                     "users": "uzantoj",
                     "newUser": "uzantoj/nova",
                     "logout": "elsaluti"

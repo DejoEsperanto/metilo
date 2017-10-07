@@ -17,6 +17,8 @@
  * along with Metilo. If not, see <http://www.gnu.org/licenses/>.
  */
 
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+
 @import '../reset.less';
 
 // Colors
@@ -33,7 +35,6 @@ body {
 }
 
 #main-wrapper {
-    height: 300px;
     min-height: calc(~"100vh - 32px");
 }
 
@@ -49,7 +50,6 @@ header {
 }
 
 main {
-    height: 0;
     min-height: calc(~"100% - 64px");
     padding: 0 24px;
     display: flex;
@@ -308,4 +308,21 @@ b {
 
 .clickable {
     cursor: pointer;
+}
+
+.hide {
+    display: none;
+}
+
+strong {
+    font-weight: bold;
+}
+
+em {
+    font-style: italic;
+}
+
+.ql-editor {
+    font-family: Roboto, sans-serif;
+    font-size: 1em;
 }

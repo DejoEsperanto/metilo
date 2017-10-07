@@ -22,6 +22,11 @@
         <title>{{title}} | {{siteName}}</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="/assets/css/admin/global.css">
+        <link rel="stylesheet" href="https://cdn.quilljs.com/1.3.2/quill.snow.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.30.0/codemirror.min.css">
+        {{#includeStyles}}
+        <link rel="stylesheet" href="{{&.}}">
+        {{/includeStyles}}
     </head>
     <body data-subsite="{{subsite}}">
         <div id="main-wrapper">
@@ -41,6 +46,10 @@
         <footer>{{&copyright.local}}—{{&copyright.metilo}}</footer>
         <script src="/assets/module/js.cookie.js"></script>
         <script src="/assets/module/picomodal.js"></script>
+        <script src="https://cdn.quilljs.com/1.3.2/quill.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.30.0/codemirror.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.30.0/mode/xml/xml.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.30.0/mode/htmlmixed/htmlmixed.min.js"></script>
         <script>var baseURL = "{{&subsiteURL}}";</script>
         <script src="/assets/js/admin/global.js"></script>
         {{#includeScripts}}

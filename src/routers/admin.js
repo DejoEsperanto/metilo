@@ -192,6 +192,25 @@ export default function () {
             .catch(err => next(err));
     });
 
+    // New page page
+    router.get(`/${urls.contentNewPage}`, ensureLoggedIn(admin), (req, res, next) => {
+        renderPage('admin/new-page', req, 'admin', {
+            global: {
+                includeStyles: '/assets/css/admin/new-page.css',
+                includeScripts: '/assets/js/admin/new-page.js'
+            }
+        })
+            .then(data => res.send(data))
+            .catch(err => next(err));
+    });
+
+    // Pages page
+    router.get(`/${urls.contentPages}`, ensureLoggedIn(admin), (req, res, next) => {
+        renderPage('admin/pages', req, 'admin')
+            .then(data => res.send(data))
+            .catch(err => next(err));
+    });
+
     return router;
 };
 

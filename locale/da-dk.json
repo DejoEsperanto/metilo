@@ -105,6 +105,34 @@
                         "phoneNumber": "Dette felt indeholder brugerens telefonnummer. Indtast den internationale telefonkode i feltet til venstre for telefonnummeret.",
                         "role": "Dette felt indeholder en fritekstsbeskrivelse af brugerens rolle som præsenteret til andre brugere."
                     }
+                },
+                "admin/pages": {
+                    "title": "Sider",
+                    "pagesHeader": "Sider",
+                    "newPage": "Opret ny side"
+                },
+                "admin/new-page": {
+                    "title": "Opret ny side",
+                    "newPageHeader": "Opret ny side",
+                    "chooseColumn": "-Vælg-",
+                    "columnTypes": [
+                        {
+                            "id": "text",
+                            "name": "Tekst"
+                        },
+                        {
+                            "id": "html",
+                            "name": "HTML"
+                        },
+                        {
+                            "id": "form",
+                            "name": "Formular"
+                        },
+                        {
+                            "id": "calendar",
+                            "name": "Kalender"
+                        }
+                    ]
                 }
             },
             "urls": {
@@ -115,6 +143,7 @@
                     "siteStatistics": "statistik",
                     "contentMenu": "menu",
                     "contentPages": "sider",
+                    "contentNewPage": "sider/ny",
                     "users": "brugere",
                     "newUser": "brugere/ny",
                     "logout": "logud"
