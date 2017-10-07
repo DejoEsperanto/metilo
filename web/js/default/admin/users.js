@@ -189,7 +189,11 @@ for (let user of $$('#users-table>tbody>tr')) {
                                 name: r[0],
                                 surname: r[1]
                             })
-                                .then(() => { action.innerHTML = newFullName; });
+                                .then(() => {
+                                    action.innerHTML = newFullName;
+                                    action.dataset.fullName = r[0];
+                                    action.dataset.surname  = r[1];
+                            });
                         });
                     });
             }
