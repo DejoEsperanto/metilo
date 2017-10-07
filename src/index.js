@@ -17,8 +17,6 @@
  * along with Metilo. If not, see <http://www.gnu.org/licenses/>.
  */
 
-process.on('unhandledRejection', (reason, promise) => console.error(reason));
-
 import express from 'express';
 import mergeOptions from 'merge-options';
 import mustacheExpress from 'mustache-express';
