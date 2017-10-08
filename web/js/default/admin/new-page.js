@@ -17,10 +17,11 @@
  * along with Metilo. If not, see <http://www.gnu.org/licenses/>.
  */
 
-const els = {
-    row:      $('#row-template>:first-child'),
-    contents: $('#new-page-contents')
-};
+els = Object.assign(els, {
+    row:          $('#row-template>:first-child'),
+    quillToolbar: $('#quill-toolbar-template'),
+    contents:     $('#new-page-contents')
+});
 
 const handleSelectChange = el => {
     const column = el.parentElement;
@@ -42,21 +43,17 @@ const insertTypeInner = (el, type) => {
     switch (type) {
         case 'text':
             el.innerHTML = '';
-            const child = document.createElement('div');
-            el.appendChild(child);
+            const toolbar = els.quillToolbar.cloneNode(true);
+            toolbar.removeAttribute('id');
+            el.appendChild(toolbar);
+            const editor  = document.createElement('div');
+            el.appendChild(editor);
             el.classList.add('nostyle');
             if (double) { el2.remove(); }
-            new Quill(child, {
+            new Quill(editor, {
                 theme: 'snow',
                 modules: {
-                    toolbar: [
-                        [ { 'header': [ 1, 2, 3, false ] } ],
-                        [ 'bold', 'italic', 'underline', 'strike' ],
-                        [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-                        [ 'link', 'image', 'video' ],
-                        [ 'blockquote' ],
-                        [ 'clean' ]
-                    ]
+                    toolbar: toolbar
                 }
             });
 
@@ -77,8 +74,7 @@ const insertTypeInner = (el, type) => {
 };
 
 const newRow = () => {
-    const el = els.row.cloneNode();
-    el.innerHTML = els.row.innerHTML;
+    const el = els.row.cloneNode(true);
     els.contents.appendChild(el);
 };
 
@@ -87,3 +83,5 @@ on(els.contents, 'change', e => {
     if (!el.classList.contains('column-select')) { return; }
     handleSelectChange(el);
 });
+
+newRow();

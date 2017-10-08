@@ -29,7 +29,7 @@
         {{/includeStyles}}
     </head>
     <body data-subsite="{{subsite}}">
-        <div id="main-wrapper">
+        <div id="main-wrapper" {{#vcenter}}class="vcenter"{{/vcenter}}>
             <header>
                 <select id="select-language">
                     {{#locales}}
@@ -50,8 +50,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.30.0/codemirror.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.30.0/mode/xml/xml.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.30.0/mode/htmlmixed/htmlmixed.min.js"></script>
-        <script>var baseURL = "{{&subsiteURL}}";</script>
         <script src="/assets/js/admin/global.js"></script>
+        <script>C.baseURL = "{{&subsiteURL}}";</script>
         {{#includeScripts}}
         <script src="{{&.}}"></script>
         {{/includeScripts}}

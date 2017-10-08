@@ -5,6 +5,28 @@
                 "global": {
                     "copyright": {
                         "metilo": "Drevet af <a href=\"https://github.com/DejoEsperanto/metilo\">Metilo</a>."
+                    },
+                    "textEditor": {
+                        "header": {
+                            "h1": "Overskrift 1",
+                            "h2": "Overskrift 2",
+                            "h3": "Overskrift 3",
+                            "normal": "Tekst"
+                        },
+                        "titles": {
+                            "header": "Format",
+                            "bold": "Fed",
+                            "italic": "Kursiv",
+                            "underline": "Understreget",
+                            "strike": "Streg gennem",
+                            "ol": "Nummereret liste",
+                            "ul": "Punktliste",
+                            "link": "Indsæt link",
+                            "image": "Indsæt billede",
+                            "video": "Indsæt video",
+                            "blockquote": "Indsæt citat",
+                            "clean": "Ryd formattering"
+                        }
                     }
                 },
                 "admin": {

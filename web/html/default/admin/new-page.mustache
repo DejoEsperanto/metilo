@@ -1,30 +1,7 @@
 <h1>{{newPageHeader}}</h1>
 <div class="horizontal wide-spacing">
-    <div id="new-page-contents">
-        <div class="row">
-            <div class="column" data-type="">
-                <select class="column-select" data-hover="init">
-                    <option value="none">{{chooseColumn}}</option>
-                    {{#columnTypes}}
-                    <option value="{{id}}">{{name}}</option>
-                    <option value="2{{id}}">2x {{name}}</option>
-                    {{/columnTypes}}
-                </select>
-            </div>
-            <div class="column" data-type="">
-                <select class="column-select" data-hover="init">
-                    <option value="none">{{chooseColumn}}</option>
-                    {{#columnTypes}}
-                    <option value="{{id}}">{{name}}</option>
-                    <option value="2{{id}}">2x {{name}}</option>
-                    {{/columnTypes}}
-                </select>
-            </div>
-        </div>
-    </div>
-    <div id="new-page-settings">
-        
-    </div>
+    <div id="new-page-contents"></div>
+    <div id="new-page-settings"></div>
 </div>
 <div class="hide">
     <div id="row-template">
@@ -48,5 +25,41 @@
                 </select>
             </div>
         </div>
+    </div>
+    <div id="quill-toolbar-template">
+        <span class="ql-formats">
+            <select class="ql-header" title="{{textEditor.titles.header}}">
+                <option value="1">{{textEditor.header.h1}}</option>
+                <option value="2">{{textEditor.header.h2}}</option>
+                <option value="3">{{textEditor.header.h3}}</option>
+                <option selected>{{textEditor.header.normal}}</option>
+            </select>
+        </span>
+
+        <span class="ql-formats">
+            <button class="ql-bold" title="{{textEditor.titles.bold}}"></button>
+            <button class="ql-italic" title="{{textEditor.titles.italic}}"></button>
+            <button class="ql-underline" title="{{textEditor.titles.underline}}"></button>
+            <button class="ql-strike" title="{{textEditor.titles.strike}}"></button>
+        </span>
+
+        <span class="ql-formats">
+            <button class="ql-list" value="ordered" title="{{textEditor.titles.ol}}"></button>
+            <button class="ql-list" value="bullet" title="{{textEditor.titles.ul}}"></button>
+        </span>
+
+        <span class="ql-formats">
+            <button class="ql-link" title="{{textEditor.titles.link}}"></button>
+            <button class="ql-image" title="{{textEditor.titles.image}}"></button>
+            <button class="ql-video" title="{{textEditor.titles.video}}"></button>
+        </span>
+
+        <span class="ql-formats">
+            <button class="ql-blockquote" title="{{textEditor.titles.blockquote}}"></button>
+        </span>
+
+        <span class="ql-formats">
+            <button class="ql-clean" title="{{textEditor.titles.clean}}"></button>
+        </span>
     </div>
 </div>

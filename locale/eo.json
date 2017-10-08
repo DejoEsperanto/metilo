@@ -5,6 +5,28 @@
                 "global": {
                     "copyright": {
                         "metilo": "Havebligita de <a href=\"https://github.com/DejoEsperanto/metilo\">Metilo</a>."
+                    },
+                    "textEditor": {
+                        "header": {
+                            "h1": "Titolo 1",
+                            "h2": "Titolo 2",
+                            "h3": "Titolo 3",
+                            "normal": "Teksto"
+                        },
+                        "titles": {
+                            "header": "Aspekto",
+                            "bold": "Dika",
+                            "italic": "Kursiva",
+                            "underline": "Substrekita",
+                            "strike": "Trastrekita",
+                            "ol": "Numerita listo",
+                            "ul": "Bula listo",
+                            "link": "Enmeti ligilon",
+                            "image": "Enmeti bildon",
+                            "video": "Enmeti filmeton",
+                            "blockquote": "Enmeti citaĵon",
+                            "clean": "Forigi aspekton"
+                        }
                     }
                 },
                 "admin": {

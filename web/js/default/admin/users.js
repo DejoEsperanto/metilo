@@ -32,7 +32,7 @@ const modals = {
 };
 
 const updateUser = (user, fields) => {
-    return jsonXHR(`${baseURL}/xhr/user-update`, {
+    return jsonXHR(`${C.baseURL}/xhr/user-update`, {
         user: user,
         fields: fields
     }, true);
@@ -49,7 +49,7 @@ for (let user of $$('#users-table>tbody>tr')) {
                         const text = modals.delete.innerHTML.replace('%s', username);
                         confirmDialog(text).then(r => {
                             if (!r) { return; }
-                            jsonXHR(`${baseURL}/xhr/user-delete`, { username: username })
+                            jsonXHR(`${C.baseURL}/xhr/user-delete`, { username: username })
                                 .then(() => { document.location.reload(); });
                         });
                     });
@@ -61,7 +61,7 @@ for (let user of $$('#users-table>tbody>tr')) {
                         const text = modals.reset.innerHTML.replace('%s', username);
                         confirmDialog(text).then(r => {
                             if (!r) { return; }
-                            jsonXHR(`${baseURL}/xhr/user-reset-pass`, { username: username })
+                            jsonXHR(`${C.baseURL}/xhr/user-reset-pass`, { username: username })
                                 .then(res => {
                                     const text = modals.newPass.innerHTML
                                         .replace('%s$1', username)

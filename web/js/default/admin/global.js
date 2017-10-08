@@ -131,7 +131,7 @@ const htmlUnescape = str => {
 }
 
 // Elements
-const els = {
+let els = {
     selectLanguage: $('#select-language')
 };
 

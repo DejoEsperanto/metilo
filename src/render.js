@@ -40,6 +40,7 @@ export async function renderPage (name, req, subsite, format = {}, useSubglobal 
 
     // Get page
     let mainFormat = mergeOptions(
+        localeThemeData.pages.global,
         localeThemeData.pages[name] || {},
         {
             urls: urls,
@@ -55,6 +56,7 @@ export async function renderPage (name, req, subsite, format = {}, useSubglobal 
     let subglobal = main;
     if (useSubglobal) {
         let subglobalFormat = mergeOptions(
+            localeThemeData.pages.global,
             localeThemeData.pages[subsite],
             {
                 main: main,

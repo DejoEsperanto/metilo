@@ -106,7 +106,10 @@ export default function () {
             const errorMessage = Mustache.render(error, locale) || false;
             renderPage('admin/login', req, 'admin', {
                 main: { error: errorMessage },
-                global: { hideHeader: true }
+                global: {
+                    hideHeader: true,
+                    vcenter: true
+                }
             }, false)
                 .then(data => res.send(data))
                 .catch(err => next(err));
