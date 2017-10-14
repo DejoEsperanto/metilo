@@ -149,10 +149,6 @@
                         {
                             "id": "form",
                             "name": "Form"
-                        },
-                        {
-                            "id": "calendar",
-                            "name": "Calendar"
                         }
                     ]
                 }

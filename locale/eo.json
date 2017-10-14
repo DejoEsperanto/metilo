@@ -149,10 +149,6 @@
                         {
                             "id": "form",
                             "name": "Formularo"
-                        },
-                        {
-                            "id": "calendar",
-                            "name": "Kalendaro"
                         }
                     ]
                 }
