@@ -68,7 +68,6 @@ const insertTypeInner = (el, type) => {
             });
     }
 
-    console.log(el2);
     if (double || el2.dataset.type === '') { newRow(); }
 };
 
