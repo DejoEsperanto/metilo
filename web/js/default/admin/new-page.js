@@ -31,14 +31,12 @@ const handleSelectChange = el => {
 
 const insertTypeInner = (el, type) => {
     let double = false;
-    let el2 = null;
+    let el2 = el.nextElementSibling || el.previousElementSibling;
+    el.dataset.type = type;
     if (type[0] === '2') {
         double = true;
         type = type.substr(1);
-        el2 = el.nextElementSibling || el.previousElementSibling;
-        el2.dataset.type = type;
     }
-    el.dataset.type = type;
 
     switch (type) {
         case 'text':
@@ -70,7 +68,8 @@ const insertTypeInner = (el, type) => {
             });
     }
 
-    newRow();
+    console.log(el2);
+    if (double || el2.dataset.type === '') { newRow(); }
 };
 
 const newRow = () => {
