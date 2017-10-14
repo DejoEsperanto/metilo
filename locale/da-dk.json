@@ -137,6 +137,13 @@
                     "title": "Opret ny side",
                     "newPageHeader": "Opret ny side",
                     "chooseColumn": "-Vælg-",
+                    "columnHeader": {
+                        "remove": "Fjern",
+                        "moveUp": "Flyt op",
+                        "moveDown": "Flyt ned",
+                        "switch": "Byt plads med kolonne",
+                        "double": "Fyld begge kolonner"
+                    },
                     "columnTypes": [
                         {
                             "id": "text",

@@ -137,6 +137,13 @@
                     "title": "Create new page",
                     "newPageHeader": "Create new page",
                     "chooseColumn": "-Choose-",
+                    "columnHeader": {
+                        "remove": "Remove",
+                        "moveUp": "Move up",
+                        "moveDown": "Move down",
+                        "switch": "Switch places with column",
+                        "double": "Take up both columns"
+                    },
                     "columnTypes": [
                         {
                             "id": "text",

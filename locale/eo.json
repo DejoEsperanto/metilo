@@ -137,6 +137,13 @@
                     "title": "Krei paĝon",
                     "newPageHeader": "Krei paĝon",
                     "chooseColumn": "-Elekti-",
+                    "columnHeader": {
+                        "remove": "Forigi",
+                        "moveUp": "Movi supren",
+                        "moveDown": "Movi malsupren",
+                        "switch": "Interŝanĝi lokon kun alia kolumno",
+                        "double": "Plenigi ambaŭ kolumojn"
+                    },
                     "columnTypes": [
                         {
                             "id": "text",

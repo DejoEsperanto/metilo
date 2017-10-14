@@ -20,7 +20,8 @@
 els = Object.assign(els, {
     row:          $('#row-template>:first-child'),
     quillToolbar: $('#quill-toolbar-template'),
-    contents:     $('#new-page-contents')
+    contents:     $('#new-page-contents'),
+    header:       $('#row-header-template>:first-child')
 });
 
 const handleSelectChange = el => {
@@ -29,8 +30,67 @@ const handleSelectChange = el => {
     insertTypeInner(column, value);
 };
 
+const handleColumnAction = el => {
+    const header = el.parentElement; 
+    const col = header.parentElement;
+    const row = col.parentElement;
+    const action = el.dataset.action;
+    const col2 = col.nextElementSibling || col.previousElementSibling;
+
+    switch (action) {
+        case 'remove':
+            col.dataset.type = '';
+            col.innerHTML = '';
+            col.classList.remove('nostyle');
+
+            // Remove duplicate row
+            if (!col2 || col2.dataset.type === '') { row.remove(); }
+
+            break;
+
+        case 'move-up':
+            // Already first child
+            if (!row.previousElementSibling) { return; }
+
+            els.contents.insertBefore(row, row.previousElementSibling);
+
+            break;
+
+        case 'move-down':
+            // Already last proper child
+            if (!row.nextElementSibling || !row.nextElementSibling.nextElementSibling) { return; }
+
+            els.contents.insertBefore(row, row.nextElementSibling.nextElementSibling);
+
+            break;
+
+        case 'switch':
+            if (!col2) { return; }
+
+            if (col.nextElementSibling) {
+                // Move to last
+                row.appendChild(col);
+            } else {
+                // Move to first
+                row.insertBefore(col, col.previousElementSibling);
+            }
+
+            break;
+
+        case 'double':
+            // Already double
+            if (col.dataset.type[0] === '2') { return; }
+
+            col.dataset.type = '2' + col.dataset.type;
+
+            col2.remove();
+    }
+};
+
 const insertTypeInner = (el, type) => {
     let double = false;
+    let row = el.parentElement;
+    row.classList.add('has-el');
     let el2 = el.nextElementSibling || el.previousElementSibling;
     el.dataset.type = type;
     if (type[0] === '2') {
@@ -68,6 +128,8 @@ const insertTypeInner = (el, type) => {
             });
     }
 
+    el.insertBefore(els.header.cloneNode(true), el.firstChild);
+
     if (double || el2.dataset.type === '') { newRow(); }
 };
 
@@ -75,6 +137,12 @@ const newRow = () => {
     const el = els.row.cloneNode(true);
     els.contents.appendChild(el);
 };
+
+on(els.contents, 'click', e => {
+    const el = e.target;
+    if (!el.classList.contains('column-action')) { return; }
+    handleColumnAction(el);
+});
 
 on(els.contents, 'change', e => {
     const el = e.target;
