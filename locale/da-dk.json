@@ -142,7 +142,8 @@
                         "moveUp": "Flyt op",
                         "moveDown": "Flyt ned",
                         "switch": "Byt plads med kolonne",
-                        "double": "Fyld begge kolonner"
+                        "double": "Fyld begge kolonner",
+                        "undouble": "Fyld én kolonne"
                     },
                     "columnTypes": [
                         {
@@ -157,7 +158,15 @@
                             "id": "form",
                             "name": "Formular"
                         }
-                    ]
+                    ],
+                    "modal": {
+                        "removeConfirm": "Er du sikker på, at du vil slette denne kolonne og dens indhold? Denne handling kan ikke fortrydes.",
+                        "doubleConfirm": "Er du sikker på, at du vil fordoble denne kolonne og dermed slette indholdet i den anden kolonne? Denne handling kan ikke fortrydes.",
+                        "buttons": {
+                            "yes": "Ja",
+                            "no": "Nej"
+                        }
+                    }
                 }
             },
             "urls": {

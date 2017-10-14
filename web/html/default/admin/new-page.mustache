@@ -9,7 +9,22 @@
             <i class="material-icons column-action" data-action="move-down" title="{{columnHeader.moveDown}}">keyboard_arrow_down</i>
             <i class="material-icons column-action" data-action="switch" title="{{columnHeader.switch}}">swap_horiz</i>
             <i class="material-icons column-action" data-action="double" title="{{columnHeader.double}}">fullscreen</i>
+            <i class="material-icons column-action" data-action="undouble" title="{{columnHeader.undouble}}">fullscreen_exit</i>
         </div>
+    </div>
+    <div id="remove-confirm-template">
+        <p>{{modal.removeConfirm}}</p>
+        <p class="footer">
+            <button class="cancel">{{modal.buttons.no}}</button>
+            <button class="ok">{{modal.buttons.yes}}</button>
+        </p>
+    </div>
+    <div id="double-confirm-template">
+        <p>{{modal.doubleConfirm}}</p>
+        <p class="footer">
+            <button class="cancel">{{modal.buttons.no}}</button>
+            <button class="ok">{{modal.buttons.yes}}</button>
+        </p>
     </div>
     <div id="row-template">
         <div class="row">

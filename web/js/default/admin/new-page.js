@@ -18,10 +18,12 @@
  */
 
 els = Object.assign(els, {
-    row:          $('#row-template>:first-child'),
-    quillToolbar: $('#quill-toolbar-template'),
-    contents:     $('#new-page-contents'),
-    header:       $('#row-header-template>:first-child')
+    row:           $('#row-template>:first-child'),
+    quillToolbar:  $('#quill-toolbar-template'),
+    contents:      $('#new-page-contents'),
+    header:        $('#row-header-template>:first-child'),
+    removeConfirm: $('#remove-confirm-template'),
+    doubleConfirm: $('#double-confirm-template')
 });
 
 const handleSelectChange = el => {
@@ -39,12 +41,17 @@ const handleColumnAction = el => {
 
     switch (action) {
         case 'remove':
-            col.dataset.type = '';
-            col.innerHTML = '';
-            col.classList.remove('nostyle');
+            confirmDialog(els.removeConfirm.innerHTML)
+                .then(res => {
+                    if (!res) { return; }
 
-            // Remove duplicate row
-            if (!col2 || col2.dataset.type === '') { row.remove(); }
+                    col.dataset.type = '';
+                    col.innerHTML = '';
+                    col.classList.remove('nostyle');
+
+                    // Remove duplicate row
+                    if (!col2 || col2.dataset.type === '') { row.remove(); }
+                });
 
             break;
 
@@ -79,11 +86,36 @@ const handleColumnAction = el => {
 
         case 'double':
             // Already double
-            if (col.dataset.type[0] === '2') { return; }
+            if (!col2) { return; }
 
-            col.dataset.type = '2' + col.dataset.type;
+            let dialog = Promise.resolve(true);
+            if (col2.dataset.type !== '') {
+                dialog = confirmDialog(els.doubleConfirm.innerHTML);
+            }
 
-            col2.remove();
+            dialog.then(res => {
+                if (!res) { return; }
+
+                col.dataset.type = '2' + col.dataset.type;
+
+                $('[data-action=double]',   header).style.display = 'none';
+                $('[data-action=undouble]', header).style.display = '';
+
+                col2.remove();
+            });
+
+            break;
+
+        case 'undouble':
+            // Already two columns
+            if (col2) { return; }
+
+            col.dataset.type = col.dataset.type.substr(1);
+
+            $('[data-action=double]',   header).style.display = '';
+            $('[data-action=undouble]', header).style.display = 'none';
+
+            row.appendChild(els.row.lastElementChild.cloneNode(true));
     }
 };
 
@@ -129,6 +161,11 @@ const insertTypeInner = (el, type) => {
     }
 
     el.insertBefore(els.header.cloneNode(true), el.firstChild);
+    if (double) {
+        $('[data-action=double]', el.firstChild).style.display = 'none';
+    } else {
+        $('[data-action=undouble]', el.firstChild).style.display = 'none';
+    }
 
     if (double || el2.dataset.type === '') { newRow(); }
 };

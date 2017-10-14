@@ -142,7 +142,8 @@
                         "moveUp": "Movi supren",
                         "moveDown": "Movi malsupren",
                         "switch": "Interŝanĝi lokon kun alia kolumno",
-                        "double": "Plenigi ambaŭ kolumojn"
+                        "double": "Plenigi ambaŭ kolumnojn",
+                        "undouble": "Plenigi nur unu kolumnon"
                     },
                     "columnTypes": [
                         {
@@ -157,7 +158,15 @@
                             "id": "form",
                             "name": "Formularo"
                         }
-                    ]
+                    ],
+                    "modal": {
+                        "removeConfirm": "Ĉu vi certas, ke vi volas forigi ĉi tiun kolumnon kaj ĝian enhavon? Ne eblas malfari ĉi tion.",
+                        "doubleConfirm": "Ĉu vi certas, ke vi volas duobligi ĉi tiun kolumnon kaj tiel forigi la enhavon de la alia kolumno? Ne eblas malfari ĉi tion.",
+                        "buttons": {
+                            "yes": "Jes",
+                            "no": "Ne"
+                        }
+                    }
                 }
             },
             "urls": {
