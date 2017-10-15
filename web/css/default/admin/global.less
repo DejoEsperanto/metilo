@@ -22,6 +22,7 @@
 @import '../reset.less';
 
 // Colors
+@accent: blue;
 @error-color: red;
 @info-color: lightblue;
 @required-color: red;
@@ -29,6 +30,7 @@
 @table-color-even: #ddd;
 
 body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Oxygen-Sans, "Fira Sans", "Droid Sans", Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -72,6 +74,10 @@ main {
         &.left-bar {
             width: 20%;
             min-width: 200px;
+
+            a {
+                text-decoration: none;
+            }
         }
     }
 }
@@ -316,6 +322,11 @@ input.phone-code {
     }
 }
 
+a {
+    // override :visible's purple
+    color: @accent;
+}
+
 p {
     text-align: justify;
 }
@@ -334,6 +345,21 @@ b {
 
 .modal-content {
     display: none;
+}
+
+.pico-content {
+    // add space between close button and text
+    padding-top: 30px !important;
+
+    & > .footer {
+        // add space between text and buttons
+        margin-top: 1em;
+    }
+
+    .pico-close {
+        // remove gray background
+        background: none !important;
+    }
 }
 
 .material-icons {
