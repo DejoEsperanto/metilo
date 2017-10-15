@@ -147,9 +147,9 @@ export default {
 
             // TODO: Use the HTTP Accept-Language header
 
-            for (let subsite in this.conf.content.locales) {
+            for (let subsite in this.locales) {
                 const value = req.cookies[subsite + 'Locale'];
-                if (this.conf.content.locales[subsite].indexOf(value) > -1) {
+                if (this.locales[subsite].indexOf(value) > -1) {
                     req.locale[subsite] = value;
                 } else {
                     req.locale[subsite] = this.locales[subsite][0];
