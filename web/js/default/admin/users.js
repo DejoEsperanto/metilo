@@ -38,7 +38,7 @@ const updateUser = (user, fields) => {
     }, true);
 };
 
-for (let user of $$('#users-table>tbody>tr')) {
+for (let user of $$('#users-table>tbody>tr:not(.no-data)')) {
     (user => {
         let username = $('[data-name=username]', user).innerText;
 
