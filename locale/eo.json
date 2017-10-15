@@ -19,6 +19,7 @@
                             "italic": "Kursiva",
                             "underline": "Substrekita",
                             "strike": "Trastrekita",
+                            "smallCaps": "Majuskletoj",
                             "ol": "Numerita listo",
                             "ul": "Bula listo",
                             "link": "Enmeti ligilon",

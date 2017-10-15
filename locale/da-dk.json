@@ -19,6 +19,7 @@
                             "italic": "Kursiv",
                             "underline": "Understreget",
                             "strike": "Streg gennem",
+                            "smallCaps": "Kapitæler",
                             "ol": "Nummereret liste",
                             "ul": "Punktliste",
                             "link": "Indsæt link",

@@ -169,3 +169,35 @@ for (let form of $$('.form-with-help')) {
         });
     }
 }
+
+// Quill
+// https://stackoverflow.com/a/37814768/1248084
+const QuillInline = Quill.import('blots/inline');
+class SmallCaps extends QuillInline {
+    static create(value) {
+        let node = super.create(value);
+        return node;
+    }
+
+    static formats (domNode) {
+        return domNode.classList.contains('smallcaps') || true;
+    }
+
+    format (name, value) {
+        if (name === 'smallcaps' && value) {
+            this.domNode.classList.add('smallcaps');
+        } else {
+            super.format(name, value);
+        }
+    }
+
+    formats() {
+        let formats = super.formats();
+        formats['smallcaps'] = SmallCaps.formats(this.domNode);
+        return formats;
+    }
+}
+SmallCaps.blotName = 'smallcaps';
+SmallCaps.className = 'smallcaps';
+SmallCaps.tagName = 'span';
+Quill.register({ 'formats/smallcaps': SmallCaps });

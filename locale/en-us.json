@@ -19,6 +19,7 @@
                             "italic": "Italic",
                             "underline": "Underlined",
                             "strike": "Strike-through",
+                            "smallCaps": "Small caps",
                             "ol": "Ordered list",
                             "ul": "Bullet list",
                             "link": "Insert link",
