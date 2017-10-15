@@ -152,7 +152,7 @@ export default {
                 if (this.conf.content.locales[subsite].indexOf(value) > -1) {
                     req.locale[subsite] = value;
                 } else {
-                    req.locale[subsite] = this.conf.content.locales[subsite][0];
+                    req.locale[subsite] = this.locales[subsite][0];
                 }
             }
 
