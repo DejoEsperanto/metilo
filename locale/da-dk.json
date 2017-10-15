@@ -166,6 +166,11 @@
                             "yes": "Ja",
                             "no": "Nej"
                         }
+                    },
+                    "settings": {
+                        "title": "Sidetitel",
+                        "changes": "Ændringer i denne revision",
+                        "save": "Gem"
                     }
                 }
             },

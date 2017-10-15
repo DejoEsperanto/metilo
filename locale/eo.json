@@ -166,6 +166,11 @@
                             "yes": "Jes",
                             "no": "Ne"
                         }
+                    },
+                    "settings": {
+                        "title": "Paĝtitolo",
+                        "changes": "Ŝanĝoj en ĉi tiu revizio",
+                        "save": "Konservi"
                     }
                 }
             },

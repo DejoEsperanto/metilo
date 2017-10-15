@@ -120,6 +120,31 @@ footer {
     }
 }
 
+.form {
+    display: flex;
+    flex-wrap: 1;
+
+    &>* {
+        &:not(:last-child) {
+            margin-right: 16px;
+        }
+
+        &>* {
+            display: block;
+        }
+
+        &>label {
+            margin-bottom: 8px;
+        }
+
+        &>textarea {
+            height: 150px;
+            width: 200px;
+            resize: none;
+        }
+    }
+}
+
 .info,.error {
     display: inline-flex;
     align-items: center;

@@ -166,6 +166,11 @@
                             "yes": "Yes",
                             "no": "No"
                         }
+                    },
+                    "settings": {
+                        "title": "Page title",
+                        "changes": "Changes in this revision",
+                        "save": "Save"
                     }
                 }
             },
