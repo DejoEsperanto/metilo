@@ -25,17 +25,21 @@ els = Object.assign(els, {
     removeConfirm: $('#remove-confirm-template'),
     doubleConfirm: $('#double-confirm-template'),
     saveButton:    $('#page-save'),
-    beforeUnload:  $('#before-unload')
+    pageName:      $('#page-name'),
+    pageTitle:     $('#page-title'),
+    pageChanges:   $('#page-changes')
 });
 
 let doBeforeUnload = false;
-const beforeUnloadMessage = els.beforeUnload.innerText;
+
+const codeEditors = {};
 
 const handleSelectChange = el => {
     doBeforeUnload = true;
     const column = el.parentElement;
     const value = el.value;
     insertTypeInner(column, value);
+    // TODO: Handle 2x override confirmation
 };
 
 const handleColumnAction = el => {
@@ -159,11 +163,12 @@ const insertTypeInner = (el, type) => {
             el.innerHTML = '';
             if (double) { el2.remove(); }
             el.classList.add('nostyle');
-            CodeMirror(el, {
+            const id = Date.now();
+            codeEditors[id] = CodeMirror(el, {
                 mode: 'text/html',
-                lineNumbers: true,
-
+                lineNumbers: true
             });
+            el.dataset.id = id;
     }
 
     el.insertBefore(els.header.cloneNode(true), el.firstChild);
@@ -194,7 +199,62 @@ on(els.contents, 'change', e => {
 });
 
 on(els.saveButton, 'click', e => {
+    doBeforeUnload = true;
 
+    const data = {
+        name:    els.pageName.value,
+        title:   els.pageTitle.value,
+        changes: els.pageChanges.value,
+        content: []
+    };
+
+    if (!data.name || data.name.length === 0) { return; }
+
+    let x, y = -1;
+    for (let row of els.contents.children) {
+        if (!row.classList.contains('has-el')) { continue; }
+
+        y++;
+        x = -1;
+
+        for (let col of row.children) {
+            x++;
+
+            if (col.dataset.type === '') { continue; }
+
+            let width = 1;
+            let type = col.dataset.type;
+            if (col.dataset.type[0] === '2') {
+                width = 2;
+                type = col.dataset.type.substr(1);
+            }
+
+            let value;
+            switch (type) {
+                case 'text':
+                    value = $('.ql-editor', col).innerHTML;
+
+                    break;
+
+                case 'html':
+                    value = codeEditors[col.dataset.id].getValue();
+            }
+
+            data.content.push({
+                x: x,
+                width: width,
+                y: y,
+                type: type,
+                value: value
+            });
+        }
+    }
+
+    jsonXHR(`${C.baseURL}/xhr/page-add`, data, true)
+        .then(() => {
+            doBeforeUnload = false;
+            document.location.href = pageOverviewURL;
+        });
 });
 
 newRow();

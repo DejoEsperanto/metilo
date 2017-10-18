@@ -23,6 +23,7 @@ import { promisify } from 'util';
 import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 import metilo from '..';
+import moment from 'moment-timezone';
 
 export default function () {
     const router = express.Router();
@@ -112,7 +113,26 @@ export default function () {
     });
 
     router.post('/page-add', ensureLoggedIn(admin), (req, res, next) => {
-        
+        const time = moment().unix();
+
+        // Insert page
+        const pageId = metilo.db.db.prepare('insert into `pages` (name, `time`, author) values (?, ?, ?)')
+            .run(req.body.name, time, req.user.data.id)
+            .lastInsertROWID;
+
+        // Insert revision
+        const revisionId = metilo.db.db.prepare('insert into `pages_revisions` (pageId, `time`, author, title, `changes`) values (?, ?, ?, ?, ?)')
+            .run(pageId, time, req.user.data.id, req.body.title, req.body.changes)
+            .lastInsertROWID;
+
+        // Insert content
+        for (let col of req.body.content) {
+            let value = Buffer.from(col.value); // Might need a switch here eventually, currently all types use text values
+            metilo.db.db.prepare('insert into `pages_revisions_content` (revisionId, x, `width`, y, `type`, `value`) values (?, ?, ?, ?, ?, ?)')
+                .run(revisionId, col.x, col.width, col.y, col.type, value);
+        }
+
+        res.send('{}');
     });
 
     return router;

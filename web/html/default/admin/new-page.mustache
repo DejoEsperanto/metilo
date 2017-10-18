@@ -2,15 +2,15 @@
 <div id="new-page-settings" class="form">
     <div>
         <label for="page-name">{{settings.name}}</label>
-        <input name="page-name" id="page-name" placeholder="{{settings.name}}">
+        <input id="page-name" placeholder="{{settings.name}}">
     </div>
     <div>
         <label for="page-title">{{settings.title}}</label>
-        <input name="page-title" id="page-title" placeholder="{{settings.title}}">
+        <input id="page-title" placeholder="{{settings.title}}">
     </div>
     <div>
         <label for="page-changes">{{settings.changes}}</label>
-        <textarea name="page-changes" id="page-changes" placeholder="{{settings.changes}}"></textarea>
+        <textarea id="page-changes" placeholder="{{settings.changes}}"></textarea>
     </div>
     <div class="full-width">
         <button id="page-save">{{settings.save}}</button>
@@ -101,5 +101,8 @@
             <button class="ql-clean" title="{{textEditor.titles.clean}}"></button>
         </span>
     </div>
-    <div id="before-unload">{{beforeUnload}}</div>
 </div>
+<script>
+    var beforeUnloadMessage = "{{beforeUnload}}";
+    var pageOverviewURL = "{{&subsiteURL}}/{{&urls.admin.contentPages}}";
+</script>
