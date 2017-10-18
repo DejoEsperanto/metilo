@@ -56,12 +56,14 @@ export default {
     limiter: null,
     db: null,
     entities: new Entities.AllHtmlEntities(),
+    hasCache: true,
 
     init (_conf) {
         this.didInit = true;
         this.conf = mergeOptions(defConf, _conf)
         this.app = express();
-        this.app.engine('mustache', mustacheExpress());
+        this.mustacheExpress = mustacheExpress();
+        this.app.engine('mustache', this.mustacheExpress);
         this.app.set('views', path.join(__dirname, '../web/html/', this.conf.content.theme))
         this.app.set('view engine', 'mustache');
 
@@ -88,6 +90,7 @@ export default {
         }
 
         if (!this.argv.cache || this.argv.dev) {
+            this.hasCache = false;
             this.app.disable('view cache');
             console.warn('Running in no cache mode. This should only be used for development and never on production.');
         }

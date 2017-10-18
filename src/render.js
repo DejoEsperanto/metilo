@@ -31,7 +31,13 @@ import metilo from '.';
  * @return {string}  Rendered page
  */
 export async function renderPage (name, req, subsite, format = {}, useSubglobal = false) {
-    const render = promisify(metilo.app.render.bind(metilo.app));
+    const render = (...args) => {
+        if (!metilo.hasCache) {
+            metilo.mustacheExpress.cache.reset();
+        }
+
+        return promisify(metilo.app.render.bind(metilo.app))(...args);
+    };
 
     const locale = req.locale[subsite];
     const localeData = metilo.getLocale(locale);
@@ -105,6 +111,7 @@ export function formatRecursive (format, view) {
         if (Object.getPrototypeOf(format[key]) === Object.prototype) {
             out[key] = formatRecursive(format[key], view);
         } else if (typeof format[key] === 'string') {
+            if (!metilo.hasCache) { Mustache.clearCache(); }
             out[key] = Mustache.render(format[key], view);
         } else {
             out[key] = format[key];
