@@ -2,3 +2,34 @@
 <div class="spacing">
     <button data-href="{{&subsiteURL}}/{{&urls.admin.contentNewPage}}"><i class="material-icons small-icon">note_add</i><span>{{newPage}}</span></button>
 </div>
+<table class="overview-table" id="pages-table">
+    <thead>
+        <tr>
+            <th>{{head.name}}</th>
+            <th>{{head.created}}</th>
+            <th>{{head.revision}}</th>
+            <th>{{head.title}}</th>
+            <th>{{head.changes}}</th>
+            <th colspan="3">{{head.actions}}</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{#data}}
+        <tr data-id="{{id}}">
+            <td>{{name}}</td>
+            <td>{{&created}}</td>
+            <td>{{&revision}}</td>
+            <td>{{title}}</td>
+            <td>{{changes}}</td>
+            <td><button data-pages-action="preview" title="{{head.preview}}"><i class="material-icons small-icon">pageview</i></button></td>
+            <td><button data-pages-action="edit"    title="{{head.edit}}">   <i class="material-icons small-icon">mode_edit</i></button></td>
+            <td><button data-pages-action="delete"  title="{{head.delete}}"> <i class="material-icons small-icon">delete</i></button></td>
+        </tr>
+        {{/data}}
+        {{^data}}
+        <tr class="no-data">
+            <td colspan="8">{{noPages}}</td>
+        </tr>
+        {{/data}}
+    </tbody>
+</table>

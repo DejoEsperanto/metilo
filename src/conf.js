@@ -31,7 +31,10 @@ export default {
 
     // The following settings *should* be changed from their defaults
     defaultPhoneCode: [ 'US', 1 ],
+    timezone: 'UTC',
 
+    // The following entry must be present in your own config file to override the value
+    baseDir: path.join(__dirname, '../data'),
 
     // The following settings may be changed if needed
     loginLimit: {
@@ -40,7 +43,6 @@ export default {
         delay: 100 // milliseconds
     },
     bcryptSaltRounds: 10,
-    baseDir: path.join(__dirname, '../data'),
     dbFile: 'db.db',
     port: 80,
     trustProxy: false, // Only if you're behind a reverse proxy (Heroku, Bluemix, AWS if you use an ELB, custom Nginx setup, etc)

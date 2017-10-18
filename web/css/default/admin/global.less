@@ -203,7 +203,15 @@ h1 {
 .overview-table {
     width: 100%;
 
-    & th {
+    &>*>tr {
+        &>td,&>th {
+            &:not(:first-child) {
+                padding-left: 8px;
+            }
+        }
+    }
+
+    &>thead>tr>th {
         font-weight: bold;
         text-align: left;
     }

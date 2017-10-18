@@ -74,7 +74,7 @@
                     "title": "Uzantoj",
                     "usersHeader": "Uzantoj",
                     "head": {
-                        "id": "N-ro",
+                        "id": "#",
                         "isAdmin": "Administranto",
                         "isNotAdmin": "Uzanto",
                         "username": "Uzantonomo",
@@ -132,7 +132,21 @@
                 "admin/pages": {
                     "title": "Paĝoj",
                     "pagesHeader": "Paĝoj",
-                    "newPage": "Krei paĝon"
+                    "newPage": "Krei paĝon",
+                    "head": {
+                        "name": "Paĝnomo",
+                        "created": "Kreita",
+                        "revision": "Revizio",
+                        "title": "Paĝtitolo",
+                        "changes": "Plej lastaj ŝanĝoj",
+                        "actions": "Agoj",
+                        "preview": "Antaŭvidi paĝon",
+                        "edit": "Redakti paĝon",
+                        "delete": "Forigi paĝon"
+                    },
+                    "createdFormat": "de {{&name}} je {{time}}",
+                    "revisionFormat": "n-ro {{revision}} de {{&name}} je {{time}}",
+                    "noPages": "Trovis neniujn paĝojn."
                 },
                 "admin/new-page": {
                     "title": "Krei paĝon",
@@ -190,7 +204,8 @@
                     "newUser": "uzantoj/nova",
                     "logout": "elsaluti"
                 }
-            }
+            },
+            "dateTimeFormat": "llll"
         }
     },
     "error": {

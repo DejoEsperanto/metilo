@@ -26,6 +26,7 @@ import mergeOptions from 'merge-options';
 import { ensureLoggedIn } from 'connect-ensure-login';
 import crypto from 'crypto';
 import bcrypt from 'bcrypt';
+import moment from 'moment-timezone';
 
 import { renderPage as _renderPage } from '../render';
 import metilo from '..';
@@ -209,7 +210,46 @@ export default function () {
 
     // Pages page
     router.get(`/${urls.contentPages}`, ensureLoggedIn(admin), (req, res, next) => {
-        renderPage('admin/pages', req, 'admin')
+        const locale = metilo.getLocaleTheme(req.locale.admin);
+        moment.locale(req.locale.admin);
+
+        const data = [];
+        const pages = metilo.db.db.prepare('select * from `pages` order by `name`').all();
+
+        for (let page of pages) {
+            const createTimeFormatted = moment(page.time * 1000).format(locale.dateTimeFormat);
+            const creator = metilo.db.getUser('id = ?', page.author);
+            let created = Mustache.render('{{&pages.admin/pages.createdFormat}}', locale);
+            created = Mustache.render(created, {
+                name: creator.fullName(),
+                time: createTimeFormatted
+            });
+
+            const revision = metilo.db.db.prepare('select * from `pages_revisions` where id = ?')
+                .get(page.activeRevision);
+
+            const revisionTimeFormatted = moment(revision.time * 1000).format(locale.dateTimeFormat);
+            const reviewer = metilo.db.getUser('id = ?', revision.author);
+            let revised = Mustache.render('{{&pages.admin/pages.revisionFormat}}', locale);
+            revised = Mustache.render(revised, {
+                revision: revision.id,
+                name: reviewer.fullName(),
+                time: revisionTimeFormatted
+            });
+
+            let row = {
+                name:     page.name,
+                created:  created,
+                revision: revised,
+                title:    revision.title,
+                changes:  revision.changes
+            };
+            data.push(row);
+        }
+
+        renderPage('admin/pages', req, 'admin', {
+            main: { data: data }
+        })
             .then(data => res.send(data))
             .catch(err => next(err));
     });

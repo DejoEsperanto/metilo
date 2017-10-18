@@ -31,6 +31,7 @@ import expressSession from 'express-session';
 import fs from 'fs-extra-promise';
 import passport from 'passport';
 import Entities from 'html-entities';
+import moment from 'moment-timezone';
 
 import defConf from './conf';
 import * as routers from './routers';
@@ -139,6 +140,8 @@ export default {
                 this.locales[subsite] = localeNames;
             }
         }
+
+        moment.tz.setDefault(this.conf.timezone);
     },
 
     /**

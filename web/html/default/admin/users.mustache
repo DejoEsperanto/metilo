@@ -27,8 +27,8 @@
             <td data-users-action="email" class="clickable">{{email}}</td>
             <td data-users-action="phone" class="clickable" data-phone-code="{{phoneCode}}" data-phone="{{phoneNumberLocal}}{{^phoneNumberLocal}}{{phoneNumber}}{{/phoneNumberLocal}}">{{phoneNumberFormatted}}</td>
             <td data-users-action="role" class="clickable">{{&role}}</td>
-            <td><button data-users-action="reset" title="{{head.resetPassword}}"><i class="material-icons small-icon">settings_backup_restore</i><span>{{resetPassword}}</span></button></td>
-            <td><button data-users-action="delete" title="{{head.delete}}"><i class="material-icons small-icon">delete</i><span>{{delete}}</span></button></td>
+            <td><button data-users-action="reset" title="{{head.resetPassword}}"><i class="material-icons small-icon">settings_backup_restore</i></button></td>
+            <td><button data-users-action="delete" title="{{head.delete}}"><i class="material-icons small-icon">delete</i></button></td>
         </tr>
         {{/data}}
         {{^data}}

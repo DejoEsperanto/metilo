@@ -74,7 +74,7 @@
                     "title": "Brugere",
                     "usersHeader": "Brugere",
                     "head": {
-                        "id": "Nr.",
+                        "id": "#",
                         "isAdmin": "Administrator",
                         "isNotAdmin": "Bruger",
                         "username": "Brugernavn",
@@ -132,7 +132,21 @@
                 "admin/pages": {
                     "title": "Sider",
                     "pagesHeader": "Sider",
-                    "newPage": "Opret ny side"
+                    "newPage": "Opret ny side",
+                    "head": {
+                        "name": "Sidenavn",
+                        "created": "Oprettet",
+                        "revision": "Revision",
+                        "title": "Sidetitel",
+                        "changes": "Seneste ændringer",
+                        "actions": "Handlinger",
+                        "preview": "Forhåndsvis side",
+                        "edit": "Redigér side",
+                        "delete": "Slet side"
+                    },
+                    "createdFormat": "af {{&name}} {{time}}",
+                    "revisionFormat": "nr. {{revision}} af {{&name}} {{time}}",
+                    "noPages": "Ingen sider blev fundet."
                 },
                 "admin/new-page": {
                     "title": "Opret ny side",
@@ -190,7 +204,8 @@
                     "newUser": "brugere/ny",
                     "logout": "logud"
                 }
-            }
+            },
+            "dateTimeFormat": "llll"
         }
     },
     "error": {

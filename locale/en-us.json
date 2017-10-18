@@ -132,7 +132,21 @@
                 "admin/pages": {
                     "title": "Pages",
                     "pagesHeader": "Pages",
-                    "newPage": "Create new page"
+                    "newPage": "Create new page",
+                    "head": {
+                        "name": "Page name",
+                        "created": "Created",
+                        "revision": "Revision",
+                        "title": "Page title",
+                        "changes": "Latest changes",
+                        "actions": "Actions",
+                        "preview": "Preview page",
+                        "edit": "Edit page",
+                        "delete": "Delete pages"
+                    },
+                    "createdFormat": "by {{&name}} {{time}}",
+                    "revisionFormat": "no. {{revision}} by {{&name}} {{time}}}",
+                    "noPages": "No pages were found."
                 },
                 "admin/new-page": {
                     "title": "Create new page",
@@ -190,7 +204,8 @@
                     "newUser": "users/new",
                     "logout": "logout"
                 }
-            }
+            },
+            "dateTimeFormat": "llll"
         }
     },
     "error": {
