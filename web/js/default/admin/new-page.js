@@ -201,6 +201,8 @@ on(els.contents, 'change', e => {
 on(els.saveButton, 'click', e => {
     doBeforeUnload = true;
 
+    // TODO: Verify that name isn't taken
+
     const data = {
         name:    els.pageName.value,
         title:   els.pageTitle.value,

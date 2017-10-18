@@ -115,6 +115,8 @@ export default function () {
     router.post('/page-add', ensureLoggedIn(admin), (req, res, next) => {
         const time = moment().unix();
 
+        // TODO: Verify that name isn't taken
+
         // Insert page
         const pageId = metilo.db.db.prepare('insert into `pages` (name, `time`, author) values (?, ?, ?)')
             .run(req.body.name, time, req.user.data.id)
