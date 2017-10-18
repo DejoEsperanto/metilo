@@ -125,6 +125,10 @@ export default function () {
             .run(pageId, time, req.user.data.id, req.body.title, req.body.changes)
             .lastInsertROWID;
 
+        // Update active revision
+        metilo.db.db.prepare('update `pages` set activeRevision = ? where id = ?')
+            .run(revisionId, pageId);
+
         // Insert content
         for (let col of req.body.content) {
             let value = Buffer.from(col.value); // Might need a switch here eventually, currently all types use text values
