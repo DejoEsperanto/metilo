@@ -57,6 +57,7 @@ export default {
     db: null,
     entities: new Entities.AllHtmlEntities(),
     hasCache: true,
+    mustacheExpress: null,
 
     init (_conf) {
         this.didInit = true;
@@ -176,7 +177,9 @@ export default {
     },
 
     getLocale (locale) {
-        return require(`../locale/${locale}`);
+        const requirePath = `../locale/${locale}`;
+        delete require.cache[require.resolve(requirePath)];
+        return require(requirePath);
     },
 
     getLocaleTheme (locale) {
