@@ -178,7 +178,9 @@ export default {
 
     getLocale (locale) {
         const requirePath = `../locale/${locale}`;
-        delete require.cache[require.resolve(requirePath)];
+        if (!this.hasCache) {
+            delete require.cache[require.resolve(requirePath)];
+        }
         return require(requirePath);
     },
 
