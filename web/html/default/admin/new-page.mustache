@@ -2,6 +2,10 @@
 <div id="new-page-settings">
     <div class="form">
         <div>
+            <label for="page-name">{{settings.name}}</label>
+            <input name="page-name" id="page-name" placeholder="{{settings.name}}">
+        </div>
+        <div>
             <label for="page-title">{{settings.title}}</label>
             <input name="page-title" id="page-title" placeholder="{{settings.title}}">
         </div>
@@ -99,4 +103,5 @@
             <button class="ql-clean" title="{{textEditor.titles.clean}}"></button>
         </span>
     </div>
+    <div id="before-unload">{{beforeUnload}}</div>
 </div>

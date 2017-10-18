@@ -169,10 +169,12 @@
                         }
                     },
                     "settings": {
+                        "name": "Paĝnomo",
                         "title": "Paĝtitolo",
                         "changes": "Ŝanĝoj en ĉi tiu revizio",
                         "save": "Konservi"
-                    }
+                    },
+                    "beforeUnload": "Viaj ŝanĝoj ne estis konservitaj. Ĉu vi certas, ke vi volas forlasi la paĝon?"
                 }
             },
             "urls": {

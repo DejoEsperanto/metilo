@@ -111,5 +111,9 @@ export default function () {
         res.send('{}');
     });
 
+    router.post('/page-add', ensureLoggedIn(admin), (req, res, next) => {
+        
+    });
+
     return router;
 };

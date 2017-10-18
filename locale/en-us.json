@@ -169,10 +169,12 @@
                         }
                     },
                     "settings": {
+                        "name": "Page name",
                         "title": "Page title",
                         "changes": "Changes in this revision",
                         "save": "Save"
-                    }
+                    },
+                    "beforeUnload": "Your changes haven't been saved. Are you sure you want to leave the page?"
                 }
             },
             "urls": {

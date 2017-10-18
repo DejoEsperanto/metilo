@@ -23,10 +23,16 @@ els = Object.assign(els, {
     contents:      $('#new-page-contents'),
     header:        $('#row-header-template>:first-child'),
     removeConfirm: $('#remove-confirm-template'),
-    doubleConfirm: $('#double-confirm-template')
+    doubleConfirm: $('#double-confirm-template'),
+    saveButton:    $('#page-save'),
+    beforeUnload:  $('#before-unload')
 });
 
+let doBeforeUnload = false;
+const beforeUnloadMessage = els.beforeUnload.innerText;
+
 const handleSelectChange = el => {
+    doBeforeUnload = true;
     const column = el.parentElement;
     const value = el.value;
     insertTypeInner(column, value);
@@ -187,4 +193,17 @@ on(els.contents, 'change', e => {
     handleSelectChange(el);
 });
 
+on(els.saveButton, 'click', e => {
+
+});
+
 newRow();
+
+on(window, 'beforeunload', e => {
+    if (doBeforeUnload) {
+        // Barely any browsers support custom messages, but we sit it just in case
+        e.returnValue = beforeUnloadMessage;
+        console.log(e.returnValue);
+        return beforeUnloadMessage;
+    }
+});

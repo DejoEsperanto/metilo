@@ -169,10 +169,12 @@
                         }
                     },
                     "settings": {
+                        "name": "Sidenavn",
                         "title": "Sidetitel",
                         "changes": "Ændringer i denne revision",
                         "save": "Gem"
-                    }
+                    },
+                    "beforeUnload": "Dine ændringer er ikke blevet gemt, er du sikker på, at du vil forlade siden?"
                 }
             },
             "urls": {
