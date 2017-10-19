@@ -148,7 +148,15 @@
                     },
                     "createdFormat": "by {{&name}}<br>{{time}}",
                     "revisionFormat": "no. {{revision}} by {{&name}}<br>{{time}}}",
-                    "noPages": "No pages were found."
+                    "chooseRevisionFormat": "No. {{revision}} {{time}}}",
+                    "noPages": "No pages were found.",
+                    "modal": {
+                        "editText": "Please select the revision upon which you wish to base your new revision. The active revision is selected as default.",
+                        "buttons": {
+                            "edit": "Edit",
+                            "cancel": "Cancel"
+                        }
+                    }
                 },
                 "admin/new-page": {
                     "title": "Create new page",
@@ -202,6 +210,7 @@
                     "contentMenu": "menu",
                     "contentPages": "pages",
                     "contentNewPage": "pages/new",
+                    "contentEditPage": "pages/edit",
                     "users": "users",
                     "newUser": "users/new",
                     "logout": "logout"

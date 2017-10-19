@@ -35,3 +35,14 @@
         {{/data}}
     </tbody>
 </table>
+<div class="modal-content">
+    <div id="edit-modal">
+        <p>{{modal.editText}}</p>
+        <select data-value></select>
+        <p class="footer">
+            <button class="cancel">{{modal.buttons.cancel}}</button>
+            <button class="ok">{{modal.buttons.edit}}</button>
+        </p>
+    </div>
+</div>
+<script>var jsonData = {{&jsonData}};</script>

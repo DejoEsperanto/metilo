@@ -148,7 +148,15 @@
                     },
                     "createdFormat": "af {{&name}}<br>{{time}}",
                     "revisionFormat": "nr. {{revision}} af {{&name}}<br>{{time}}",
-                    "noPages": "Ingen sider blev fundet."
+                    "chooseRevisionFormat": "Nr. {{revision}} {{time}}",
+                    "noPages": "Ingen sider blev fundet.",
+                    "modal": {
+                        "editText": "Vælg den revision, som du vil basere din nye revision på. Den aktive revision er valgt som udgangspunkt.",
+                        "buttons": {
+                            "edit": "Rediǵer",
+                            "cancel": "Annuller"
+                        }
+                    }
                 },
                 "admin/new-page": {
                     "title": "Opret ny side",
@@ -202,6 +210,7 @@
                     "contentMenu": "menu",
                     "contentPages": "sider",
                     "contentNewPage": "sider/ny",
+                    "contentEditPage": "sider/rediger",
                     "users": "brugere",
                     "newUser": "brugere/ny",
                     "logout": "logud"

@@ -148,7 +148,15 @@
                     },
                     "createdFormat": "de {{&name}}<br>je {{time}}",
                     "revisionFormat": "n-ro {{revision}} de {{&name}}<br>je {{time}}",
-                    "noPages": "Trovis neniujn paĝojn."
+                    "chooseRevisionFormat": "N-ro {{revision}} je {{time}}",
+                    "noPages": "Trovis neniujn paĝojn.",
+                    "modal": {
+                        "editText": "Bonvolu elekti la revizion surbaze de kiu vi volas fari novan revizion. La defaŭlte elektita revizio estas la nune aktiva.",
+                        "buttons": {
+                            "edit": "Redakti",
+                            "cancel": "Nuligi"
+                        }
+                    }
                 },
                 "admin/new-page": {
                     "title": "Krei paĝon",
@@ -202,6 +210,7 @@
                     "contentMenu": "menuo",
                     "contentPages": "paghoj",
                     "contentNewPage": "paghoj/nova",
+                    "contentEditPage": "paghoj/redakti",
                     "users": "uzantoj",
                     "newUser": "uzantoj/nova",
                     "logout": "elsaluti"

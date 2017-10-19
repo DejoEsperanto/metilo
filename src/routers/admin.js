@@ -208,12 +208,34 @@ export default function () {
             .catch(err => next(err));
     });
 
+    // New revision page
+    router.get(`/${urls.contentEditPage}/:revision`, ensureLoggedIn(admin), (req, res, next) => {
+        const revisionData = metilo.db.db.prepare('select * from `pages_revisions` where id = ?')
+            .get(req.params.revision);
+
+        if (!revisionData) { res.redirect(admin); return; }
+
+        const pageData = metilo.db.db.prepare('select * from `pages` where id = ?')
+            .get(revisionData.pageId);
+
+        const revisionContent = metilo.db.db.prepare('select * from `pages_revisions_content` where `revisionId` = ?')
+            .all(revisionData.id);
+
+        console.log(revisionContent);
+
+        res.send('');
+    });
+
     // Pages page
     router.get(`/${urls.contentPages}`, ensureLoggedIn(admin), (req, res, next) => {
         const locale = metilo.getLocaleTheme(req.locale.admin);
         moment.locale(req.locale.admin);
 
         const data = [];
+        const jsonData = {
+            editURL: locale.urls.admin.contentEditPage,
+            pages: {}
+        };
         const pages = metilo.db.db.prepare('select * from `pages` order by `name`').all();
 
         for (let page of pages) {
@@ -237,18 +259,47 @@ export default function () {
                 time: revisionTimeFormatted
             });
 
+            const revisionsData = metilo.db.db.prepare('select * from `pages_revisions` where pageId = ?')
+                .all(page.id);
+
+            const revisions = [];
+            for (let revisionData of revisionsData) {
+                const revisionTimeFormatted = moment(revisionData.time * 1000).format(locale.dateTimeFormat);
+                let text = Mustache.render('{{&pages.admin/pages.chooseRevisionFormat}}', locale);
+                text = Mustache.render(text, {
+                    revision: revisionData.id,
+                    time: revisionTimeFormatted
+                });
+
+                revisions.push({
+                    id: revisionData.id,
+                    text: text
+                });
+            }
+            jsonData.pages[page.id] = {
+                revisions: revisions,
+                activeRevision: page.activeRevision
+            };
+
             let row = {
-                name:     page.name,
-                created:  created,
-                revision: revised,
-                title:    revision.title,
-                changes:  revision.changes
+                id:        page.id,
+                name:      page.name,
+                created:   created,
+                revision:  revised,
+                title:     revision.title,
+                changes:   revision.changes
             };
             data.push(row);
         }
 
         renderPage('admin/pages', req, 'admin', {
-            main: { data: data }
+            global: {
+                includeScripts: '/assets/js/admin/pages.js'
+            },
+            main: {
+                data: data,
+                jsonData: JSON.stringify(jsonData)
+            }
         })
             .then(data => res.send(data))
             .catch(err => next(err));
