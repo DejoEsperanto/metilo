@@ -169,6 +169,8 @@ const insertTypeInner = (el, type) => {
                 lineNumbers: true
             });
             el.dataset.id = id;
+
+        // TODO: Other types
     }
 
     el.insertBefore(els.header.cloneNode(true), el.firstChild);
@@ -240,6 +242,8 @@ on(els.saveButton, 'click', e => {
 
                 case 'html':
                     value = codeEditors[col.dataset.id].getValue();
+
+                // TODO: Other types
             }
 
             data.content.push({
