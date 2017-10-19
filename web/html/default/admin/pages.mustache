@@ -21,9 +21,11 @@
             <td>{{&revision}}</td>
             <td>{{title}}</td>
             <td>{{changes}}</td>
-            <td><button data-pages-action="preview" title="{{head.preview}}"><i class="material-icons small-icon">pageview</i></button></td>
-            <td><button data-pages-action="edit"    title="{{head.edit}}">   <i class="material-icons small-icon">mode_edit</i></button></td>
-            <td><button data-pages-action="delete"  title="{{head.delete}}"> <i class="material-icons small-icon">delete</i></button></td>
+            <td><button data-pages-action="preview"      title="{{head.preview}}">     <i class="material-icons small-icon">pageview</i></button></td>
+            <td><button data-pages-action="pickRevision" title="{{head.pickRevision}}"><i class="material-icons small-icon">history</i></button></td>
+            <td><button data-pages-action="urls"         title="{{head.urls}}">        <i class="material-icons small-icon">dns</i></button></td>
+            <td><button data-pages-action="edit"         title="{{head.edit}}">        <i class="material-icons small-icon">mode_edit</i></button></td>
+            <td><button data-pages-action="delete"       title="{{head.delete}}">      <i class="material-icons small-icon">delete</i></button></td>
         </tr>
         {{/data}}
         {{^data}}

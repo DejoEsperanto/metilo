@@ -141,11 +141,13 @@
                         "changes": "Seneste ændringer",
                         "actions": "Handlinger",
                         "preview": "Forhåndsvis side",
+                        "pickRevision": "Vælg revision",
+                        "urls": "Adresser",
                         "edit": "Redigér side",
                         "delete": "Slet side"
                     },
-                    "createdFormat": "af {{&name}} {{time}}",
-                    "revisionFormat": "nr. {{revision}} af {{&name}} {{time}}",
+                    "createdFormat": "af {{&name}}<br>{{time}}",
+                    "revisionFormat": "nr. {{revision}} af {{&name}}<br>{{time}}",
                     "noPages": "Ingen sider blev fundet."
                 },
                 "admin/new-page": {

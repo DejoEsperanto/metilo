@@ -141,11 +141,13 @@
                         "changes": "Latest changes",
                         "actions": "Actions",
                         "preview": "Preview page",
+                        "pickRevision": "Pick revision",
+                        "urls": "Addresses",
                         "edit": "Edit page",
                         "delete": "Delete pages"
                     },
-                    "createdFormat": "by {{&name}} {{time}}",
-                    "revisionFormat": "no. {{revision}} by {{&name}} {{time}}}",
+                    "createdFormat": "by {{&name}}<br>{{time}}",
+                    "revisionFormat": "no. {{revision}} by {{&name}}<br>{{time}}}",
                     "noPages": "No pages were found."
                 },
                 "admin/new-page": {

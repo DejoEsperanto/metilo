@@ -141,11 +141,13 @@
                         "changes": "Plej lastaj ŝanĝoj",
                         "actions": "Agoj",
                         "preview": "Antaŭvidi paĝon",
+                        "pickRevision": "Elekti revizion",
+                        "urls": "Adresoj",
                         "edit": "Redakti paĝon",
                         "delete": "Forigi paĝon"
                     },
-                    "createdFormat": "de {{&name}} je {{time}}",
-                    "revisionFormat": "n-ro {{revision}} de {{&name}} je {{time}}",
+                    "createdFormat": "de {{&name}}<br>je {{time}}",
+                    "revisionFormat": "n-ro {{revision}} de {{&name}}<br>je {{time}}",
                     "noPages": "Trovis neniujn paĝojn."
                 },
                 "admin/new-page": {
