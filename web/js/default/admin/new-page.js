@@ -261,11 +261,15 @@ on(els.saveButton, 'click', e => {
         }
     }
 
-    jsonXHR(`${C.baseURL}/xhr/page-add`, data, true)
-        .then(() => {
-            doBeforeUnload = false;
-            document.location.href = pageOverviewURL;
-        });
+    if (jsonData.edit) {
+
+    } else {
+        jsonXHR(`${C.baseURL}/xhr/page-add`, data, true)
+            .then(() => {
+                doBeforeUnload = false;
+                document.location.href = pageOverviewURL;
+            });
+    }
 });
 
 on(window, 'beforeunload', e => {
