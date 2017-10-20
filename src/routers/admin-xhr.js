@@ -138,6 +138,37 @@ export default function () {
                 .run(revisionId, col.x, col.width, col.y, col.type, value);
         }
 
+        req.flash('info', `{{info.pageCreated}}`);
+        res.send('{}');
+    });
+
+    router.post('/page-update', ensureLoggedIn(admin), (req, res, next) => {
+        const time = moment().unix();
+
+        console.log(req.body);
+
+        // TODO: Verify that page id exists
+
+        // Update page name if needed
+        // TODO: Verify that new name isn't taken
+        if (req.body.name) {
+            metilo.db.db.prepare('update `pages` set name = ? where id = ?')
+                .run(req.body.name, req.body.id);
+        }
+
+        // Insert new revision
+        const revisionId = metilo.db.db.prepare('insert into `pages_revisions` (pageId, `time`, author, title, `changes`) values (?, ?, ?, ?, ?)')
+            .run(req.body.id, time, req.user.data.id, req.body.title, req.body.changes)
+            .lastInsertROWID;
+
+        // Insert content
+        for (let col of req.body.content) {
+            let value = Buffer.from(col.value); // Might need a switch here eventually, currently all types use text values
+            metilo.db.db.prepare('insert into `pages_revisions_content` (revisionId, x, `width`, y, `type`, `value`) values (?, ?, ?, ?, ?, ?)')
+                .run(revisionId, col.x, col.width, col.y, col.type, value);
+        }
+
+        req.flash('info', `{{info.revisionCreated}}`);
         res.send('{}');
     });
 

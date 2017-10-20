@@ -227,6 +227,8 @@
         "unauthorized": "Nevalida uzantonomo aŭ pasvorto"
     },
     "info": {
-        "userCreated": "Uzanto kreita. Pasvorto:"
+        "userCreated": "Kreis uzanton. Pasvorto:",
+        "pageCreated": "Kreis novan paĝon.",
+        "revisionCreated": "Kreis novan revizion. Bonvolu noti, ke ĝi ankoraŭ ne estas publikigita. Tio postulas plian agon."
     }
 }

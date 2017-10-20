@@ -227,6 +227,8 @@
         "unauthorized": "Forkert brugernavn eller adgangskode"
     },
     "info": {
-        "userCreated": "Bruger oprettet. Adgangskode:"
+        "userCreated": "Bruger oprettet. Adgangskode:",
+        "pageCreated": "Ny side oprettet.",
+        "revisionCreated": "Ny revision oprettet. Bemærk at den endnu ikke er offentliggjort, hvilket kræver endnu en handling."
     }
 }

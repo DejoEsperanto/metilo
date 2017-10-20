@@ -227,11 +227,21 @@ export default function () {
         const revisionContent = metilo.db.db.prepare('select * from `pages_revisions_content` where `revisionId` = ?')
             .all(revisionData.id);
 
+        for (let cell of revisionContent) {
+            // Might need a switch here eventually, currently all types use text values
+            switch (cell.type) {
+                case 'text':
+                case 'html':
+                    cell.value = cell.value.toString();
+            }
+        }
+
         const jsonData = {
             name: pageData.name,
             title: revisionData.title,
             edit: true,
-            content: revisionContent
+            content: revisionContent,
+            pageId: pageData.id
         };
 
         const format = {
@@ -322,11 +332,14 @@ export default function () {
             data.push(row);
         }
 
+        const info = req.flash('info')[0] || '';
+        const infoMessage = Mustache.render(info, locale) || false;
         renderPage('admin/pages', req, 'admin', {
             global: {
                 includeScripts: '/assets/js/admin/pages.js'
             },
             main: {
+                info: infoMessage,
                 data: data,
                 jsonData: JSON.stringify(jsonData)
             }

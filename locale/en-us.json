@@ -227,6 +227,8 @@
         "unauthorized": "Incorrect username or password"
     },
     "info": {
-        "userCreated": "User created. Password:"
+        "userCreated": "User created. Password:",
+        "pageCreated": "New page created.",
+        "revisionCreated": "New revision created. Please note that it still has not been published, which requires an additional action."
     }
 }

@@ -262,7 +262,12 @@ on(els.saveButton, 'click', e => {
     }
 
     if (jsonData.edit) {
-
+        data.id = jsonData.pageId;
+        jsonXHR(`${C.baseURL}/xhr/page-update`, data, true)
+            .then(() => {
+                doBeforeUnload = false;
+                document.location.href = pageOverviewURL;
+            });
     } else {
         jsonXHR(`${C.baseURL}/xhr/page-add`, data, true)
             .then(() => {
