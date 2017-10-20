@@ -1,12 +1,12 @@
-<h1>{{newPageHeader}}</h1>
+<h1>{{pageHeader}}</h1>
 <div id="new-page-settings" class="form">
     <div>
         <label for="page-name">{{settings.name}}</label>
-        <input id="page-name" placeholder="{{settings.name}}">
+        <input id="page-name" placeholder="{{settings.name}}" value="{{pageName}}">
     </div>
     <div>
         <label for="page-title">{{settings.title}}</label>
-        <input id="page-title" placeholder="{{settings.title}}">
+        <input id="page-title" placeholder="{{settings.title}}" value="{{pageTitle}}">
     </div>
     <div>
         <label for="page-changes">{{settings.changes}}</label>
@@ -105,4 +105,5 @@
 <script>
     var beforeUnloadMessage = "{{beforeUnload}}";
     var pageOverviewURL = "{{&subsiteURL}}/{{&urls.admin.contentPages}}";
+    var jsonData = {{&jsonData}};
 </script>

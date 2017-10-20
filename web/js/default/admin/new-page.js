@@ -129,7 +129,7 @@ const handleColumnAction = el => {
     }
 };
 
-const insertTypeInner = (el, type) => {
+const insertTypeInner = (el, type, insertNewRow = true, defaultValue = null) => {
     let double = false;
     let row = el.parentElement;
     row.classList.add('has-el');
@@ -156,6 +156,9 @@ const insertTypeInner = (el, type) => {
                     toolbar: toolbar
                 }
             });
+            if (defaultValue) {
+                $('.ql-editor', editor).innerHTML = defaultValue;
+            }
 
             break;
 
@@ -166,7 +169,8 @@ const insertTypeInner = (el, type) => {
             const id = Date.now();
             codeEditors[id] = CodeMirror(el, {
                 mode: 'text/html',
-                lineNumbers: true
+                lineNumbers: true,
+                value: defaultValue || ''
             });
             el.dataset.id = id;
 
@@ -180,12 +184,13 @@ const insertTypeInner = (el, type) => {
         $('[data-action=undouble]', el.firstChild).style.display = 'none';
     }
 
-    if (double || el2.dataset.type === '') { newRow(); }
+    if (insertNewRow && (double || el2.dataset.type === '')) { newRow(); }
 };
 
 const newRow = () => {
     const el = els.row.cloneNode(true);
     els.contents.appendChild(el);
+    return el;
 };
 
 on(els.contents, 'click', e => {
@@ -263,8 +268,6 @@ on(els.saveButton, 'click', e => {
         });
 });
 
-newRow();
-
 on(window, 'beforeunload', e => {
     if (doBeforeUnload) {
         // Barely any browsers support custom messages, but we sit it just in case
@@ -273,3 +276,32 @@ on(window, 'beforeunload', e => {
         return beforeUnloadMessage;
     }
 });
+
+// Add existing content if editing a page
+if (jsonData.edit) {
+    const formattedData = [];
+
+    for (let cell of jsonData.content) {
+        if (!formattedData[cell.y]) {
+            formattedData[cell.y] = [];
+        }
+        formattedData[cell.y][cell.x] = cell;
+    }
+
+    for (let rowContent of formattedData) {
+        const rowEl = newRow();
+        let cellNum = 0;
+        for (let cellContent of rowContent) {
+            const cellEl = rowEl.children[cellNum];
+            let type = cellContent.type;
+            if (cellContent.width > 1) {
+                type = cellContent.width + type;
+            }
+            insertTypeInner(cellEl, type, false, cellContent.value);
+            cellNum++;
+        }
+    }
+}
+
+// Insert the elect row
+newRow();

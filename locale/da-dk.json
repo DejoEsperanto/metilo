@@ -160,7 +160,7 @@
                 },
                 "admin/new-page": {
                     "title": "Opret ny side",
-                    "newPageHeader": "Opret ny side",
+                    "pageHeader": "Opret ny side",
                     "chooseColumn": "-Vælg-",
                     "columnHeader": {
                         "remove": "Fjern",
@@ -199,6 +199,10 @@
                         "save": "Gem"
                     },
                     "beforeUnload": "Dine ændringer er ikke blevet gemt, er du sikker på, at du vil forlade siden?"
+                },
+                "admin/edit-page": {
+                    "title": "Redigér side",
+                    "pageHeader": "Redigér side"
                 }
             },
             "urls": {

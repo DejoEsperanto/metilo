@@ -199,6 +199,10 @@ export default function () {
     // New page page
     router.get(`/${urls.contentNewPage}`, ensureLoggedIn(admin), (req, res, next) => {
         renderPage('admin/new-page', req, 'admin', {
+            main: {
+                edit: false,
+                jsonData: '{}'
+            },
             global: {
                 includeStyles: '/assets/css/admin/new-page.css',
                 includeScripts: '/assets/js/admin/new-page.js'
@@ -210,6 +214,8 @@ export default function () {
 
     // New revision page
     router.get(`/${urls.contentEditPage}/:revision`, ensureLoggedIn(admin), (req, res, next) => {
+        const locale = metilo.getLocaleTheme(req.locale.admin);
+
         const revisionData = metilo.db.db.prepare('select * from `pages_revisions` where id = ?')
             .get(req.params.revision);
 
@@ -221,9 +227,33 @@ export default function () {
         const revisionContent = metilo.db.db.prepare('select * from `pages_revisions_content` where `revisionId` = ?')
             .all(revisionData.id);
 
-        console.log(revisionContent);
+        const jsonData = {
+            name: pageData.name,
+            title: revisionData.title,
+            edit: true,
+            content: revisionContent
+        };
 
-        res.send('');
+        const format = {
+            main: Object.assign(
+                locale.pages['admin/edit-page'],
+                {
+                    pageName: pageData.name,
+                    pageTitle: revisionData.title,
+                    edit: true,
+                    jsonData: JSON.stringify(jsonData)
+                }
+            ),
+            global: {
+                title: locale.pages['admin/edit-page'].title,
+                includeStyles: '/assets/css/admin/new-page.css',
+                includeScripts: '/assets/js/admin/new-page.js'
+            }
+        };
+
+        renderPage('admin/new-page', req, 'admin', format)
+            .then(data => res.send(data))
+            .catch(err => next(err));
     });
 
     // Pages page

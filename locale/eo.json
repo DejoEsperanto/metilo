@@ -160,7 +160,7 @@
                 },
                 "admin/new-page": {
                     "title": "Krei paĝon",
-                    "newPageHeader": "Krei paĝon",
+                    "pageHeader": "Krei paĝon",
                     "chooseColumn": "-Elekti-",
                     "columnHeader": {
                         "remove": "Forigi",
@@ -199,6 +199,10 @@
                         "save": "Konservi"
                     },
                     "beforeUnload": "Viaj ŝanĝoj ne estis konservitaj. Ĉu vi certas, ke vi volas forlasi la paĝon?"
+                },
+                "admin/edit-page": {
+                    "title": "Redakti paĝon",
+                    "pageHeader": "Redakti paĝon"
                 }
             },
             "urls": {

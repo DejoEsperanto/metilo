@@ -160,7 +160,7 @@
                 },
                 "admin/new-page": {
                     "title": "Create new page",
-                    "newPageHeader": "Create new page",
+                    "pageHeader": "Create new page",
                     "chooseColumn": "-Choose-",
                     "columnHeader": {
                         "remove": "Remove",
@@ -199,6 +199,10 @@
                         "save": "Save"
                     },
                     "beforeUnload": "Your changes haven't been saved. Are you sure you want to leave the page?"
+                },
+                "admin/edit-page": {
+                    "title": "Edit page",
+                    "pageHeader": "Edit page"
                 }
             },
             "urls": {
