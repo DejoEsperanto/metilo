@@ -145,8 +145,6 @@ export default function () {
     router.post('/page-update', ensureLoggedIn(admin), (req, res, next) => {
         const time = moment().unix();
 
-        console.log(req.body);
-
         // TODO: Verify that page id exists
 
         // Update page name if needed
