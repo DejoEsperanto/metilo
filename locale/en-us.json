@@ -204,6 +204,12 @@
                 "admin/edit-page": {
                     "title": "Edit page",
                     "pageHeader": "Edit page"
+                },
+                "admin/menu": {
+                    "title": "Menu",
+                    "menuHeader": "Menu",
+                    "noMenu": "No pages have been added to the menu.",
+                    "newMenuItem": "Add menu item"
                 }
             },
             "urls": {

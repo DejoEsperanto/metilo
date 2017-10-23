@@ -1,0 +1,9 @@
+<h1>{{menuHeader}}</h1>
+<div class="spacing">
+    <button id="new-menu-item-button"><i class="material-icons small-icon">add_circle</i><span>{{newMenuItem}}</span></button>
+</div>
+<ul id="menu-ul" {{^hasData}}class="no-data"{{/hasData}}></ul>
+{{^hasData}}
+<p id="no-data-text">{{noMenu}}</p>
+{{/hasData}}
+<script>var jsonData = {{jsonData}};</script>

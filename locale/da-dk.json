@@ -204,6 +204,12 @@
                 "admin/edit-page": {
                     "title": "Redigér side",
                     "pageHeader": "Redigér side"
+                },
+                "admin/menu": {
+                    "title": "Menu",
+                    "menuHeader": "Menu",
+                    "noMenu": "Der er endnu ingen sider i menuen.",
+                    "newMenuItem": "Tilføj menupunkt"
                 }
             },
             "urls": {

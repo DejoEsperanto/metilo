@@ -204,6 +204,12 @@
                 "admin/edit-page": {
                     "title": "Redakti paĝon",
                     "pageHeader": "Redakti paĝon"
+                },
+                "admin/menu": {
+                    "title": "Menuo",
+                    "menuHeader": "Menuo",
+                    "noMenu": "La menuo enhavas neniujn paĝojn.",
+                    "newMenuItem": "Aldoni menueron"
                 }
             },
             "urls": {

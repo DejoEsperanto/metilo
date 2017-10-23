@@ -349,6 +349,24 @@ export default function () {
             .catch(err => next(err));
     });
 
+    // Menu page
+    router.get(`/${urls.contentMenu}`, ensureLoggedIn(admin), (req, res, next) => {
+        const jsonData = {};
+        let hasData = false;
+
+        renderPage('admin/menu', req, 'admin', {
+            global: {
+                includeScripts: '/assets/js/admin/menu.js'
+            },
+            main: {
+                hasData: hasData,
+                jsonData: JSON.stringify(jsonData)
+            }
+        })
+            .then(data => res.send(data))
+            .catch(err => next(err));
+    });
+
     return router;
 };
 
