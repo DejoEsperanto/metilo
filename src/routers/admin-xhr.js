@@ -170,5 +170,13 @@ export default function () {
         res.send('{}');
     });
 
+    router.post('/menu-add', ensureLoggedIn(admin), (req, res, next) => {
+        const id = metilo.db.db.prepare('insert into menu (page, name, parent, `after`) values (?, ?, ?, ?)')
+            .run(req.body.page, req.body.name, req.body.parent, req.body.after)
+            .lastInsertROWID;
+
+        res.send(JSON.stringify({ id: id }));
+    });
+
     return router;
 };

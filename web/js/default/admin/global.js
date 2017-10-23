@@ -30,6 +30,10 @@ const on = function (el, event, cb) {
     el.addEventListener(event, cb);
 }
 
+const insertAfter = (el, after) => {
+    after.parentNode.insertBefore(el, after.nextSibling);
+};
+
 const jsonXHR = (url, params, json = false) =>  {
     return new Promise((resolve, reject) => {
         const req = new XMLHttpRequest();

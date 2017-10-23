@@ -351,10 +351,15 @@ export default function () {
 
     // Menu page
     router.get(`/${urls.contentMenu}`, ensureLoggedIn(admin), (req, res, next) => {
-        const jsonData = {};
         let hasData = false;
 
         const pages = metilo.db.db.prepare('select id, name from pages').all();
+        const menu = metilo.db.db.prepare('select * from menu').all();
+
+        const jsonData = {
+            pages: pages,
+            menu: menu
+        };
 
         renderPage('admin/menu', req, 'admin', {
             global: {
