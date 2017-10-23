@@ -51,9 +51,10 @@
                             "menu": "Menu",
                             "pages": "Sider"
                         },
-                        "users": {
-                            "main": "Users",
-                            "users": "Users"
+                        "admin": {
+                            "main": "Administrator",
+                            "users": "Users",
+                            "sql": "SQL"
                         }
                     }
                 },
@@ -216,6 +217,7 @@
                     "contentNewPage": "pages/new",
                     "contentEditPage": "pages/edit",
                     "users": "users",
+                    "sql": "sql",
                     "newUser": "users/new",
                     "logout": "logout"
                 }

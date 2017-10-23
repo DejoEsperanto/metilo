@@ -51,9 +51,10 @@
                             "menu": "Menu",
                             "pages": "Sider"
                         },
-                        "users": {
-                            "main": "Brugere",
-                            "users": "Brugere"
+                        "admin": {
+                            "main": "Administrator",
+                            "users": "Brugere",
+                            "sql": "SQL"
                         }
                     }
                 },
@@ -216,6 +217,7 @@
                     "contentNewPage": "sider/ny",
                     "contentEditPage": "sider/rediger",
                     "users": "brugere",
+                    "sql": "sql",
                     "newUser": "brugere/ny",
                     "logout": "logud"
                 }

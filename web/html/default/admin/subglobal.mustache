@@ -24,9 +24,10 @@
         </li>
         {{#isAdmin}}
         <li>
-            <span>{{menu.users.main}}</span>
+            <span>{{menu.admin.main}}</span>
             <ul>
-                <li><a href="{{&subsiteURL}}/{{&urls.admin.users}}">{{menu.users.users}}</a></li>
+                <li><a href="{{&subsiteURL}}/{{&urls.admin.users}}">{{menu.admin.users}}</a></li>
+                <li><a href="{{&subsiteURL}}/{{&urls.admin.sql}}">{{menu.admin.sql}}</a></li>
             </ul>
         </li>
         {{/isAdmin}}

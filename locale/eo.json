@@ -51,9 +51,10 @@
                             "menu": "Menuo",
                             "pages": "Paĝoj"
                         },
-                        "users": {
-                            "main": "Uzantoj",
-                            "users": "Uzantoj"
+                        "admin": {
+                            "main": "Administranto",
+                            "users": "Uzantoj",
+                            "sql": "SQL"
                         }
                     }
                 },
@@ -216,6 +217,7 @@
                     "contentNewPage": "paghoj/nova",
                     "contentEditPage": "paghoj/redakti",
                     "users": "uzantoj",
+                    "sql": "sql",
                     "newUser": "uzantoj/nova",
                     "logout": "elsaluti"
                 }
