@@ -268,6 +268,7 @@ export default function () {
 
     // Pages page
     router.get(`/${urls.contentPages}`, ensureLoggedIn(admin), (req, res, next) => {
+        const localeMain = metilo.getLocale(req.locale.admin);
         const locale = metilo.getLocaleTheme(req.locale.admin);
         moment.locale(req.locale.admin);
 
@@ -333,7 +334,7 @@ export default function () {
         }
 
         const info = req.flash('info')[0] || '';
-        const infoMessage = Mustache.render(info, locale) || false;
+        const infoMessage = Mustache.render(info, localeMain) || false;
         renderPage('admin/pages', req, 'admin', {
             global: {
                 includeScripts: '/assets/js/admin/pages.js'
