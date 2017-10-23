@@ -86,25 +86,46 @@ const textDialog = text => {
     picoModal({ content: text }).show();
 };
 
-const inputDialog = text => {
+const inputDialog = (text, returnMore = false) => {
+    let closeButton;
     return new Promise((resolve, reject) => {
         picoModal({
             content: text
         }).afterCreate(modal => {
             modal.modalElem().addEventListener('click', e => {
+                closeButton = e.target;
                 if (e.target && e.target.matches('.ok')) {
                     modal.close(true);
                 } else if (e.target && e.target.matches('.cancel')) {
                     modal.close(false);
                 }
             });
+        }).beforeClose((modal, e) => {
+            if (e.detail) {
+                for (let el of $$('[data-inner],[data-value]', modal.modalElem())) {
+                    if (el.required && !el.validity.valid) {
+                        e.preventDefault();
+                        break;
+                    }
+                }
+            }
         }).afterClose((modal, e) => {
             if (e.detail) {
                 const elems = Array.from($$('[data-inner],[data-value]', modal.modalElem()));
-                resolve(elems.map(el => {
+                const data = elems.map(el => {
                     if (typeof el.dataset.inner === 'string') { return el.innerText; }
                     if (typeof el.dataset.value === 'string') { return el.value; }
-                }));
+                });
+                if (returnMore) {
+                    resolve({
+                        modal: modal,
+                        data: data,
+                        closeButton: closeButton,
+                        closeValue: closeButton.dataset.value || null
+                    });
+                } else {
+                    resolve(data);
+                }
             } else {
                 resolve(null);
             }

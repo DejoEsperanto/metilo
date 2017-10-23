@@ -209,7 +209,17 @@
                     "title": "Menuo",
                     "menuHeader": "Menuo",
                     "noMenu": "La menuo enhavas neniujn paĝojn.",
-                    "newMenuItem": "Aldoni menueron"
+                    "newMenuItem": "Aldoni menueron",
+                    "modal": {
+                        "addText": "Aldoni novan menueron.",
+                        "choosePage": "Elekti paĝon",
+                        "itemName": "Nomo de menuero",
+                        "buttons": {
+                            "addGlobal": "Aldoni plejekstere",
+                            "addChild": "Aldoni ene de punkto",
+                            "cancel": "Nuligi"
+                        }
+                    }
                 }
             },
             "urls": {

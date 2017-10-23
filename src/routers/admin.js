@@ -354,13 +354,16 @@ export default function () {
         const jsonData = {};
         let hasData = false;
 
+        const pages = metilo.db.db.prepare('select id, name from pages').all();
+
         renderPage('admin/menu', req, 'admin', {
             global: {
                 includeScripts: '/assets/js/admin/menu.js'
             },
             main: {
                 hasData: hasData,
-                jsonData: JSON.stringify(jsonData)
+                jsonData: JSON.stringify(jsonData),
+                pages: pages
             }
         })
             .then(data => res.send(data))

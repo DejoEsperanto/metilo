@@ -18,5 +18,15 @@
  */
 
 els = Object.assign(els, {
-    addButton: $('#new-menu-item-button')
+    addButton: $('#new-menu-item-button'),
+    addModal: $('#add-modal-template')
+});
+
+on(els.addButton, 'click', () => {
+    const text = els.addModal.innerHTML;
+    inputDialog(text, true)
+        .then(r => {
+            if (!r) { return; }
+            console.log(r);
+        });
 });

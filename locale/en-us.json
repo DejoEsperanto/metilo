@@ -209,7 +209,17 @@
                     "title": "Menu",
                     "menuHeader": "Menu",
                     "noMenu": "No pages have been added to the menu.",
-                    "newMenuItem": "Add menu item"
+                    "newMenuItem": "Add menu item",
+                    "modal": {
+                        "addText": "Add a new menu item.",
+                        "choosePage": "Choose page",
+                        "itemName": "Menu item name",
+                        "buttons": {
+                            "addGlobal": "Add at furthest level",
+                            "addChild": "Add as child",
+                            "cancel": "Cancel"
+                        }
+                    }
                 }
             },
             "urls": {

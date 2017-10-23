@@ -209,7 +209,17 @@
                     "title": "Menu",
                     "menuHeader": "Menu",
                     "noMenu": "Der er endnu ingen sider i menuen.",
-                    "newMenuItem": "Tilføj menupunkt"
+                    "newMenuItem": "Tilføj menupunkt",
+                    "modal": {
+                        "addText": "Tilføj et nyt menupunkt.",
+                        "choosePage": "Vælg side",
+                        "itemName": "Navn på menupunkt",
+                        "buttons": {
+                            "addGlobal": "Tilføj på yderste niveau",
+                            "addChild": "Tilføj som underpunkt",
+                            "cancel": "Annuller"
+                        }
+                    }
                 }
             },
             "urls": {

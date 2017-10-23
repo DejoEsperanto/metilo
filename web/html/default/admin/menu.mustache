@@ -6,4 +6,21 @@
 {{^hasData}}
 <p id="no-data-text">{{noMenu}}</p>
 {{/hasData}}
+<div class="modal-content">
+    <div id="add-modal-template">
+        <p>{{modal.addText}}</p>
+        <select data-value required>
+            <option disabled selected value="">-{{modal.choosePage}}-</option>
+            {{#pages}}
+            <option value="{{id}}">{{name}}</option>
+            {{/pages}}
+        </select>
+        <input placeholder="{{modal.itemName}}" data-value required>
+        <p class="footer">
+            <button class="ok" data-value="add-global">{{modal.buttons.addGlobal}}</button>
+            <button class="ok" data-value="add-child">{{modal.buttons.addChild}}</button>
+            <button class="cancel">{{modal.buttons.cancel}}</button>
+        </p>
+    </div>
+</div>
 <script>var jsonData = {{jsonData}};</script>
