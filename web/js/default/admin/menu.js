@@ -20,7 +20,9 @@
 els = Object.assign(els, {
     menuUl: $('#menu-ul'),
     addButton: $('#new-menu-item-button'),
-    addModal: $('#add-modal-template')
+    addModal: $('#add-modal-template'),
+    cancelParentButton: $('#cancel-parent-button'),
+    clickParentText: $('#click-parent-text')
 });
 
 // Display menu
@@ -31,7 +33,7 @@ els = Object.assign(els, {
         if (++i >= menu.length) { i = 0; }
         const item = menu[i];
 
-        const parent = $(`[data-id="${item.parent}"]`, els.menuUl);
+        let parent = $(`[data-id="${item.parent}"]>ul`, els.menuUl);
         if (item.parent && !parent) { continue; }
 
         const after = $(`[data-id="${item.after}"]`, els.menuUl);
@@ -48,6 +50,9 @@ els = Object.assign(els, {
         const el = document.createElement('li');
         el.dataset.id = item.id;
         el.innerText = `${item.name} (${page.name})`;
+        const ul = document.createElement('ul');
+        ul.classList.add('ul');
+        el.appendChild(ul);
         if (after) {
             insertAfter(el, after);
         } else if (parent) {
@@ -69,16 +74,49 @@ on(els.addButton, 'click', () => {
                 page: r.data[0],
                 name: r.data[1]
             };
+            const insertFn = () => {
+                jsonXHR(`${C.baseURL}/xhr/menu-add`, data).then(() => {
+                    document.location.reload();
+                });
+            };
+
             if (r.closeValue === 'add-global') {
                 if (jsonData.menu.length) {
                     data.after = jsonData.menu[jsonData.menu.length - 1].id;
                 }
-            } else if (r.closeValue === 'add-child') {
-                return; // TODO
-            }
 
-            jsonXHR(`${C.baseURL}/xhr/menu-add`, data).then(() => {
-                document.location.reload();
-            })
+                insertFn();
+            } else if (r.closeValue === 'add-child') {
+                els.cancelParentButton.style.display = '';
+                els.clickParentText.style.display = '';
+                els.menuUl.classList.add('click-mode');
+
+                const clickHandler = e => {
+                    const el = e.target;
+                    if (!(el instanceof HTMLLIElement)) { return; }
+
+                    data.parent = el.dataset.id;
+
+                    const after = $('ul>li', el);
+                    if (after) {
+                        data.after = after.dataset.id;
+                    }
+
+                    cleanUpHandler();
+                    insertFn();
+                };
+
+                const cleanUpHandler = () => {
+                    els.cancelParentButton.style.display = 'none';
+                    els.clickParentText.style.display = 'none';
+                    els.menuUl.classList.remove('click-mode');
+                    els.menuUl.removeEventListener('click', clickHandler);
+                };
+
+                on(els.menuUl, 'click', clickHandler);
+                on(els.cancelParentButton, 'click', cleanUpHandler);
+
+                return;
+            }
         });
 });

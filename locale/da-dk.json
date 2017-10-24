@@ -210,6 +210,8 @@
                     "menuHeader": "Menu",
                     "noMenu": "Der er endnu ingen sider i menuen.",
                     "newMenuItem": "Tilføj menupunkt",
+                    "cancelSelectParent": "Annuller menupunkt",
+                    "clickParentText": "Klik på det punkt, som det nye menupunkt skal være inden i.",
                     "modal": {
                         "addText": "Tilføj et nyt menupunkt.",
                         "choosePage": "Vælg side",

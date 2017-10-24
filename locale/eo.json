@@ -210,13 +210,15 @@
                     "menuHeader": "Menuo",
                     "noMenu": "La menuo enhavas neniujn paĝojn.",
                     "newMenuItem": "Aldoni menueron",
+                    "cancelSelectParent": "Nuligi menueron",
+                    "clickParentText": "Alklaku la menueron en kiu vi volas ke estu la nova menuero.",
                     "modal": {
                         "addText": "Aldoni novan menueron.",
                         "choosePage": "Elekti paĝon",
                         "itemName": "Nomo de menuero",
                         "buttons": {
                             "addGlobal": "Aldoni plejekstere",
-                            "addChild": "Aldoni ene de punkto",
+                            "addChild": "Aldoni ene de menuero",
                             "cancel": "Nuligi"
                         }
                     }

@@ -1,7 +1,9 @@
 <h1>{{menuHeader}}</h1>
 <div class="spacing">
     <button id="new-menu-item-button"><i class="material-icons small-icon">add_circle</i><span>{{newMenuItem}}</span></button>
+    <button id="cancel-parent-button" style="display: none;"><i class="material-icons small-icon">cancel</i><span>{{cancelSelectParent}}</span></button>
 </div>
+<div class="info" id="click-parent-text" style="display: none;"><i class="material-icons">info_outline</i> {{clickParentText}}</div>
 <ul id="menu-ul" class="ul {{^hasData}}no-data{{/hasData}}""></ul>
 {{^hasData}}
 <p id="no-data-text">{{noMenu}}</p>

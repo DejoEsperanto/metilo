@@ -356,6 +356,8 @@ export default function () {
         const pages = metilo.db.db.prepare('select id, name from pages').all();
         const menu = metilo.db.db.prepare('select * from menu').all();
 
+        if (menu.length) { hasData = true; }
+
         const jsonData = {
             pages: pages,
             menu: menu
@@ -363,6 +365,7 @@ export default function () {
 
         renderPage('admin/menu', req, 'admin', {
             global: {
+                includeStyles: '/assets/css/admin/menu.css',
                 includeScripts: '/assets/js/admin/menu.js'
             },
             main: {
