@@ -144,7 +144,7 @@ on(els.menuUl, 'click', e => {
             jsonXHR(`${C.baseURL}/xhr/menu-move-up`, {
                 id: el.dataset.id
             }).then(() => {
-                document.location.reload();
+                el.parentElement.insertBefore(el, el.previousElementSibling);
             });
 
             break;
@@ -155,7 +155,7 @@ on(els.menuUl, 'click', e => {
             jsonXHR(`${C.baseURL}/xhr/menu-move-down`, {
                 id: el.dataset.id
             }).then(() => {
-                document.location.reload();
+                insertAfter(el, el.nextElementSibling);
             });
     }
 });
