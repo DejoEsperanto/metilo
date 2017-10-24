@@ -178,9 +178,10 @@ on(els.menuUl, 'click', e => {
                 const data = {
                     id: el.dataset.id
                 };
+                let newParent;
 
                 if (e) {
-                    let newParent;
+                    newParent;
                     for (let pathEl of e.path) {
                         if (pathEl === document) { return; }
                         if (pathEl.tagName === 'LI') {
@@ -197,7 +198,11 @@ on(els.menuUl, 'click', e => {
                 }
 
                 jsonXHR(`${C.baseURL}/xhr/menu-set-parent`, data).then(() => {
-                    document.location.reload();
+                    if (e) {
+                        $('ul', newParent).appendChild(el);
+                    } else {
+                        els.menuUl.appendChild(el);
+                    }
                 });
 
                 cleanUpHandler();
