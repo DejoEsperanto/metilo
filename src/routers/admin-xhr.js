@@ -178,5 +178,45 @@ export default function () {
         res.send(JSON.stringify({ id: id }));
     });
 
+    router.post('/menu-move-up', ensureLoggedIn(admin), (req, res, next) => {
+        /** 
+         * a c
+         * b a
+         *  ↓
+         * a b
+         * b c
+         */
+
+
+        let b = req.body.id;
+
+        let a = metilo.db.db.prepare('select `after` from menu where id = ?')
+            .get(b);
+
+        if (!a) {
+            res.send('{}');
+            return;
+        }
+
+        a = a.after;
+
+        let c = metilo.db.db.prepare('select `after` from menu where id = ?')
+            .get(a)
+            .after;
+
+        // Switch places
+        // Set a to null
+        metilo.db.db.prepare('update menu set `after` = null where id = ?')
+            .run(a);
+        // Set b to c
+        metilo.db.db.prepare('update menu set `after` = ? where id = ?')
+            .run(c, b);
+        // Set a to b
+        metilo.db.db.prepare('update menu set `after` = ? where id = ?')
+            .run(b, a);
+
+        res.send('{}');
+    });
+
     return router;
 };

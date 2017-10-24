@@ -212,6 +212,13 @@
                     "newMenuItem": "Aldoni menueron",
                     "cancelSelectParent": "Nuligi menueron",
                     "clickParentText": "Alklaku la menueron en kiu vi volas ke estu la nova menuero.",
+                    "actions": {
+                        "edit": "Redakti",
+                        "delete": "Forigi",
+                        "moveUp": "Movi supren",
+                        "moveDown": "Movi malsupren",
+                        "setParent": "Meti en menueron"
+                    },
                     "modal": {
                         "addText": "Aldoni novan menueron.",
                         "choosePage": "Elekti paĝon",

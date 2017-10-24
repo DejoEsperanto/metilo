@@ -212,6 +212,13 @@
                     "newMenuItem": "Add menu item",
                     "cancelSelectParent": "Cancel menu item",
                     "clickParentText": "Click on the menu item in which you want the new menu item.",
+                    "actions": {
+                        "edit": "Edit",
+                        "delete": "Delete",
+                        "moveUp": "Move up",
+                        "moveDown": "Move down",
+                        "setParent": "Set parent menu item"
+                    },
                     "modal": {
                         "addText": "Add a new menu item.",
                         "choosePage": "Choose page",

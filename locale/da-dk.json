@@ -212,6 +212,13 @@
                     "newMenuItem": "Tilføj menupunkt",
                     "cancelSelectParent": "Annuller menupunkt",
                     "clickParentText": "Klik på det punkt, som det nye menupunkt skal være inden i.",
+                    "actions": {
+                        "edit": "Redigér",
+                        "delete": "Slet",
+                        "moveUp": "Flyt op",
+                        "moveDown": "Flyt ned",
+                        "setParent": "Flyt ind i punkt"
+                    },
                     "modal": {
                         "addText": "Tilføj et nyt menupunkt.",
                         "choosePage": "Vælg side",

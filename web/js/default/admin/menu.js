@@ -22,7 +22,8 @@ els = Object.assign(els, {
     addButton: $('#new-menu-item-button'),
     addModal: $('#add-modal-template'),
     cancelParentButton: $('#cancel-parent-button'),
-    clickParentText: $('#click-parent-text')
+    clickParentText: $('#click-parent-text'),
+    menuItemActions: $('#menu-item-action-template')
 });
 
 // Display menu
@@ -49,10 +50,17 @@ els = Object.assign(els, {
 
         const el = document.createElement('li');
         el.dataset.id = item.id;
-        el.innerText = `${item.name} (${page.name})`;
+
+        const span = document.createElement('span');
+        span.innerText = `${item.name} (${page.name})`;
+        el.appendChild(span);
+
+        el.appendChild(els.menuItemActions.cloneNode(true));
+
         const ul = document.createElement('ul');
         ul.classList.add('ul');
         el.appendChild(ul);
+
         if (after) {
             insertAfter(el, after);
         } else if (parent) {
@@ -119,4 +127,27 @@ on(els.addButton, 'click', () => {
                 return;
             }
         });
+});
+
+on(els.menuUl, 'click', e => {
+    let button;
+    for (let el of e.path) {
+        if (el.classList.contains('menu-action')) {
+            button = el;
+            break;
+        }
+    }
+
+    const el = button.parentElement.parentElement;
+
+    switch (button.dataset.action) {
+        case 'move-up':
+            if (!el.previousElementSibling) { return; } // Already at the top
+
+            jsonXHR(`${C.baseURL}/xhr/menu-move-up`, {
+                id: el.dataset.id
+            }).then(() => {
+                console.log('Done');
+            });
+    }
 });
