@@ -119,8 +119,6 @@ on(els.addButton, 'click', () => {
 
                 on(els.menuUl, 'click', clickHandler);
                 on(els.cancelParentButton, 'click', cleanUpHandler);
-
-                return;
             }
         });
 });
@@ -166,5 +164,43 @@ on(els.menuUl, 'click', e => {
             }).then(() => {
                 el.remove();
             });
+
+            break;
+
+        case 'set-parent':
+            els.cancelParentButton.style.display = '';
+            els.clickParentText.style.display = '';
+            els.menuUl.classList.add('click-mode');
+
+            const clickHandler = e => {
+                let newParent;
+                for (let pathEl of e.path) {
+                    if (pathEl === document) { return; }
+                    if (pathEl.tagName === 'LI') {
+                        newParent = pathEl;
+                        break;
+                    }
+                }
+
+                jsonXHR(`${C.baseURL}/xhr/menu-set-parent`, {
+                    id: el.dataset.id,
+                    parent: newParent.dataset.id,
+                    index: $('ul', newParent).children.length
+                }).then(() => {
+                    document.location.reload();
+                });
+
+                cleanUpHandler();
+            };
+
+            const cleanUpHandler = () => {
+                els.cancelParentButton.style.display = 'none';
+                els.clickParentText.style.display = 'none';
+                els.menuUl.classList.remove('click-mode');
+                els.menuUl.removeEventListener('click', clickHandler);
+            }
+
+            on(els.menuUl, 'click', clickHandler);
+            on(els.cancelParentButton, 'click', cleanUpHandler);
     }
 });

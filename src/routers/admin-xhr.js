@@ -193,7 +193,7 @@ export default function () {
         if (data.parent === null) {
             stat += ' is ?';
         } else {
-            stat += ' = ?;'
+            stat += ' = ?'
         }
         metilo.db.db.prepare(stat)
             .run(data.index - 1, data.parent);
@@ -217,7 +217,7 @@ export default function () {
         if (data.parent === null) {
             stat += ' is ?';
         } else {
-            stat += ' = ?;'
+            stat += ' = ?'
         }
         metilo.db.db.prepare(stat)
             .run(data.index + 1, data.parent);
@@ -232,6 +232,11 @@ export default function () {
         const data = metilo.db.db.prepare('select `parent`, `index` from menu where id = ?')
             .get(req.body.id);
 
+        if (!data) {
+            res.send('{}');
+            return;
+        }
+
         metilo.db.db.prepare('delete from menu where id = ?')
             .run(req.body.id);
 
@@ -239,10 +244,50 @@ export default function () {
         if (data.parent === null) {
             stat += ' is ?';
         } else {
-            stat += ' = ?;'
+            stat += ' = ?'
         }
         metilo.db.db.prepare(stat)
             .run(data.index, data.parent);
+
+        res.send('{}');
+    });
+
+    router.post('/menu-set-parent', ensureLoggedIn(admin), (req, res, next) => {
+        const data = metilo.db.db.prepare('select `parent`, `index` from menu where id = ?')
+            .get(req.body.id);
+
+        if (!data) {
+            res.send('{}');
+            return;
+        }
+
+        const parent = req.body.parent === 'null' ? null : req.body.parent;
+
+        let stat = 'select `index` from menu where parent';
+        if (parent === null) {
+            stat += ' is ?';
+        } else {
+            stat += ' = ?'
+        }
+        stat += ' order by `index` desc';
+        let newData = metilo.db.db.prepare(stat)
+            .get(parent);
+
+        if (!newData) {
+            newData = { index: -1 };
+        }
+
+        stat = 'update menu set `index` = `index` - 1 where `index` > ? and `parent`';
+        if (data.parent === null) {
+            stat += ' is ?';
+        } else {
+            stat += ' = ?'
+        }
+        metilo.db.db.prepare(stat)
+            .run(data.index, data.parent);
+
+        metilo.db.db.prepare('update menu set parent = ?, `index` = ? where id = ?')
+            .run(parent, newData.index + 1, req.body.id);
 
         res.send('{}');
     });
