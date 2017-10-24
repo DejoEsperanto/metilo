@@ -157,5 +157,14 @@ on(els.menuUl, 'click', e => {
             }).then(() => {
                 insertAfter(el, el.nextElementSibling);
             });
+
+            break;
+
+        case 'delete':
+            jsonXHR(`${C.baseURL}/xhr/menu-delete`, {
+                id: el.dataset.id
+            }).then(() => {
+                el.remove();
+            });
     }
 });

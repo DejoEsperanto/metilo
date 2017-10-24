@@ -228,5 +228,24 @@ export default function () {
         res.send('{}');
     });
 
+    router.post('/menu-delete', ensureLoggedIn(admin), (req, res, next) => {
+        const data = metilo.db.db.prepare('select `parent`, `index` from menu where id = ?')
+            .get(req.body.id);
+
+        metilo.db.db.prepare('delete from menu where id = ?')
+            .run(req.body.id);
+
+        let stat = 'update menu set `index` = `index` - 1 where `index` > ? and `parent`';
+        if (data.parent === null) {
+            stat += ' is ?';
+        } else {
+            stat += ' = ?;'
+        }
+        metilo.db.db.prepare(stat)
+            .run(data.index, data.parent);
+
+        res.send('{}');
+    });
+
     return router;
 };
