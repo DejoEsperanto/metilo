@@ -211,6 +211,7 @@
                     "noMenu": "No pages have been added to the menu.",
                     "newMenuItem": "Add menu item",
                     "cancelSelectParent": "Cancel menu item",
+                    "setNullParent": "Move to main menu",
                     "clickParentText": "Click on the menu item in which you want the new menu item.",
                     "actions": {
                         "edit": "Edit",

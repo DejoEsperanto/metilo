@@ -211,6 +211,7 @@
                     "noMenu": "Der er endnu ingen sider i menuen.",
                     "newMenuItem": "Tilføj menupunkt",
                     "cancelSelectParent": "Annuller menupunkt",
+                    "setNullParent": "Flyt til hovedmenu",
                     "clickParentText": "Klik på det punkt, som det nye menupunkt skal være inden i.",
                     "actions": {
                         "edit": "Redigér",

@@ -211,6 +211,7 @@
                     "noMenu": "La menuo enhavas neniujn paĝojn.",
                     "newMenuItem": "Aldoni menueron",
                     "cancelSelectParent": "Nuligi menueron",
+                    "setNullParent": "Movi al ĉefmenuo",
                     "clickParentText": "Alklaku la menueron en kiu vi volas ke estu la nova menuero.",
                     "actions": {
                         "edit": "Redakti",

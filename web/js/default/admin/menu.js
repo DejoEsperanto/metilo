@@ -22,6 +22,7 @@ els = Object.assign(els, {
     addButton: $('#new-menu-item-button'),
     addModal: $('#add-modal-template'),
     cancelParentButton: $('#cancel-parent-button'),
+    nullParentButton: $('#null-parent-button'),
     clickParentText: $('#click-parent-text'),
     menuItemActions: $('#menu-item-action-template')
 });
@@ -168,25 +169,34 @@ on(els.menuUl, 'click', e => {
             break;
 
         case 'set-parent':
+            els.nullParentButton.style.display = '';
             els.cancelParentButton.style.display = '';
             els.clickParentText.style.display = '';
             els.menuUl.classList.add('click-mode');
 
             const clickHandler = e => {
-                let newParent;
-                for (let pathEl of e.path) {
-                    if (pathEl === document) { return; }
-                    if (pathEl.tagName === 'LI') {
-                        newParent = pathEl;
-                        break;
+                const data = {
+                    id: el.dataset.id
+                };
+
+                if (e) {
+                    let newParent;
+                    for (let pathEl of e.path) {
+                        if (pathEl === document) { return; }
+                        if (pathEl.tagName === 'LI') {
+                            newParent = pathEl;
+                            break;
+                        }
                     }
+
+                    data.parent = newParent.dataset.id;
+                    data.index = $('ul', newParent).children.length;
+                } else {
+                    data.parent = null;
+                    data.index = els.menuUl.children.length;
                 }
 
-                jsonXHR(`${C.baseURL}/xhr/menu-set-parent`, {
-                    id: el.dataset.id,
-                    parent: newParent.dataset.id,
-                    index: $('ul', newParent).children.length
-                }).then(() => {
+                jsonXHR(`${C.baseURL}/xhr/menu-set-parent`, data).then(() => {
                     document.location.reload();
                 });
 
@@ -195,12 +205,14 @@ on(els.menuUl, 'click', e => {
 
             const cleanUpHandler = () => {
                 els.cancelParentButton.style.display = 'none';
+                els.nullParentButton.style.display = 'none';
                 els.clickParentText.style.display = 'none';
                 els.menuUl.classList.remove('click-mode');
                 els.menuUl.removeEventListener('click', clickHandler);
             }
 
             on(els.menuUl, 'click', clickHandler);
+            on(els.nullParentButton, 'click', () => clickHandler(null));
             on(els.cancelParentButton, 'click', cleanUpHandler);
     }
 });
