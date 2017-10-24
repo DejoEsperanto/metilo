@@ -181,10 +181,50 @@ export default function () {
     // TODO: Switch all this to a nice entry-based system instead of foreign keys, this is ridiculous
 
     router.post('/menu-move-up', ensureLoggedIn(admin), (req, res, next) => {
+        const data = metilo.db.db.prepare('select `parent`, `index` from menu where id = ?')
+            .get(req.body.id);
+
+        if (!data) {
+            res.send('{}');
+            return;
+        }
+
+        let stat = 'update menu set `index` = `index` + 1 where `index` = ? and `parent`';
+        if (data.parent === null) {
+            stat += ' is ?';
+        } else {
+            stat += ' = ?;'
+        }
+        metilo.db.db.prepare(stat)
+            .run(data.index - 1, data.parent);
+
+        metilo.db.db.prepare('update menu set `index` = `index` - 1 where id = ?')
+            .run(req.body.id);
+
         res.send('{}');
     });
 
     router.post('/menu-move-down', ensureLoggedIn(admin), (req, res, next) => {
+        const data = metilo.db.db.prepare('select `parent`, `index` from menu where id = ?')
+            .get(req.body.id);
+
+        if (!data) {
+            res.send('{}');
+            return;
+        }
+
+        let stat = 'update menu set `index` = `index` - 1 where `index` = ? and `parent`';
+        if (data.parent === null) {
+            stat += ' is ?';
+        } else {
+            stat += ' = ?;'
+        }
+        metilo.db.db.prepare(stat)
+            .run(data.index + 1, data.parent);
+
+        metilo.db.db.prepare('update menu set `index` = `index` + 1 where id = ?')
+            .run(req.body.id);
+
         res.send('{}');
     });
 

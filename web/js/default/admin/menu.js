@@ -144,7 +144,18 @@ on(els.menuUl, 'click', e => {
             jsonXHR(`${C.baseURL}/xhr/menu-move-up`, {
                 id: el.dataset.id
             }).then(() => {
-                console.log('Done');
+                document.location.reload();
+            });
+
+            break;
+
+        case 'move-down':
+            if (!el.nextElementSibling) { return; } // Already at the bottom
+
+            jsonXHR(`${C.baseURL}/xhr/menu-move-down`, {
+                id: el.dataset.id
+            }).then(() => {
+                document.location.reload();
             });
     }
 });
