@@ -36,9 +36,7 @@ els = Object.assign(els, {
 
         let parent = $(`[data-id="${item.parent}"]>ul`, els.menuUl);
         if (item.parent && !parent) { continue; }
-
-        const after = $(`[data-id="${item.after}"]`, els.menuUl);
-        if (item.after && !after) { continue; }
+        if (!parent) { parent = els.menuUl; }
 
         let page;
         for (let p of jsonData.pages) {
@@ -61,12 +59,11 @@ els = Object.assign(els, {
         ul.classList.add('ul');
         el.appendChild(ul);
 
-        if (after) {
-            insertAfter(el, after);
-        } else if (parent) {
-            parent.appendChild(el);
+        let children = parent.children;
+        if (children.length > item.index) {
+            parent.insertBefore(el, children[item.index]);
         } else {
-            els.menuUl.appendChild(el);
+            parent.appendChild(el);
         }
 
         menu.splice(i, 1);
@@ -89,10 +86,7 @@ on(els.addButton, 'click', () => {
             };
 
             if (r.closeValue === 'add-global') {
-                if (jsonData.menu.length) {
-                    data.after = jsonData.menu[jsonData.menu.length - 1].id;
-                }
-
+                data.index = jsonData.menu.length;
                 insertFn();
             } else if (r.closeValue === 'add-child') {
                 els.cancelParentButton.style.display = '';
@@ -100,15 +94,17 @@ on(els.addButton, 'click', () => {
                 els.menuUl.classList.add('click-mode');
 
                 const clickHandler = e => {
-                    const el = e.target;
-                    if (!(el instanceof HTMLLIElement)) { return; }
+                    let el;
+                    for (let pathEl of e.path) {
+                        if (pathEl === document) { return; }
+                        if (pathEl.tagName === 'LI') {
+                            el = pathEl;
+                            break;
+                        }
+                    }
 
                     data.parent = el.dataset.id;
-
-                    const after = $('ul>li', el);
-                    if (after) {
-                        data.after = after.dataset.id;
-                    }
+                    data.index = $('ul', el).children.length;
 
                     cleanUpHandler();
                     insertFn();
@@ -132,6 +128,7 @@ on(els.addButton, 'click', () => {
 on(els.menuUl, 'click', e => {
     let button;
     for (let el of e.path) {
+        if (el === document) { return; }
         if (el.classList.contains('menu-action')) {
             button = el;
             break;

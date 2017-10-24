@@ -171,50 +171,20 @@ export default function () {
     });
 
     router.post('/menu-add', ensureLoggedIn(admin), (req, res, next) => {
-        const id = metilo.db.db.prepare('insert into menu (page, name, parent, `after`) values (?, ?, ?, ?)')
-            .run(req.body.page, req.body.name, req.body.parent, req.body.after)
+        const id = metilo.db.db.prepare('insert into menu (page, name, parent, `index`) values (?, ?, ?, ?)')
+            .run(req.body.page, req.body.name, req.body.parent, req.body.index)
             .lastInsertROWID;
 
         res.send(JSON.stringify({ id: id }));
     });
 
+    // TODO: Switch all this to a nice entry-based system instead of foreign keys, this is ridiculous
+
     router.post('/menu-move-up', ensureLoggedIn(admin), (req, res, next) => {
-        /** 
-         * a c
-         * b a
-         *  ↓
-         * a b
-         * b c
-         */
+        res.send('{}');
+    });
 
-
-        let b = req.body.id;
-
-        let a = metilo.db.db.prepare('select `after` from menu where id = ?')
-            .get(b);
-
-        if (!a) {
-            res.send('{}');
-            return;
-        }
-
-        a = a.after;
-
-        let c = metilo.db.db.prepare('select `after` from menu where id = ?')
-            .get(a)
-            .after;
-
-        // Switch places
-        // Set a to null
-        metilo.db.db.prepare('update menu set `after` = null where id = ?')
-            .run(a);
-        // Set b to c
-        metilo.db.db.prepare('update menu set `after` = ? where id = ?')
-            .run(c, b);
-        // Set a to b
-        metilo.db.db.prepare('update menu set `after` = ? where id = ?')
-            .run(b, a);
-
+    router.post('/menu-move-down', ensureLoggedIn(admin), (req, res, next) => {
         res.send('{}');
     });
 
