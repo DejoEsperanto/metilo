@@ -222,11 +222,13 @@
                     },
                     "modal": {
                         "addText": "Tilføj et nyt menupunkt.",
+                        "editText": "Redigér et nyt menupunkt.",
                         "choosePage": "Vælg side",
                         "itemName": "Navn på menupunkt",
                         "buttons": {
                             "addGlobal": "Tilføj på yderste niveau",
                             "addChild": "Tilføj som underpunkt",
+                            "save": "Gem",
                             "cancel": "Annuller"
                         }
                     }

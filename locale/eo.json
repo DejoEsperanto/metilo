@@ -222,11 +222,13 @@
                     },
                     "modal": {
                         "addText": "Aldoni novan menueron.",
+                        "editText": "Redakti menueron.",
                         "choosePage": "Elekti paĝon",
                         "itemName": "Nomo de menuero",
                         "buttons": {
                             "addGlobal": "Aldoni plejekstere",
                             "addChild": "Aldoni ene de menuero",
+                            "save": "Konservi",
                             "cancel": "Nuligi"
                         }
                     }

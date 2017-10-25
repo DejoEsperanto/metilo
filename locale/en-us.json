@@ -222,11 +222,13 @@
                     },
                     "modal": {
                         "addText": "Add a new menu item.",
+                        "editText": "Edit a  menu item.",
                         "choosePage": "Choose page",
                         "itemName": "Menu item name",
                         "buttons": {
                             "addGlobal": "Add at furthest level",
                             "addChild": "Add as child",
+                            "save": "Save",
                             "cancel": "Cancel"
                         }
                     }

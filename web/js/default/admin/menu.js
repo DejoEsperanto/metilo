@@ -21,6 +21,7 @@ els = Object.assign(els, {
     menuUl: $('#menu-ul'),
     addButton: $('#new-menu-item-button'),
     addModal: $('#add-modal-template'),
+    editModal: $('#edit-modal-template'),
     cancelParentButton: $('#cancel-parent-button'),
     nullParentButton: $('#null-parent-button'),
     clickParentText: $('#click-parent-text'),
@@ -49,6 +50,8 @@ els = Object.assign(els, {
 
         const el = document.createElement('li');
         el.dataset.id = item.id;
+        el.dataset.page = item.page;
+        el.dataset.name = item.name;
 
         const span = document.createElement('span');
         span.innerText = `${item.name} (${page.name})`;
@@ -219,5 +222,25 @@ on(els.menuUl, 'click', e => {
             on(els.menuUl, 'click', clickHandler);
             on(els.nullParentButton, 'click', () => clickHandler(null));
             on(els.cancelParentButton, 'click', cleanUpHandler);
+
+            break;
+
+        case 'edit':
+            const text = els.editModal.cloneNode(true);
+            $(`option[value="${el.dataset.page}"]`, text).selected = 'selected';
+            $('input', text).value = el.dataset.name;
+
+            inputDialog(text)
+                .then(r => {
+                    if (!r) { return; }
+
+                    jsonXHR(`${C.baseURL}/xhr/menu-update`, {
+                        id: el.dataset.id,
+                        page: r[0],
+                        name: r[1]
+                    }).then(() => {
+                        document.location.reload();
+                    });
+                });
     }
 });

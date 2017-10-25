@@ -292,5 +292,12 @@ export default function () {
         res.send('{}');
     });
 
+    router.post('/menu-update', ensureLoggedIn(admin), (req, res, next) => {
+        const data = metilo.db.db.prepare('update menu set page = ?, name = ? where id = ?')
+            .run(req.body.page, req.body.name, req.body.id);
+
+        res.send('{}');
+    });
+
     return router;
 };
