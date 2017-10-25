@@ -82,12 +82,15 @@ const confirmDialog = text => {
             });
         }).afterClose((modal, e) => {
             resolve(e.detail);
+            modal.destroy();
         }).show();
     });
 };
 
 const textDialog = text => {
-    picoModal({ content: text }).show();
+    picoModal({ content: text })
+        .show()
+        .afterClose(modal => { modal.destroy(); });
 };
 
 const inputDialog = (text, returnMore = false) => {
@@ -133,6 +136,7 @@ const inputDialog = (text, returnMore = false) => {
             } else {
                 resolve(null);
             }
+            modal.destroy();
         }).show();
     });
 };
