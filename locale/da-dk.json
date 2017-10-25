@@ -154,11 +154,13 @@
                     "modal": {
                         "editText": "Vælg den revision, som du vil basere din nye revision på. Den aktive revision er valgt som udgangspunkt.",
                         "deleteText": "Er du sikker på, at du vil slette denne side permanent? Du kan også blot gøre den utilgængelig ved at klikke på knappen “Adresser” og eventuelt fjerne den fra menuen.",
+                        "revisionText": "Vælg den revision, som skal være aktiv. Du bør kun ændre revision, hvis du allerede har foretaget en forhåndsvisning af sidens indhold og er tilfreds med den.",
                         "buttons": {
                             "edit": "Rediǵer",
                             "cancel": "Annuller",
                             "yes": "Ja",
-                            "no": "Nej"
+                            "no": "Nej",
+                            "update": "Opdater"
                         }
                     }
                 },

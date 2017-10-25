@@ -19,7 +19,8 @@
 
 const modals = {
     edit: $('#edit-modal'),
-    delete: $('#delete-modal')
+    delete: $('#delete-modal'),
+    revision: $('#revision-modal')
 };
 
 for (let page of $$('#pages-table>tbody>tr:not(.no-data)')) {
@@ -48,6 +49,7 @@ for (let page of $$('#pages-table>tbody>tr:not(.no-data)')) {
 
                         inputDialog(content).then(r => {
                             if (!r) { return; }
+
                             document.location.href = `${C.baseURL}/${jsonData.editURL}/${r[0]}`;
                         });
                     });
@@ -65,6 +67,37 @@ for (let page of $$('#pages-table>tbody>tr:not(.no-data)')) {
                                 .then(() => {
                                     page.remove();
                                 });
+                        });
+                    });
+
+                    break;
+
+                case 'pickRevision':
+                    on(action, 'click', () => {
+                        const content = modals.revision.cloneNode(true);
+                        const select = $('select', content);
+
+                        for (let revision of pageData.revisions) {
+                            const option = document.createElement('option');
+                            option.value = revision.id;
+                            option.innerText = revision.text;
+
+                            if (revision.id === pageData.activeRevision) {
+                                option.setAttribute('selected', '')
+                            }
+
+                            select.appendChild(option);
+                        }
+
+                        inputDialog(content).then(r => {
+                            if (!r) { return; }
+
+                            jsonXHR(`${C.baseURL}/xhr/page-set-revision`, {
+                                id: id,
+                                revision: r[0]
+                            }).then(() => {
+                                document.location.reload();
+                            })
                         });
                     });
             }

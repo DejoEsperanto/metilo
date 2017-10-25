@@ -185,6 +185,13 @@ export default function () {
         res.send('{}');
     });
 
+    router.post('/page-set-revision', ensureLoggedIn(admin), (req, res, next) => {
+        metilo.db.db.prepare('update pages set activeRevision = ? where id = ?')
+            .run(req.body.revision, req.body.id)
+
+        res.send('{}');
+    })
+
     router.post('/menu-move-up', ensureLoggedIn(admin), (req, res, next) => {
         const data = metilo.db.db.prepare('select `parent`, `index` from menu where id = ?')
             .get(req.body.id);
