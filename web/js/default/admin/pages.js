@@ -18,7 +18,8 @@
  */
 
 const modals = {
-    edit: $('#edit-modal')
+    edit: $('#edit-modal'),
+    delete: $('#delete-modal')
 };
 
 for (let page of $$('#pages-table>tbody>tr:not(.no-data)')) {
@@ -48,6 +49,22 @@ for (let page of $$('#pages-table>tbody>tr:not(.no-data)')) {
                         inputDialog(content).then(r => {
                             if (!r) { return; }
                             document.location.href = `${C.baseURL}/${jsonData.editURL}/${r[0]}`;
+                        });
+                    });
+
+                    break;
+
+                case 'delete':
+                    on(action, 'click', () => {
+                        const content = modals.delete.cloneNode(true);
+
+                        confirmDialog(content).then(r => {
+                            if (!r) { return; }
+                            
+                            jsonXHR(`${C.baseURL}/xhr/page-delete`, { id: id })
+                                .then(() => {
+                                    page.remove();
+                                });
                         });
                     });
             }

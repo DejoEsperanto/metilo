@@ -178,7 +178,12 @@ export default function () {
         res.send(JSON.stringify({ id: id }));
     });
 
-    // TODO: Switch all this to a nice entry-based system instead of foreign keys, this is ridiculous
+    router.post('/page-delete', ensureLoggedIn(admin), (req, res, next) => {
+        metilo.db.db.prepare('delete from pages where id = ?')  
+            .run(req.body.id);
+
+        res.send('{}');
+    });
 
     router.post('/menu-move-up', ensureLoggedIn(admin), (req, res, next) => {
         const data = metilo.db.db.prepare('select `parent`, `index` from menu where id = ?')

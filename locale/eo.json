@@ -153,9 +153,12 @@
                     "noPages": "Trovis neniujn paĝojn.",
                     "modal": {
                         "editText": "Bonvolu elekti la revizion surbaze de kiu vi volas fari novan revizion. La defaŭlte elektita revizio estas la nune aktiva.",
+                        "deleteText": "Ĉu vi certas, ke vi volas forigi ĉi tiun paĝon? Vi ankaŭ simple povas nealirebligi ĝin pere de la butono “Adresoj” kaj eventuale forigi ĝin de la menuo.",
                         "buttons": {
                             "edit": "Redakti",
-                            "cancel": "Nuligi"
+                            "cancel": "Nuligi",
+                            "yes": "Jes",
+                            "no": "Ne"
                         }
                     }
                 },

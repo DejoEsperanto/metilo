@@ -153,9 +153,12 @@
                     "noPages": "Ingen sider blev fundet.",
                     "modal": {
                         "editText": "Vælg den revision, som du vil basere din nye revision på. Den aktive revision er valgt som udgangspunkt.",
+                        "deleteText": "Er du sikker på, at du vil slette denne side permanent? Du kan også blot gøre den utilgængelig ved at klikke på knappen “Adresser” og eventuelt fjerne den fra menuen.",
                         "buttons": {
                             "edit": "Rediǵer",
-                            "cancel": "Annuller"
+                            "cancel": "Annuller",
+                            "yes": "Ja",
+                            "no": "Nej"
                         }
                     }
                 },
