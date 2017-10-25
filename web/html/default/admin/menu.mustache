@@ -20,9 +20,9 @@
         </select>
         <input placeholder="{{modal.itemName}}" data-value required>
         <p class="footer">
+            <button class="cancel">{{modal.buttons.cancel}}</button>
             <button class="ok" data-value="add-global">{{modal.buttons.addGlobal}}</button>
             <button class="ok" data-value="add-child">{{modal.buttons.addChild}}</button>
-            <button class="cancel">{{modal.buttons.cancel}}</button>
         </p>
     </div>
     <div id="edit-modal-template">
@@ -34,15 +34,15 @@
         </select>
         <input placeholder="{{modal.itemName}}" data-value required>
         <p class="footer">
-            <button class="ok">{{modal.buttons.save}}</button>
             <button class="cancel">{{modal.buttons.cancel}}</button>
+            <button class="ok">{{modal.buttons.save}}</button>
         </p>
     </div>
     <div id="delete-modal-template">
         <p>{{modal.deleteText}}</p>
         <p class="footer">
-            <button class="ok">{{modal.buttons.yes}}</button>
             <button class="cancel">{{modal.buttons.no}}</button>
+            <button class="ok">{{modal.buttons.yes}}</button>
         </p>
     </div>
     <span id="menu-item-action-template">
