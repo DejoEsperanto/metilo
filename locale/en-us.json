@@ -223,13 +223,16 @@
                     "modal": {
                         "addText": "Add a new menu item.",
                         "editText": "Edit a  menu item.",
+                        "deleteText": "Are you sure you want to delete this menu item?",
                         "choosePage": "Choose page",
                         "itemName": "Menu item name",
                         "buttons": {
                             "addGlobal": "Add at furthest level",
                             "addChild": "Add as child",
                             "save": "Save",
-                            "cancel": "Cancel"
+                            "cancel": "Cancel",
+                            "yes": "Yes",
+                            "no": "No"
                         }
                     }
                 }

@@ -22,6 +22,7 @@ els = Object.assign(els, {
     addButton: $('#new-menu-item-button'),
     addModal: $('#add-modal-template'),
     editModal: $('#edit-modal-template'),
+    deleteModal: $('#delete-modal-template'),
     cancelParentButton: $('#cancel-parent-button'),
     nullParentButton: $('#null-parent-button'),
     clickParentText: $('#click-parent-text'),
@@ -163,11 +164,16 @@ on(els.menuUl, 'click', e => {
             break;
 
         case 'delete':
-            jsonXHR(`${C.baseURL}/xhr/menu-delete`, {
-                id: el.dataset.id
-            }).then(() => {
-                el.remove();
-            });
+            confirmDialog(els.deleteModal.innerHTML)
+                .then(r => {
+                    if (!r) { return; }
+
+                    jsonXHR(`${C.baseURL}/xhr/menu-delete`, {
+                        id: el.dataset.id
+                    }).then(() => {
+                        el.remove();
+                    });
+                });
 
             break;
 
@@ -226,7 +232,7 @@ on(els.menuUl, 'click', e => {
             break;
 
         case 'edit':
-            const text = els.editModal.cloneNode(true);
+            let text = els.editModal.cloneNode(true);
             $(`option[value="${el.dataset.page}"]`, text).selected = 'selected';
             $('input', text).value = el.dataset.name;
 

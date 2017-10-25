@@ -223,13 +223,16 @@
                     "modal": {
                         "addText": "Tilføj et nyt menupunkt.",
                         "editText": "Redigér et nyt menupunkt.",
+                        "deleteText": "Er du sikker på, at du vil slette dette menupunkt?",
                         "choosePage": "Vælg side",
                         "itemName": "Navn på menupunkt",
                         "buttons": {
                             "addGlobal": "Tilføj på yderste niveau",
                             "addChild": "Tilføj som underpunkt",
                             "save": "Gem",
-                            "cancel": "Annuller"
+                            "cancel": "Annuller",
+                            "yes": "Ja",
+                            "no": "Nej"
                         }
                     }
                 }

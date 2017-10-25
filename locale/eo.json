@@ -223,13 +223,16 @@
                     "modal": {
                         "addText": "Aldoni novan menueron.",
                         "editText": "Redakti menueron.",
+                        "deleteText": "Ĉu vi certas, ke vi volas forigi ĉi tiun menueron?",
                         "choosePage": "Elekti paĝon",
                         "itemName": "Nomo de menuero",
                         "buttons": {
                             "addGlobal": "Aldoni plejekstere",
                             "addChild": "Aldoni ene de menuero",
                             "save": "Konservi",
-                            "cancel": "Nuligi"
+                            "cancel": "Nuligi",
+                            "yes": "Jes",
+                            "no": "Ne"
                         }
                     }
                 }
