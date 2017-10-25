@@ -22,8 +22,9 @@ import { ensureLoggedIn } from 'connect-ensure-login';
 import { promisify } from 'util';
 import crypto from 'crypto';
 import bcrypt from 'bcrypt';
-import metilo from '..';
 import moment from 'moment-timezone';
+
+import metilo from '..';
 
 export default function () {
     const router = express.Router();
