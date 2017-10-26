@@ -194,8 +194,17 @@ export default function () {
     });
 
     router.post('/page-set-urls', ensureLoggedIn(admin), (req, res, next) => {
-        metilo.db.db.prepare('update pages set urls = ? where id = ?')
-            .run(req.body.urls, req.body.id)
+        metilo.db.db.prepare('delete from pages_urls where pageId = ?')
+            .run(req.body.id);
+
+        let redirect = false;
+        for (let url of req.body.urls.split('\n')) {
+            url = url.trim();
+            metilo.db.db.prepare('insert into pages_urls (url, pageId, redirect) values (?, ?, ?)')
+                .run(url, req.body.id, +redirect);
+
+            if (!redirect) { redirect = true; }
+        }
 
         res.send('{}');
     })

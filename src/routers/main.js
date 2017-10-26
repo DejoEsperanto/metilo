@@ -28,24 +28,16 @@ export default function () {
 
     // Frontpage
     router.get(/(\/.*)/, (req, res, next) => {
-        const pages = metilo.db.db.prepare('select id, urls from pages').all();
+        const urls = metilo.db.db.prepare('select * from pages_urls').all();
         let thisPage = null;
-        pageIterator:
-        for (let page of pages) {
-            let pageURLs = page.urls.split('\n');
-            for (let i in pageURLs) {
-                const pageURL = pageURLs[i];
-                const data = {
-                    url: pageURL.trim(),
-                    mainURL: pageURLs[0].trim(),
-                    redirect: i > 0,
-                    pageId: page.id
-                };
-
-                if (req.params[0] === data.url) {
-                    thisPage = data;
-                    break pageIterator;
-                }
+        for (let i in urls) {
+            const url = urls[i];
+            if (req.params[0] === url.url) {
+                url.mainURL = metilo.db.db.prepare('select url from pages_urls where pageId = ? and redirect = 0 order by redirect asc')
+                    .get(url.pageId)
+                    .url;
+                thisPage = url;
+                break;
             }
         }
 

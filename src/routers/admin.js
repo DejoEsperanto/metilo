@@ -317,10 +317,16 @@ export default function () {
                     text: text
                 });
             }
+
+            const urls = metilo.db.db.prepare('select url from pages_urls where pageId = ? order by redirect ASC')
+                .all(page.id);
+
+            const urlsStr = urls.map(x => x.url).join('\n');
+
             jsonData.pages[page.id] = {
                 revisions: revisions,
                 activeRevision: page.activeRevision,
-                urls: page.urls
+                urls: urlsStr
             };
 
             let row = {
