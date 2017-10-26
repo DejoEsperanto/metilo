@@ -155,12 +155,14 @@
                         "editText": "Vælg den revision, som du vil basere din nye revision på. Den aktive revision er valgt som udgangspunkt.",
                         "deleteText": "Er du sikker på, at du vil slette denne side permanent? Du kan også blot gøre den utilgængelig ved at klikke på knappen “Adresser” og eventuelt fjerne den fra menuen.",
                         "revisionText": "Vælg den revision, som skal være aktiv. Du bør kun ændre revision, hvis du allerede har foretaget en forhåndsvisning af sidens indhold og er tilfreds med den.",
+                        "urlsText": "Skriv en liste over alle de adresser, som siden skal kunne findes under—en per linje. Den første linje bliver hovedadressen, og de andre videresender til den første. Du bør ikke fjerne en adresse, men blot lade den blive på listen over videresendelser, ellers risikerer du at indholdet forsvinder for brugere med bogmærker, links fra andre sider eller i resultater i søgemaskiner. Alle adresser skal være relative og starte med en skråstreg. Brug kun tegnene a-z (små bogstaver), tallene 0-9, bindestrege og skråstrege til at separere indholdsniveauer.",
                         "buttons": {
                             "edit": "Rediǵer",
                             "cancel": "Annuller",
                             "yes": "Ja",
                             "no": "Nej",
-                            "update": "Opdater"
+                            "update": "Opdater",
+                            "apply": "Anvend"
                         }
                     }
                 },

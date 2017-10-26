@@ -191,6 +191,13 @@ export default function () {
             .run(req.body.revision, req.body.id)
 
         res.send('{}');
+    });
+
+    router.post('/page-set-urls', ensureLoggedIn(admin), (req, res, next) => {
+        metilo.db.db.prepare('update pages set urls = ? where id = ?')
+            .run(req.body.urls, req.body.id)
+
+        res.send('{}');
     })
 
     router.post('/menu-move-up', ensureLoggedIn(admin), (req, res, next) => {

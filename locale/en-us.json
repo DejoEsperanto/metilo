@@ -155,12 +155,14 @@
                         "editText": "Please select the revision upon which you wish to base your new revision. The active revision is selected as default.",
                         "deleteText": "Are you sure you want to delete this page? You can also just make it unavailable using the button “Addresses” and if needed removing it from the menu.",
                         "revisionText": "Please select the revision to become active. You should change revision if you've already performed a preview and are content with it.",
+                        "urlsText": "Please write a list of all the addresses at which you want the page to be found—one a line. The first line becomes the main address and the others redirect to the first one. You should not remove an address, but rather leave it on the list of redirects; otherwise you risk having the content disappear to users with bookmarks, links on other pages or in results in search engines. All addresses must be relative and begin with a slash. Only use the characters a-z (lowercase), numbers 0-9, dashes and slashes to separate levels of content.",
                         "buttons": {
                             "edit": "Edit",
                             "cancel": "Cancel",
                             "yes": "Yes",
                             "no": "No",
-                            "update": "Update"
+                            "update": "Update",
+                            "apply": "Apply"
                         }
                     }
                 },

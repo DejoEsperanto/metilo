@@ -319,7 +319,8 @@ export default function () {
             }
             jsonData.pages[page.id] = {
                 revisions: revisions,
-                activeRevision: page.activeRevision
+                activeRevision: page.activeRevision,
+                urls: page.urls
             };
 
             let row = {

@@ -20,7 +20,8 @@
 const modals = {
     edit: $('#edit-modal'),
     delete: $('#delete-modal'),
-    revision: $('#revision-modal')
+    revision: $('#revision-modal'),
+    urls: $('#urls-modal')
 };
 
 for (let page of $$('#pages-table>tbody>tr:not(.no-data)')) {
@@ -97,7 +98,26 @@ for (let page of $$('#pages-table>tbody>tr:not(.no-data)')) {
                                 revision: r[0]
                             }).then(() => {
                                 document.location.reload();
-                            })
+                            });
+                        });
+                    });
+
+                    break;
+
+                case 'urls':
+                    on(action, 'click', () => {
+                        const content = modals.urls.cloneNode(true);
+                        $('textarea', content).value = pageData.urls;
+
+                        inputDialog(content).then(r => {
+                            if (!r) { return; }
+
+                            jsonXHR(`${C.baseURL}/xhr/page-set-urls`, {
+                                id: id,
+                                urls: r[0]
+                            }).then(() => {
+                                pageData.urls = r[0];
+                            });
                         });
                     });
             }
