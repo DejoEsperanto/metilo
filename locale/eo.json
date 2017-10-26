@@ -186,10 +186,6 @@
                         {
                             "id": "html",
                             "name": "HTML"
-                        },
-                        {
-                            "id": "form",
-                            "name": "Formularo"
                         }
                     ],
                     "modal": {

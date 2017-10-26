@@ -173,8 +173,6 @@ const insertTypeInner = (el, type, insertNewRow = true, defaultValue = null) => 
                 value: defaultValue || ''
             });
             el.dataset.id = id;
-
-        // TODO: Other types
     }
 
     el.insertBefore(els.header.cloneNode(true), el.firstChild);
