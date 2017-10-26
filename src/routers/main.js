@@ -18,13 +18,57 @@
  */
 
 import express from 'express';
+import path from 'path';
+
+import metilo from '..';
 
 export default function () {
     const router = express.Router();
+    const baseURL = metilo.conf.routers.main;
 
     // Frontpage
-    router.get('/', (req, res) => {
-        res.send('Main site');
+    router.get(/(\/.*)/, (req, res, next) => {
+        const pages = metilo.db.db.prepare('select id, urls from pages').all();
+        let thisPage = null;
+        pageIterator:
+        for (let page of pages) {
+            let pageURLs = page.urls.split('\n');
+            for (let i in pageURLs) {
+                const pageURL = pageURLs[i];
+                const data = {
+                    url: pageURL.trim(),
+                    mainURL: pageURLs[0].trim(),
+                    redirect: i > 0,
+                    pageId: page.id
+                };
+
+                if (req.params[0] === data.url) {
+                    thisPage = data;
+                    break pageIterator;
+                }
+            }
+        }
+
+        if (!thisPage) {
+            next();
+            return;
+        }
+
+        if (thisPage.redirect) {
+            res.redirect(path.join(baseURL, thisPage.mainURL));
+            return;
+        }
+
+        const pageData = metilo.db.db.prepare('select activeRevision from pages where id = ?')
+            .get(thisPage.pageId);
+
+        const pageRevisionData = metilo.db.db.prepare('select title from pages_revisions where id = ?')
+            .get(pageData.activeRevision);
+
+        const pageRevisionContent = metilo.db.db.prepare('select * from pages_revisions_content where revisionId = ?')
+            .all(pageData.activeRevision);
+
+        res.send(pageRevisionData.title);
     });
 
      return router;
