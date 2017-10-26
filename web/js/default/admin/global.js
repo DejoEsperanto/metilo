@@ -28,7 +28,7 @@ const $$ = function (el, parent = document) {
 
 const on = function (el, event, cb) {
     el.addEventListener(event, cb);
-}
+};
 
 const insertAfter = (el, after) => {
     after.parentNode.insertBefore(el, after.nextSibling);

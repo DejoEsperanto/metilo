@@ -21,6 +21,7 @@ import express from 'express';
 import path from 'path';
 
 import metilo from '..';
+import { renderPage } from '../render';
 
 export default function () {
     const router = express.Router();
@@ -60,7 +61,17 @@ export default function () {
         const pageRevisionContent = metilo.db.db.prepare('select * from pages_revisions_content where revisionId = ?')
             .all(pageData.activeRevision);
 
-        res.send(pageRevisionData.title);
+        // Render page
+        const hideLanguage = metilo.locales.main.length < 2;
+
+        renderPage('main/page', req, 'main', {
+            global: {
+                title: pageRevisionData.title,
+                hideLanguage: hideLanguage
+            }
+        })
+            .then(data => res.send(data))
+            .catch(err => next(err));
     });
 
      return router;
