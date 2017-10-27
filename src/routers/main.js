@@ -30,13 +30,14 @@ export default function () {
     // Frontpage
     router.get(/(\/.*)/, (req, res, next) => {
         const url = metilo.db.db.prepare('select * from pages_urls where url = ?')
-            .get(req.params[0]);
+            .get(path.join(baseURL, req.params[0]));
 
         if (!url) {
             next();
             return;
         }
 
+        // Handle URL redirection
         if (url.redirect) {
             const mainURL = url.mainURL = metilo.db.db.prepare('select url from pages_urls where pageId = ? and redirect = 0 order by redirect asc')
                 .get(url.pageId)
@@ -45,6 +46,7 @@ export default function () {
             return;
         }
 
+        // Obtain all page data
         const pageData = metilo.db.db.prepare('select activeRevision from pages where id = ?')
             .get(url.pageId);
 
@@ -70,13 +72,44 @@ export default function () {
             rows[cell.y].totalWidth += cell.width;
         }
 
+        // Obtain menu
+        let menuData = metilo.db.db.prepare('select id, name, url, parent, `index` from menu left join pages_urls on menu.page = pages_urls.pageId and pages_urls.redirect = 0')
+            .all();
+        const menu = [];
+        const parents = {};
+        let i = -1;
+        while (menuData.length) {
+            if (++i >= menuData.length) { i = 0; }
+            const item = menuData[i];
+
+            let parent;
+            if (item.parent === null) {
+                parent = menu;
+            } else if (parents[item.parent]) {
+                parent = parents[item.parent];
+            } else {
+                continue;
+            }
+
+            parent[item.index] = {
+                id: item.id,
+                name: item.name,
+                url: path.join(baseURL, item.url),
+                children: []
+            };
+            parents[item.id] = parent[item.index].children;
+
+            menuData.splice(i, 1);
+        }
+
         // Render page
         const hideLanguage = metilo.locales.main.length < 2;
 
         renderPage('main/page', req, 'main', {
             global: {
                 title: pageRevisionData.title,
-                hideLanguage: hideLanguage
+                hideLanguage: hideLanguage,
+                menu: menu
             },
             main: {
                 rows: rows

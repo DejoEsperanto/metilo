@@ -90,10 +90,33 @@ main {
     margin-left: 32px;
 }
 
-p {
-    font-family: Roboto, sans-serif;
-    font-size: 18px;
-    text-align: justify;
+#menu {
+    margin-bottom: 16px;
+
+    li {
+        display: inline-block;
+        background-color: #ccc;
+        position: relative;
+        padding: 10px 16px;
+
+        &>ul {
+            margin-top: 10px;
+        }
+
+        li {
+            margin-left: -16px;
+            padding-left: 0;
+        }
+
+        &:hover ul {
+            display: block;
+        }
+    }
+
+    ul ul {
+        position: absolute;
+        display: none;
+    }
 }
 
 footer {
@@ -101,4 +124,10 @@ footer {
     padding-top: 16px;
     height: 32px;
     text-align: center;
+}
+
+p {
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    text-align: justify;
 }

@@ -35,6 +35,13 @@
                     {{/locales}}
                 </select>
                 {{/hideLanguage}}
+                <div id="menu">
+                    <ul>
+                        {{#menu}}
+                        {{> main/menu-item}}
+                        {{/menu}}
+                    </ul>
+                </div>
             </header>
             <main>
                 <section id="page-content">{{&main}}</section>
