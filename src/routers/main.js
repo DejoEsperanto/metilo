@@ -29,31 +29,24 @@ export default function () {
 
     // Frontpage
     router.get(/(\/.*)/, (req, res, next) => {
-        const urls = metilo.db.db.prepare('select * from pages_urls').all();
-        let thisPage = null;
-        for (let i in urls) {
-            const url = urls[i];
-            if (req.params[0] === url.url) {
-                url.mainURL = metilo.db.db.prepare('select url from pages_urls where pageId = ? and redirect = 0 order by redirect asc')
-                    .get(url.pageId)
-                    .url;
-                thisPage = url;
-                break;
-            }
-        }
+        const url = metilo.db.db.prepare('select * from pages_urls where url = ?')
+            .get(req.params[0]);
 
-        if (!thisPage) {
+        if (!url) {
             next();
             return;
         }
 
-        if (thisPage.redirect) {
-            res.redirect(path.join(baseURL, thisPage.mainURL));
+        if (url.redirect) {
+            const mainURL = url.mainURL = metilo.db.db.prepare('select url from pages_urls where pageId = ? and redirect = 0 order by redirect asc')
+                .get(url.pageId)
+                .url;
+            res.redirect(path.join(baseURL, mainURL));
             return;
         }
 
         const pageData = metilo.db.db.prepare('select activeRevision from pages where id = ?')
-            .get(thisPage.pageId);
+            .get(url.pageId);
 
         const pageRevisionData = metilo.db.db.prepare('select title from pages_revisions where id = ?')
             .get(pageData.activeRevision);
