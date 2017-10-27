@@ -54,6 +54,18 @@ export default function () {
         const pageRevisionContent = metilo.db.db.prepare('select * from pages_revisions_content where revisionId = ?')
             .all(pageData.activeRevision);
 
+        const rows = [];
+        for (let cell of pageRevisionContent) {
+            if (!rows[cell.y]) {
+                rows[cell.y] = [];
+            }
+            rows[cell.y][cell.x] = {
+                width: cell.width,
+                type: cell.type,
+                value: cell.value.toString() // Right now all types use text values, this may have to be changed later
+            };
+        }
+
         // Render page
         const hideLanguage = metilo.locales.main.length < 2;
 
@@ -61,6 +73,9 @@ export default function () {
             global: {
                 title: pageRevisionData.title,
                 hideLanguage: hideLanguage
+            },
+            main: {
+                rows: rows
             }
         })
             .then(data => res.send(data))
