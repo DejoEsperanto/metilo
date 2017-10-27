@@ -1,7 +1,7 @@
 {{#rows}}
 <div class="page-row">
-    {{#.}}
-    <div class="page-column" data-width="{{width}}">{{&value}}</div>
-    {{/.}}
+    {{#columns}}
+    <div class="page-column grid-col-{{totalWidth}}-{{width}}">{{&value}}</div>
+    {{/columns}}
 </div>
 {{/rows}}

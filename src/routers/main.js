@@ -57,13 +57,17 @@ export default function () {
         const rows = [];
         for (let cell of pageRevisionContent) {
             if (!rows[cell.y]) {
-                rows[cell.y] = [];
+                rows[cell.y] = {
+                    columns: [],
+                    totalWidth: 0
+                };
             }
-            rows[cell.y][cell.x] = {
+            rows[cell.y].columns[cell.x] = {
                 width: cell.width,
                 type: cell.type,
                 value: cell.value.toString() // Right now all types use text values, this may have to be changed later
             };
+            rows[cell.y].totalWidth += cell.width;
         }
 
         // Render page
