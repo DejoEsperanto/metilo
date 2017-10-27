@@ -31,48 +31,65 @@ els = Object.assign(els, {
 
 // Display menu
 {
-    let menu = jsonData.menu.slice(0);
+    let menuData = jsonData.menu.slice(0);
+    const menu = [];
+    const parents = {};
     let i = -1;
-    while (menu.length) {
-        if (++i >= menu.length) { i = 0; }
-        const item = menu[i];
+    while (menuData.length) {
+        if (++i >= menuData.length) { i = 0; }
+        const item = menuData[i];
 
-        let parent = $(`[data-id="${item.parent}"]>ul`, els.menuUl);
-        if (item.parent && !parent) { continue; }
-        if (!parent) { parent = els.menuUl; }
-
-        let page;
-        for (let p of jsonData.pages) {
-            if (p.id === item.page) {
-                page = p;
-                break;
-            }
-        }
-
-        const el = document.createElement('li');
-        el.dataset.id = item.id;
-        el.dataset.page = item.page;
-        el.dataset.name = item.name;
-
-        const span = document.createElement('span');
-        span.innerText = `${item.name} (${page.name})`;
-        el.appendChild(span);
-
-        el.appendChild(els.menuItemActions.cloneNode(true));
-
-        const ul = document.createElement('ul');
-        ul.classList.add('ul');
-        el.appendChild(ul);
-
-        let children = parent.children;
-        if (children.length > item.index) {
-            parent.insertBefore(el, children[item.index]);
+        let parent;
+        if (item.parent === null) {
+            parent = menu;
+        } else if (parents[item.parent]) {
+            parent = parents[item.parent];
         } else {
-            parent.appendChild(el);
+            continue;
         }
 
-        menu.splice(i, 1);
+        parent[item.index] = {
+            id: item.id,
+            name: item.name,
+            page: item.page,
+            children: []
+        };
+        parents[item.id] = parent[item.index].children;
+
+        menuData.splice(i, 1);
     }
+
+    const handleMenuItems = (items, parent) => {
+        for (let item of items) {
+            let page;
+            for (let p of jsonData.pages) {
+                if (p.id === item.page) {
+                    page = p;
+                    break;
+                }
+            }
+
+            const el = document.createElement('li');
+            el.dataset.id = item.id;
+            el.dataset.page = item.page;
+            el.dataset.name = item.name;
+
+            const span = document.createElement('span');
+            span.innerText = `${item.name} (${page.name})`;
+            el.appendChild(span);
+
+            el.appendChild(els.menuItemActions.cloneNode(true));
+
+            const ul = document.createElement('ul');
+            ul.classList.add('ul');
+            el.appendChild(ul);
+
+            parent.appendChild(el);
+
+            handleMenuItems(item.children, ul);
+        }
+    };
+    handleMenuItems(menu, els.menuUl);
 }
 
 on(els.addButton, 'click', () => {
