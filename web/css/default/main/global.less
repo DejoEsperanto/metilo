@@ -64,21 +64,36 @@ main {
 
 .page-row {
     display: flex;
+    flex-wrap: wrap;
 
     &:not(:first-child) {
         margin-top: 16px;
     }
 }
 
-.grid-col-1-1, .grid-col-2-2 {
+.page-column {
+    min-width: 400px;
+}
+
+.grid-col-1-1 {
     width: 100%;
 }
 
+.grid-col-2 {
+    margin-left: -32px;
+}
 .grid-col-2-1 {
-    width: calc(~"50% - 16px");
-    &:not(:first-child) {
-        margin-left: 32px;
-    }
+    width: calc(~"50% - 32px");
+    margin-left: 32px;
+}
+.grid-col-2-2 {
+    margin-left: 32px;
+}
+
+p {
+    font-family: Roboto, sans-serif;
+    font-size: 18px;
+    text-align: justify;
 }
 
 footer {
