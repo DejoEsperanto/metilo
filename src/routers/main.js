@@ -94,7 +94,7 @@ export default function () {
             parent[item.index] = {
                 id: item.id,
                 name: item.name,
-                url: path.join(baseURL, item.url),
+                url: path.join(baseURL, item.url || ''),
                 children: []
             };
             parents[item.id] = parent[item.index].children;
