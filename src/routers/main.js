@@ -42,7 +42,7 @@ export default function () {
             const mainURL = url.mainURL = metilo.db.db.prepare('select url from pages_urls where pageId = ? and redirect = 0 order by redirect asc')
                 .get(url.pageId)
                 .url;
-            res.redirect(path.join(baseURL, mainURL));
+            res.redirect(301, path.join(baseURL, mainURL));
             return;
         }
 
