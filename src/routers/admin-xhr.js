@@ -171,14 +171,6 @@ export default function () {
         res.send('{}');
     });
 
-    router.post('/menu-add', ensureLoggedIn(admin), (req, res, next) => {
-        const id = metilo.db.db.prepare('insert into menu (page, name, parent, `index`) values (?, ?, ?, ?)')
-            .run(req.body.page, req.body.name, req.body.parent, req.body.index)
-            .lastInsertROWID;
-
-        res.send(JSON.stringify({ id: id }));
-    });
-
     router.post('/page-delete', ensureLoggedIn(admin), (req, res, next) => {
         metilo.db.db.prepare('delete from pages where id = ?')  
             .run(req.body.id);
@@ -207,7 +199,15 @@ export default function () {
         }
 
         res.send('{}');
-    })
+    });
+
+    router.post('/menu-add', ensureLoggedIn(admin), (req, res, next) => {
+        const id = metilo.db.db.prepare('insert into menu (page, name, parent, `index`) values (?, ?, ?, ?)')
+            .run(req.body.page, req.body.name, req.body.parent, req.body.index)
+            .lastInsertROWID;
+
+        res.send(JSON.stringify({ id: id }));
+    });
 
     router.post('/menu-move-up', ensureLoggedIn(admin), (req, res, next) => {
         const data = metilo.db.db.prepare('select `parent`, `index` from menu where id = ?')

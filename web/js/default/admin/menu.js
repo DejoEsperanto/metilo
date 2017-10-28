@@ -108,7 +108,7 @@ on(els.addButton, 'click', () => {
             };
 
             if (r.closeValue === 'add-global') {
-                data.index = jsonData.menu.length;
+                data.index = els.menuUl.children.length;
                 insertFn();
             } else if (r.closeValue === 'add-child') {
                 els.cancelParentButton.style.display = '';
