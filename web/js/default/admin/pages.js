@@ -125,7 +125,7 @@ for (let page of $$('#pages-table>tbody>tr:not(.no-data)')) {
                         inputDialog(content).then(r => {
                             if (!r) { return; }
 
-                            document.location.href = `${C.baseURL}/${jsonData.previewURL}/${r[0]}`;
+                            window.open(`${C.baseURL}/${jsonData.previewURL}/${r[0]}`);
                         });
                     });
 
