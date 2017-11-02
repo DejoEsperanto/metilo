@@ -155,6 +155,7 @@
                         "editText": "Bonvolu elekti la revizion surbaze de kiu vi volas fari novan revizion. La defaŭlte elektita revizio estas la nune aktiva.",
                         "deleteText": "Ĉu vi certas, ke vi volas forigi ĉi tiun paĝon? Vi ankaŭ simple povas nealirebligi ĝin pere de la butono “Adresoj” kaj eventuale forigi ĝin de la menuo.",
                         "revisionText": "Bonvolu elekti la revizion kiu estu aktiva. Estas konsilinde nur ŝanĝi revizion se oni jam faris antaŭvidon de la paĝo kaj kontentas pri ĝi.",
+                        "previewText": "Bonvolu elekti la revizion, kiun vi volas antaŭvidi.",
                         "urlsText": "Bonvolu skribi liston de ĉiuj adresoj ĉe kiuj troviĝu la paĝo—unu po linio. La unua linio iĝos la ĉefadreso kaj la aliaj alidirektos al la unua. Oni devus ne forigi adreson, sed anstataŭe lasu ĝin en la listo de alidirektoj. Alie oni riskus malaperon de la enhavo al uzantoj kun legosignoj, ligiloj en aliaj paĝoj aŭ rezultoj en serĉiloj. Ĉiuj adresoj estu relativaj kaj komencu kun oblikvo. Uzu nur la bazlatinajn literojn a-z (minusklaj literoj), nombrojn 0-9, streketojn kaj oblikvojn por apartigi nivelojn de enhavo.",
                         "buttons": {
                             "edit": "Redakti",
@@ -162,7 +163,8 @@
                             "yes": "Jes",
                             "no": "Ne",
                             "update": "Ĝisdatigi",
-                            "apply": "Apliki"
+                            "apply": "Apliki",
+                            "preview": "Antaŭvidi"
                         }
                     }
                 },
@@ -208,6 +210,12 @@
                     "title": "Redakti paĝon",
                     "pageHeader": "Redakti paĝon"
                 },
+                "admin/preview-page": {
+                    "boxHeader": "Atenton!",
+                    "notice": "Ĉi tio estas nur antaŭvido. Por videbligi ĉi tiun paĝon en la retejon mem, vi devas unue elekti ĉi tiun revizion n-ro {{revisionId}} kiel aktivan en la stirpanelo.",
+                    "closeText": "Simple fermu ĉi tiun langeton/fenestron kun la antaŭvido por reiri.",
+                    "closeBox": "Fermi"
+                },
                 "admin/menu": {
                     "title": "Menuo",
                     "menuHeader": "Menuo",
@@ -250,6 +258,7 @@
                     "contentPages": "paghoj",
                     "contentNewPage": "paghoj/nova",
                     "contentEditPage": "paghoj/redakti",
+                    "contentPreviewPage": "paghoj/vidi",
                     "users": "uzantoj",
                     "sql": "sql",
                     "newUser": "uzantoj/nova",

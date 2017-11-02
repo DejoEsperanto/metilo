@@ -20,6 +20,7 @@
         along with Metilo. If not, see <http://www.gnu.org/licenses/>.
         -->
         <title>{{title}} | {{siteName}}</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
         <link rel="stylesheet" href="/assets/css/main/global.css">
         {{#includeStyles}}
         <link rel="stylesheet" href="{{&.}}">
@@ -46,6 +47,13 @@
             <main>
                 <section id="page-content">{{&main}}</section>
             </main>
+            {{#showPreviewText}}
+            <div id="preview-box">
+                <div><b>{{boxHeader}}</b><i title="{{closeBox}}" class="material-icons">close</i></div>
+                <p>{{notice}}</p>
+                <p>{{closeText}}</p>
+            </div>
+            {{/showPreviewText}}
         </div>
         <footer>{{&copyright.local}}—{{&copyright.metilo}}</footer>
         <script src="/assets/module/js.cookie.js"></script>

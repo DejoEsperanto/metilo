@@ -155,6 +155,7 @@
                         "editText": "Vælg den revision, som du vil basere din nye revision på. Den aktive revision er valgt som udgangspunkt.",
                         "deleteText": "Er du sikker på, at du vil slette denne side permanent? Du kan også blot gøre den utilgængelig ved at klikke på knappen “Adresser” og eventuelt fjerne den fra menuen.",
                         "revisionText": "Vælg den revision, som skal være aktiv. Du bør kun ændre revision, hvis du allerede har foretaget en forhåndsvisning af sidens indhold og er tilfreds med den.",
+                        "previewText": "Vælg den revision, som du vil foretåge en forhåndsvisning på.",
                         "urlsText": "Skriv en liste over alle de adresser, som siden skal kunne findes under—en per linje. Den første linje bliver hovedadressen, og de andre videresender til den første. Du bør ikke fjerne en adresse, men blot lade den blive på listen over videresendelser, ellers risikerer du at indholdet forsvinder for brugere med bogmærker, links fra andre sider eller i resultater i søgemaskiner. Alle adresser skal være relative og starte med en skråstreg. Brug kun tegnene a-z (små bogstaver), tallene 0-9, bindestrege og skråstrege til at separere indholdsniveauer.",
                         "buttons": {
                             "edit": "Rediǵer",
@@ -162,7 +163,8 @@
                             "yes": "Ja",
                             "no": "Nej",
                             "update": "Opdater",
-                            "apply": "Anvend"
+                            "apply": "Anvend",
+                            "preview": "Forhåndsvisning"
                         }
                     }
                 },
@@ -208,6 +210,12 @@
                     "title": "Redigér side",
                     "pageHeader": "Redigér side"
                 },
+                "admin/preview-page": {
+                    "boxHeader": "Bemærk!",
+                    "notice": "Dette er blot en forhåndsvisning. Du skal markere denne revision #{{revisionId}} som aktiv i kontrolpanelet, før den bliver vist på selve siden.",
+                    "closeText": "Bare luk denne fane eller dette vindue med forhåndsvisningen for at gå tilbage.",
+                    "closeBox": "Luk"
+                },
                 "admin/menu": {
                     "title": "Menu",
                     "menuHeader": "Menu",
@@ -250,6 +258,7 @@
                     "contentPages": "sider",
                     "contentNewPage": "sider/ny",
                     "contentEditPage": "sider/rediger",
+                    "contentPreviewPage": "sider/vis",
                     "users": "brugere",
                     "sql": "sql",
                     "newUser": "brugere/ny",

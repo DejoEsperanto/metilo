@@ -50,7 +50,8 @@ const htmlUnescape = str => {
 
 // Elements
 let els = {
-    selectLanguage: $('#select-language')
+    selectLanguage: $('#select-language'),
+    previewBox: $('#preview-box')
 };
 
 // Constants
@@ -64,4 +65,11 @@ if (els.selectLanguage) {
         Cookies.set(C.subsite + 'Locale', els.selectLanguage.value, { expires: 365 });
         location.reload();
     });
+}
+
+// Preview box
+if (els.previewBox) {
+    on($('i', els.previewBox), 'click', () => {
+        els.previewBox.style.display = 'none';
+    })
 }

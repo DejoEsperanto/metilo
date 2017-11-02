@@ -28,7 +28,7 @@ import crypto from 'crypto';
 import bcrypt from 'bcrypt';
 import moment from 'moment-timezone';
 
-import { renderPage as _renderPage } from '../render';
+import { renderPage as _renderPage, getMainPageFormat } from '../render';
 import metilo from '..';
 import User from '../db/user';
 import { adminXHR } from '.';
@@ -266,6 +266,35 @@ export default function () {
             .catch(err => next(err));
     });
 
+    // Preview page
+    router.get(`/${urls.contentPreviewPage}/:revision`, ensureLoggedIn(admin), (req, res, next) => {
+        const locale = metilo.getLocaleTheme(req.locale.admin);
+
+        // Obtain all page data
+        const pageRevisionData = metilo.db.db.prepare('select title from pages_revisions where id = ?')
+            .get(req.params.revision);
+
+        const pageRevisionContent = metilo.db.db.prepare('select * from pages_revisions_content where revisionId = ?')
+            .all(req.params.revision);
+
+        const format = mergeOptions(
+            getMainPageFormat(pageRevisionData.title, pageRevisionContent),
+            {
+                global: locale.pages['admin/preview-page']
+            },
+            {
+                global: {
+                    showPreviewText: true
+                }
+            }
+        );
+
+        // Intentional underscore
+        _renderPage('main/page', req, 'main', format)
+            .then(data => res.send(data))
+            .catch(err => next(err));
+    });
+
     // Pages page
     router.get(`/${urls.contentPages}`, ensureLoggedIn(admin), (req, res, next) => {
         const localeMain = metilo.getLocale(req.locale.admin);
@@ -275,6 +304,7 @@ export default function () {
         const data = [];
         const jsonData = {
             editURL: locale.urls.admin.contentEditPage,
+            previewURL: locale.urls.admin.contentPreviewPage,
             pages: {}
         };
         const pages = metilo.db.db.prepare('select * from `pages` order by `name`').all();

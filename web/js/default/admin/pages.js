@@ -21,6 +21,7 @@ const modals = {
     edit: $('#edit-modal'),
     delete: $('#delete-modal'),
     revision: $('#revision-modal'),
+    preview: $('#preview-modal'),
     urls: $('#urls-modal')
 };
 
@@ -99,6 +100,32 @@ for (let page of $$('#pages-table>tbody>tr:not(.no-data)')) {
                             }).then(() => {
                                 document.location.reload();
                             });
+                        });
+                    });
+
+                    break;
+
+                case 'preview':
+                    on(action, 'click', () => {
+                        const content = modals.preview.cloneNode(true);
+                        const select = $('select', content);
+
+                        for (let revision of pageData.revisions) {
+                            const option = document.createElement('option');
+                            option.value = revision.id;
+                            option.innerText = revision.text;
+
+                            if (revision.id === pageData.activeRevision) {
+                                option.setAttribute('selected', '')
+                            }
+
+                            select.appendChild(option);
+                        }
+
+                        inputDialog(content).then(r => {
+                            if (!r) { return; }
+
+                            document.location.href = `${C.baseURL}/${jsonData.previewURL}/${r[0]}`;
                         });
                     });
 

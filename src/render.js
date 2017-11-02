@@ -20,6 +20,7 @@
 import mergeOptions from 'merge-options';
 import { promisify } from 'util';
 import Mustache from 'mustache';
+import path from 'path';
 import metilo from '.';
 
 /**
@@ -119,4 +120,65 @@ export function formatRecursive (format, view) {
     }
 
     return out;
+}
+
+export function getMainPageFormat (title, pageRevisionContent) {
+    const rows = [];
+    for (let cell of pageRevisionContent) {
+        if (!rows[cell.y]) {
+            rows[cell.y] = {
+                columns: [],
+                totalWidth: 0
+            };
+        }
+        rows[cell.y].columns[cell.x] = {
+            width: cell.width,
+            type: cell.type,
+            value: cell.value.toString() // Right now all types use text values, this may have to be changed later
+        };
+        rows[cell.y].totalWidth += cell.width;
+    }
+
+    // Obtain menu
+    let menuData = metilo.db.db.prepare('select id, name, url, parent, `index` from menu left join pages_urls on menu.page = pages_urls.pageId and pages_urls.redirect = 0')
+        .all();
+    const menu = [];
+    const parents = {};
+    let i = -1;
+    while (menuData.length) {
+        if (++i >= menuData.length) { i = 0; }
+        const item = menuData[i];
+
+        let parent;
+        if (item.parent === null) {
+            parent = menu;
+        } else if (parents[item.parent]) {
+            parent = parents[item.parent];
+        } else {
+            continue;
+        }
+
+        parent[item.index] = {
+            id: item.id,
+            name: item.name,
+            url: path.join(metilo.conf.routers.main, item.url || ''),
+            children: []
+        };
+        parents[item.id] = parent[item.index].children;
+
+        menuData.splice(i, 1);
+    }
+
+    const hideLanguage = metilo.locales.main.length < 2;
+
+    return {
+        global: {
+            title: title,
+            hideLanguage: hideLanguage,
+            menu: menu
+        },
+        main: {
+            rows: rows
+        }
+    };
 }
