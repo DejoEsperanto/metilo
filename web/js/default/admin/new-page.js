@@ -25,6 +25,7 @@ els = Object.assign(els, {
     removeConfirm: $('#remove-confirm-template'),
     doubleConfirm: $('#double-confirm-template'),
     saveButton:    $('#page-save'),
+    previewButton: $('#page-preview'),
     pageName:      $('#page-name'),
     pageTitle:     $('#page-title'),
     pageChanges:   $('#page-changes')
@@ -203,20 +204,8 @@ on(els.contents, 'change', e => {
     handleSelectChange(el);
 });
 
-on(els.saveButton, 'click', e => {
-    doBeforeUnload = true;
-
-    // TODO: Verify that name isn't taken
-
-    const data = {
-        name:    els.pageName.value,
-        title:   els.pageTitle.value,
-        changes: els.pageChanges.value,
-        content: []
-    };
-
-    if (!data.name || data.name.length === 0) { return; }
-
+const getContent = () => {
+    const content = [];
     let x, y = -1;
     for (let row of els.contents.children) {
         if (!row.classList.contains('has-el')) { continue; }
@@ -249,7 +238,7 @@ on(els.saveButton, 'click', e => {
                 // TODO: Other types
             }
 
-            data.content.push({
+            content.push({
                 x: x,
                 width: width,
                 y: y,
@@ -258,6 +247,23 @@ on(els.saveButton, 'click', e => {
             });
         }
     }
+
+    return content;
+};
+
+on(els.saveButton, 'click', e => {
+    doBeforeUnload = true;
+
+    // TODO: Verify that name isn't taken
+
+    const data = {
+        name:    els.pageName.value,
+        title:   els.pageTitle.value,
+        changes: els.pageChanges.value,
+        content: getContent()
+    };
+
+    if (!data.name || data.name.length === 0) { return; }
 
     if (jsonData.edit) {
         data.id = jsonData.pageId;
@@ -273,6 +279,15 @@ on(els.saveButton, 'click', e => {
                 document.location.href = pageOverviewURL;
             });
     }
+});
+
+on(els.previewButton, 'click', () => {
+    const data = {
+        title:   els.pageTitle.value,
+        content: getContent()
+    };
+
+    windowPOST(`${C.baseURL}/${jsonData.previewURL}`, data);
 });
 
 on(window, 'beforeunload', e => {

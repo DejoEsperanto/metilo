@@ -34,7 +34,7 @@ const insertAfter = (el, after) => {
     after.parentNode.insertBefore(el, after.nextSibling);
 };
 
-const jsonXHR = (url, params, json = false) =>  {
+const jsonXHR = (url, params, json = false) => {
     return new Promise((resolve, reject) => {
         const req = new XMLHttpRequest();
         req.open('POST', url, true);
@@ -66,6 +66,49 @@ const jsonXHR = (url, params, json = false) =>  {
             req.send(paramsStr);
         }
     });
+};
+
+const recursiveInput = (path = [], data) => {
+    let inputs = [];
+    for (let key in data) {
+        const thisPath = path.concat([key]);
+        if (data[key] instanceof Object) {
+            inputs = inputs.concat(recursiveInput(thisPath, data[key]));
+        } else {
+            let name = '';
+            for (let i = thisPath.length - 1; i >= 0; i--) {
+                if (i === 0) {
+                    name = thisPath[i] + name;
+                } else {
+                    name = `[${thisPath[i]}]` + name;
+                }
+            }
+
+            const input = document.createElement('input');
+            input.type = 'hidden';
+            input.name = name;
+            input.value = data[key];
+            inputs.push(input);
+        }
+    }
+    return inputs;
+};
+
+const windowPOST = (url, params, target = '_blank') => {
+    const form = document.createElement('form');
+    form.action = url;
+    form.target = target;
+    form.method = 'POST';
+    form.style.display = 'none';
+    document.body.appendChild(form);
+
+    const inputs = recursiveInput([], params);
+    for (let input of inputs) {
+        form.appendChild(input);
+    }
+
+    form.submit();
+    form.remove();
 };
 
 const confirmDialog = text => {

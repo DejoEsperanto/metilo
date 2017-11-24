@@ -201,7 +201,9 @@ export default function () {
         renderPage('admin/new-page', req, 'admin', {
             main: {
                 edit: false,
-                jsonData: '{}'
+                jsonData: JSON.stringify({
+                    previewURL: locale.urls.admin.contentPreviewPage
+                })
             },
             global: {
                 includeStyles: '/assets/css/admin/new-page.css',
@@ -241,7 +243,8 @@ export default function () {
             title: revisionData.title,
             edit: true,
             content: revisionContent,
-            pageId: pageData.id
+            pageId: pageData.id,
+            previewURL: locale.urls.admin.contentPreviewPage
         };
 
         const format = {
@@ -277,8 +280,33 @@ export default function () {
         const pageRevisionContent = metilo.db.db.prepare('select * from pages_revisions_content where revisionId = ?')
             .all(req.params.revision);
 
+        console.log(pageRevisionContent);
+
         const format = mergeOptions(
             getMainPageFormat(pageRevisionData.title, pageRevisionContent),
+            {
+                global: locale.pages['admin/preview-page']
+            },
+            {
+                global: {
+                    showPreviewText: true
+                }
+            }
+        );
+
+        // Intentional underscore
+        _renderPage('main/page', req, 'main', format)
+            .then(data => res.send(data))
+            .catch(err => next(err));
+    });
+
+    router.post(`/${urls.contentPreviewPage}`, ensureLoggedIn(admin), (req, res, next) => {
+        const locale = metilo.getLocaleTheme(req.locale.admin);
+
+        console.log(req.body.content);
+
+        const format = mergeOptions(
+            getMainPageFormat(req.body.title, req.body.content),
             {
                 global: locale.pages['admin/preview-page']
             },

@@ -202,7 +202,8 @@
                         "name": "Sidenavn",
                         "title": "Sidetitel",
                         "changes": "Ændringer i denne revision",
-                        "save": "Gem"
+                        "save": "Gem",
+                        "preview": "Forhåndsvisning"
                     },
                     "beforeUnload": "Dine ændringer er ikke blevet gemt, er du sikker på, at du vil forlade siden?"
                 },
