@@ -280,8 +280,6 @@ export default function () {
         const pageRevisionContent = metilo.db.db.prepare('select * from pages_revisions_content where revisionId = ?')
             .all(req.params.revision);
 
-        console.log(pageRevisionContent);
-
         const format = mergeOptions(
             getMainPageFormat(pageRevisionData.title, pageRevisionContent),
             {
@@ -302,8 +300,6 @@ export default function () {
 
     router.post(`/${urls.contentPreviewPage}`, ensureLoggedIn(admin), (req, res, next) => {
         const locale = metilo.getLocaleTheme(req.locale.admin);
-
-        console.log(req.body.content);
 
         const format = mergeOptions(
             getMainPageFormat(req.body.title, req.body.content),
