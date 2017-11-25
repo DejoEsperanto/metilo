@@ -30,6 +30,8 @@ export default function () {
         router.use('/' + folder, express.static(path.join(base, folder, metilo.conf.content.theme)));
     }
 
+    router.use('/img', express.static(metilo.conf.imgDir));
+
     // Static files
     router.get('/module/js.cookie.js', (req, res) => {
         res.sendFile(path.join(__dirname, '../../node_modules/js-cookie/src/js.cookie.js'));
@@ -37,10 +39,6 @@ export default function () {
 
     router.get('/module/picomodal.js', (req, res) => {
         res.sendFile(path.join(__dirname, '../../node_modules/picomodal/src/picoModal.js'));
-    });
-
-    router.get('/img/logo.svg', (req, res) => {
-        res.sendFile(metilo.conf.logoPath);
     });
 
     return router;

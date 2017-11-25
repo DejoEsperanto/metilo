@@ -132,11 +132,11 @@ export function getMainPageFormat (title, pageRevisionContent) {
             };
         }
         rows[cell.y].columns[cell.x] = {
-            width: cell.width,
+            width: +cell.width,
             type: cell.type,
             value: cell.value.toString() // Right now all types use text values, this may have to be changed later
         };
-        rows[cell.y].totalWidth += cell.width;
+        rows[cell.y].totalWidth += +cell.width;
     }
 
     // Obtain menu

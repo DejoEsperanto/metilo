@@ -35,7 +35,7 @@ export default {
 
     // The following entry must be present in your own config file to override the value
     baseDir: path.join(__dirname, '../data'),
-    logoPath: path.join(__dirname, 'logo.svg'),
+    imgDir: path.join(__dirname, '../img'),
 
     // The following settings may be changed if needed
     loginLimit: {
