@@ -21,6 +21,10 @@
 
 @import '../reset.less';
 
+@nav-bg: #00962c;
+@nav-color: #ddd;
+@font: Roboto, sans-serif;
+
 body {
     min-height: 100vh;
     display: flex;
@@ -90,14 +94,32 @@ main {
     margin-left: 32px;
 }
 
-#menu {
+nav {
+    text-align: center;
+    width: 100%;
     margin-bottom: 16px;
+    background-color: @nav-bg;
+    font-family: @font;
+
+    &>ul {
+        padding: 16px 0;
+    }
 
     li {
         display: inline-block;
-        background-color: #ccc;
         position: relative;
-        padding: 10px 16px;
+        padding: 10px 24px;
+        text-align: left;
+
+        &>a {
+            color: @nav-color;
+            text-decoration: none;
+            font-weight: bold;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
 
         &>ul {
             margin-top: 10px;
@@ -133,16 +155,26 @@ footer {
     padding-top: 16px;
     height: 32px;
     text-align: center;
+    font-family: @font;
 }
 
 p, b {
-    font-family: Roboto, sans-serif;
+    font-family: @font;
     font-size: 18px;
     text-align: justify;
 }
 
 b {
     font-weight: bold;
+}
+
+#logo-box {
+    display: block;
+    margin: 16px;
+    background: url('../../img/logo.svg') no-repeat;
+    background-size: contain;
+    width: calc(~"100% - 160px");
+    height: 80px;
 }
 
 #preview-box {

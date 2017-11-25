@@ -39,5 +39,9 @@ export default function () {
         res.sendFile(path.join(__dirname, '../../node_modules/picomodal/src/picoModal.js'));
     });
 
+    router.get('/img/logo.svg', (req, res) => {
+        res.sendFile(metilo.conf.logoPath);
+    });
+
     return router;
 };

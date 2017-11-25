@@ -29,19 +29,24 @@
     <body data-subsite="{{subsite}}">
         <div id="main-wrapper">
             <header>
-                {{^hideLanguage}}
-                <select id="select-language">
-                    {{#locales}}
-                    <option value="{{code}}" {{#active}}selected{{/active}}>{{name}}</option>
-                    {{/locales}}
-                </select>
-                {{/hideLanguage}}
-                <div id="menu">
-                    <ul>
-                        {{#menu}}
-                        {{> main/menu-item}}
-                        {{/menu}}
-                    </ul>
+                <div>
+                    <a id="logo-box" href="{{&subsiteURL}}"></a>
+                </div>
+                <div>
+                    {{^hideLanguage}}
+                    <select id="select-language">
+                        {{#locales}}
+                        <option value="{{code}}" {{#active}}selected{{/active}}>{{name}}</option>
+                        {{/locales}}
+                    </select>
+                    {{/hideLanguage}}
+                    <nav>
+                        <ul>
+                            {{#menu}}
+                            {{> main/menu-item}}
+                            {{/menu}}
+                        </ul>
+                    </nav>
                 </div>
             </header>
             <main>
