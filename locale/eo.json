@@ -213,7 +213,7 @@
                 },
                 "admin/preview-page": {
                     "boxHeader": "Atenton!",
-                    "notice": "Ĉi tio estas nur antaŭvido. Por videbligi ĉi tiun paĝon en la retejon mem, vi devas unue elekti ĉi tiun revizion n-ro {{revisionId}} kiel aktivan en la stirpanelo.",
+                    "notice": "Ĉi tio estas nur antaŭvido. Por videbligi ĉi tiun paĝon en la retejon mem, vi devas unue elekti ĉi tiun revizion kiel aktivan en la stirpanelo.",
                     "closeText": "Simple fermu ĉi tiun langeton/fenestron kun la antaŭvido por reiri.",
                     "closeBox": "Fermi"
                 },

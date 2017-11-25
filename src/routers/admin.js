@@ -202,7 +202,7 @@ export default function () {
             main: {
                 edit: false,
                 jsonData: JSON.stringify({
-                    previewURL: locale.urls.admin.contentPreviewPage
+                    previewURL: urls.contentPreviewPage
                 })
             },
             global: {
@@ -244,7 +244,7 @@ export default function () {
             edit: true,
             content: revisionContent,
             pageId: pageData.id,
-            previewURL: locale.urls.admin.contentPreviewPage
+            previewURL: urls.contentPreviewPage
         };
 
         const format = {
@@ -302,7 +302,7 @@ export default function () {
         const locale = metilo.getLocaleTheme(req.locale.admin);
 
         const format = mergeOptions(
-            getMainPageFormat(req.body.title, req.body.content),
+            getMainPageFormat(req.body.title, req.body.content || []),
             {
                 global: locale.pages['admin/preview-page']
             },
@@ -327,8 +327,8 @@ export default function () {
 
         const data = [];
         const jsonData = {
-            editURL: locale.urls.admin.contentEditPage,
-            previewURL: locale.urls.admin.contentPreviewPage,
+            editURL: urls.contentEditPage,
+            previewURL: urls.contentPreviewPage,
             pages: {}
         };
         const pages = metilo.db.db.prepare('select * from `pages` order by `name`').all();

@@ -213,7 +213,7 @@
                 },
                 "admin/preview-page": {
                     "boxHeader": "Bemærk!",
-                    "notice": "Dette er blot en forhåndsvisning. Du skal markere denne revision #{{revisionId}} som aktiv i kontrolpanelet, før den bliver vist på selve siden.",
+                    "notice": "Dette er blot en forhåndsvisning. Du skal markere denne revision som aktiv i kontrolpanelet, før den bliver vist på selve siden.",
                     "closeText": "Bare luk denne fane eller dette vindue med forhåndsvisningen for at gå tilbage.",
                     "closeBox": "Luk"
                 },

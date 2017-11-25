@@ -213,7 +213,7 @@
                 },
                 "admin/preview-page": {
                     "boxHeader": "Alert!",
-                    "notice": "This is merely a preview. You have to select this revision #{{revisionId}} as active in the dashboard before it'll be shown on the site itself.",
+                    "notice": "This is merely a preview. You have to select this revision as active in the dashboard before it'll be shown on the site itself.",
                     "closeText": "Simply close this tab/window with the preview to go back.",
                     "closeBox": "Close"
                 },
