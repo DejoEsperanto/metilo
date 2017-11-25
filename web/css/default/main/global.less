@@ -101,6 +101,16 @@ nav {
     background-color: @nav-bg;
     font-family: @font;
 
+    &>ul>li>ul {
+        &>li:first-child {
+            padding-top: 32px;
+        }
+
+        li {
+            padding: 16px;
+        }
+    }
+
     &>ul {
         padding: 16px 0;
     }
@@ -126,6 +136,7 @@ nav {
 
             li {
                 width: 100%;
+                background-color: @nav-bg;
             }
         }
 
