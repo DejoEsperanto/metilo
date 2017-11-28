@@ -67,6 +67,34 @@ main {
             }
         }
     }
+
+    ul {
+        margin: 16px 0;
+        font-family: @font;
+        font-size: 18px;
+        text-align: justify;
+        line-height: 24px;
+
+        &>li {
+            &.ql-indent-1 {
+                padding-left: 2.5em;    
+            }
+
+            &.ql-indent-2 {
+                padding-left: 5em;    
+            }
+
+            &:before {
+                content: '\2022';
+                margin-left: -1.5em;
+                margin-right: .3em;
+                text-align: right;
+                display: inline-block;
+                white-space: nowrap;
+                width: 1.2em;
+            }
+        }
+    }
 }
 
 #page-content {
@@ -271,5 +299,14 @@ a {
 
     &:hover {
         text-decoration: none;
+    }
+}
+
+ul.ul {
+    list-style: disc;
+    margin: 16px 0;
+
+    &>li>.ul {
+        margin-left: 24px;
     }
 }
