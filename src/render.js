@@ -122,7 +122,7 @@ export function formatRecursive (format, view) {
     return out;
 }
 
-export function getMainPageFormat (title, pageRevisionContent) {
+export function getMainPageFormat (title, pageRevisionContent, url = null) {
     const rows = [];
     for (let cell of pageRevisionContent) {
         if (!rows[cell.y]) {
@@ -142,9 +142,12 @@ export function getMainPageFormat (title, pageRevisionContent) {
     // Obtain menu
     let menuData = metilo.db.db.prepare('select id, name, url, parent, `index` from menu left join pages_urls on menu.page = pages_urls.pageId and pages_urls.redirect = 0')
         .all();
+
     const menu = [];
     const parents = {};
     let i = -1;
+    let hasSubmenu = false;
+    let submenu = [];
     while (menuData.length) {
         if (++i >= menuData.length) { i = 0; }
         const item = menuData[i];
@@ -166,7 +169,15 @@ export function getMainPageFormat (title, pageRevisionContent) {
         };
         parents[item.id] = parent[item.index].children;
 
+        if (item.url === url) {
+            submenu = parents[item.id];
+        }
+
         menuData.splice(i, 1);
+    }
+
+    if (submenu.length) {
+        hasSubmenu = true;
     }
 
     const hideLanguage = metilo.locales.main.length < 2;
@@ -175,7 +186,9 @@ export function getMainPageFormat (title, pageRevisionContent) {
         global: {
             title: title,
             hideLanguage: hideLanguage,
-            menu: menu
+            menu: menu,
+            hasSubmenu: hasSubmenu,
+            submenu: submenu
         },
         main: {
             rows: rows

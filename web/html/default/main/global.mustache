@@ -43,13 +43,22 @@
                         {{/locales}}
                     </select>
                     {{/hideLanguage}}
-                    <nav>
+                    <nav id="menu">
                         <ul>
                             {{#menu}}
                             {{> main/menu-item}}
                             {{/menu}}
                         </ul>
                     </nav>
+                    {{#hasSubmenu}}
+                    <nav id="submenu">
+                        <ul>
+                            {{#submenu}}
+                            {{> main/menu-item}}
+                            {{/submenu}}
+                        </ul>
+                    </nav>
+                    {{/hasSubmenu}}
                 </div>
             </header>
             <main>

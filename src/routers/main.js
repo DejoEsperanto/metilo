@@ -56,7 +56,7 @@ export default function () {
         const pageRevisionContent = metilo.db.db.prepare('select * from pages_revisions_content where revisionId = ?')
             .all(pageData.activeRevision);
 
-        const format = getMainPageFormat(pageRevisionData.title, pageRevisionContent);
+        const format = getMainPageFormat(pageRevisionData.title, pageRevisionContent, url.url);
 
         renderPage('main/page', req, 'main', format)
             .then(data => res.send(data))

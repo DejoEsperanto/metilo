@@ -47,6 +47,7 @@ body {
 }
 
 main {
+    margin-top: 32px;
     min-height: calc(~"100% - 64px");
     display: flex;
 
@@ -103,11 +104,29 @@ main {
     margin-left: 32px;
 }
 
+nav#submenu {
+    position: relative;
+    z-index: 0;
+    background-color: @logo-bg;
+
+    li>ul li {
+        background-color: @logo-bg;
+    }
+}
+
+nav#menu {
+    position: relative;
+    z-index: 1;
+    background-color: @nav-bg;
+
+    li>a {
+        color: @nav-color;
+    }
+}
+
 nav {
     text-align: center;
     width: 100%;
-    margin-bottom: 16px;
-    background-color: @nav-bg;
     font-family: @font;
 
     &>ul>li>ul {
@@ -121,6 +140,7 @@ nav {
     }
 
     &>ul {
+        position: relative;
         padding: 16px 0;
     }
 
@@ -131,7 +151,6 @@ nav {
         text-align: left;
 
         &>a {
-            color: @nav-color;
             text-decoration: none;
             font-weight: bold;
 
