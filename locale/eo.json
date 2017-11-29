@@ -264,6 +264,9 @@
                     "sql": "sql",
                     "newUser": "uzantoj/nova",
                     "logout": "elsaluti"
+                },
+                "main": {
+                    "files": "dosieroj"
                 }
             },
             "dateTimeFormat": "llll"

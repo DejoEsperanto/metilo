@@ -26,6 +26,10 @@ import { renderPage, getMainPageFormat } from '../render';
 export default function () {
     const router = express.Router();
     const baseURL = metilo.conf.routers.main;
+    const urls = metilo.getURLs('main');
+
+    // Files
+    router.use(`/${urls.files}`, express.static(path.join(metilo.conf.baseDir, 'files')));
 
     // Frontpage
     router.get(/(\/.*)/, (req, res, next) => {

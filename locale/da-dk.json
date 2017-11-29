@@ -264,6 +264,9 @@
                     "sql": "sql",
                     "newUser": "brugere/ny",
                     "logout": "logud"
+                },
+                "main": {
+                    "files": "filer"
                 }
             },
             "dateTimeFormat": "llll"
