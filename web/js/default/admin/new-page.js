@@ -31,6 +31,7 @@ els = Object.assign(els, {
     pageChanges:   $('#page-changes')
 });
 
+let doBeforeUnload = true;
 const codeEditors = {};
 
 const handleSelectChange = el => {
@@ -264,11 +265,13 @@ on(els.saveButton, 'click', e => {
         data.id = jsonData.pageId;
         jsonXHR(`${C.baseURL}/xhr/page-update`, data, true)
             .then(() => {
+                doBeforeUnload = false;
                 document.location.href = pageOverviewURL;
             });
     } else {
         jsonXHR(`${C.baseURL}/xhr/page-add`, data, true)
             .then(() => {
+                doBeforeUnload = false;
                 document.location.href = pageOverviewURL;
             });
     }
@@ -284,10 +287,12 @@ on(els.previewButton, 'click', () => {
 });
 
 on(window, 'beforeunload', e => {
-    // Barely any browsers support custom messages, but we sit it just in case
-    e.returnValue = beforeUnloadMessage;
-    console.log(e.returnValue);
-    return beforeUnloadMessage;
+    if (doBeforeUnload) {
+        // Barely any browsers support custom messages, but we sit it just in case
+        e.returnValue = beforeUnloadMessage;
+        console.log(e.returnValue);
+        return beforeUnloadMessage;
+    }
 });
 
 // Add existing content if editing a page
