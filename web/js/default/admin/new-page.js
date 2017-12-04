@@ -169,7 +169,8 @@ const insertTypeInner = (el, type, insertNewRow = true, defaultValue = null) => 
             codeEditors[id] = CodeMirror(el, {
                 mode: 'text/html',
                 lineNumbers: true,
-                value: defaultValue || ''
+                value: defaultValue || '',
+                lineWrapping: true
             });
             el.dataset.id = id;
     }
