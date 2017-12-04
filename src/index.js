@@ -148,7 +148,7 @@ export default {
      * Starts Metilo
      */
     run () {
-        // Middleware
+        // Custom middleware
         const getLocale = (req, res, next) => {
             req.locale = {};
 
@@ -175,6 +175,13 @@ export default {
             next();
         };
         this.app.use(setXSS);
+
+        // Custom pages
+        if (this.conf.customPages) {
+            for (let page in this.conf.customPages) {
+                this.conf.customPages[page](this.app, this);
+            }
+        }
 
         // Routing
         for (let name in this.conf.routers) {

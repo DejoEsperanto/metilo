@@ -32,6 +32,7 @@ export default {
     // The following settings *should* be changed from their defaults
     defaultPhoneCode: [ 'US', 1 ],
     timezone: 'UTC',
+    customPages: null, // require()
 
     // The following entry must be present in your own config file to override the value
     baseDir: path.join(__dirname, '../data'),
