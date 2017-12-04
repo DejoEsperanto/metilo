@@ -167,6 +167,15 @@ export default {
         };
         this.app.use(getLocale);
 
+        const setXSS = (req, res, next) => {
+            if (req.path.indexOf(this.conf.routers.admin) === 0) {
+                res.set('X-XSS-Protection', 0);
+            }
+
+            next();
+        };
+        this.app.use(setXSS);
+
         // Routing
         for (let name in this.conf.routers) {
             this.app.use(this.conf.routers[name], routers[name]());
