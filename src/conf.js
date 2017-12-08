@@ -35,6 +35,7 @@ export default {
     customPages: null, // require()
 
     // The following entry must be present in your own config file to override the value
+    moduleDir: path.join(__dirname, '../node_modules'),
     baseDir: path.join(__dirname, '../data'),
     imgDir: path.join(__dirname, '../img'),
 

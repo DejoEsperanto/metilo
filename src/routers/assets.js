@@ -34,11 +34,11 @@ export default function () {
 
     // Static files
     router.get('/module/js.cookie.js', (req, res) => {
-        res.sendFile(path.join(__dirname, '../../node_modules/js-cookie/src/js.cookie.js'));
+        res.sendFile(path.join(metilo.conf.moduleDir, 'js-cookie/src/js.cookie.js'));
     });
 
     router.get('/module/picomodal.js', (req, res) => {
-        res.sendFile(path.join(__dirname, '../../node_modules/picomodal/src/picoModal.js'));
+        res.sendFile(path.join(metilo.conf.moduleDir, 'picomodal/src/picoModal.js'));
     });
 
     return router;
