@@ -1,0 +1,9 @@
+<h1>{{profileHeader}}</h1>
+<p style="width: 50%; min-width: 500px;">{{registeredInfoText}}</p>
+
+<div class="contactInfo spacing">
+    {{&name}} <br>
+    {{#role}}{{.}} <br>{{/role}}
+    {{#email}}<a href="mailto:{{.}}">{{.}}</a> <br>{{/email}}
+    {{#phoneNumber}}<a href="tel:{{phoneNumberFull}}">{{.}}</a>{{/phoneNumber}}
+</div>

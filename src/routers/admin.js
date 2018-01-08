@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Mia Nordentoft, Metilo contributors
+ * Copyright (C) 2017-2018 Mia Nordentoft, Metilo contributors
  *
  * This file is part of Metilo.
  *
@@ -433,6 +433,21 @@ export default function () {
                 hasData: hasData,
                 jsonData: JSON.stringify(jsonData),
                 pages: pages
+            }
+        })
+            .then(data => res.send(data))
+            .catch(err => next(err));
+    });
+
+    // Profile page
+    router.get(`/${urls.profile}`, ensureLoggedIn(admin), (req, res, next) => {
+        renderPage('admin/profile', req, 'admin', {
+            main: {
+                name: req.user.fullName(),
+                role: req.user.data.role,
+                email: req.user.data.email,
+                phoneNumber: req.user.phoneNumber(),
+                phoneNumberFull: req.user.data.phoneNumber
             }
         })
             .then(data => res.send(data))

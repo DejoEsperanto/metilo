@@ -240,6 +240,11 @@
                             "no": "Ne"
                         }
                     }
+                },
+                "admin/profile": {
+                    "title": "Profilo",
+                    "profileHeader": "Profilo kaj agordoj",
+                    "registeredInfoText": "La ĉi-subaj informoj estas pri vi registritaj. Se vi volas ŝanĝi tiujn aŭ rekrei vian pasvorton, bonvolu kontakti vian retejadministranton, kies kontaktinformoj troviĝas en la frontpaĝo. Pro sekureco vi ne povas ŝanĝi vian pasvorton al io, kion vi mem elektis."
                 }
             },
             "urls": {

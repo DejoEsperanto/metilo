@@ -240,6 +240,11 @@
                             "no": "No"
                         }
                     }
+                },
+                "admin/profile": {
+                    "title": "Profile",
+                    "profileHeader": "Profile and settings",
+                    "registeredInfoText": "The following below information about you are on record. If you wish to modify these or reset your password, please contact your website administrator, whose contact information can be found on the dashboard. You're unable to change your password to something of your own choice for security reasons."
                 }
             },
             "urls": {

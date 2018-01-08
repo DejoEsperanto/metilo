@@ -240,6 +240,11 @@
                             "no": "Nej"
                         }
                     }
+                },
+                "admin/profile": {
+                    "title": "Profil",
+                    "profileHeader": "Profil og indstillinger",
+                    "registeredInfoText": "Følgende nedenstående oplysninger er registreret om dig. Hvis du ønsker at ændre disse eller nulstille din adgangskode bedes du kontakte din sideadministrator, hvis oplysninger kan findes på forsiden. Du kan af sikkerhedsårsager ikke ændre din adgangskode efter eget valg."
                 }
             },
             "urls": {
