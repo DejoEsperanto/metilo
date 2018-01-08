@@ -43,7 +43,6 @@
                         "aboutSite": {
                             "main": "Pri la retejo",
                             "general": "La retejo ĝenerale",
-                            "seo": "Optimumigo de serĉiloj",
                             "statistics": "Statistiko"
                         },
                         "siteContent": {
@@ -53,8 +52,7 @@
                         },
                         "admin": {
                             "main": "Administranto",
-                            "users": "Uzantoj",
-                            "sql": "SQL"
+                            "users": "Uzantoj"
                         }
                     }
                 },
@@ -253,7 +251,6 @@
                 "admin": {
                     "profile": "profilo",
                     "siteGeneral": "pri-retejo",
-                    "siteSEO": "seo",
                     "siteStatistics": "statistiko",
                     "contentMenu": "menuo",
                     "contentPages": "paghoj",
@@ -261,7 +258,6 @@
                     "contentEditPage": "paghoj/redakti",
                     "contentPreviewPage": "paghoj/vidi",
                     "users": "uzantoj",
-                    "sql": "sql",
                     "newUser": "uzantoj/nova",
                     "logout": "elsaluti"
                 },

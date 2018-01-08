@@ -43,7 +43,6 @@
                         "aboutSite": {
                             "main": "Om hjemmesiden",
                             "general": "Hjemmesiden generelt",
-                            "seo": "Søgemaskineoptimering",
                             "statistics": "Statistik"
                         },
                         "siteContent": {
@@ -53,8 +52,7 @@
                         },
                         "admin": {
                             "main": "Administrator",
-                            "users": "Brugere",
-                            "sql": "SQL"
+                            "users": "Brugere"
                         }
                     }
                 },
@@ -253,7 +251,6 @@
                 "admin": {
                     "profile": "profil",
                     "siteGeneral": "om-site",
-                    "siteSEO": "seo",
                     "siteStatistics": "statistik",
                     "contentMenu": "menu",
                     "contentPages": "sider",
@@ -261,7 +258,6 @@
                     "contentEditPage": "sider/rediger",
                     "contentPreviewPage": "sider/vis",
                     "users": "brugere",
-                    "sql": "sql",
                     "newUser": "brugere/ny",
                     "logout": "logud"
                 },

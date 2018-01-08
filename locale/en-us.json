@@ -43,7 +43,6 @@
                         "aboutSite": {
                             "main": "About the website",
                             "general": "General",
-                            "seo": "Search Engine Optimization",
                             "statistics": "Statistics"
                         },
                         "siteContent": {
@@ -53,8 +52,7 @@
                         },
                         "admin": {
                             "main": "Administrator",
-                            "users": "Users",
-                            "sql": "SQL"
+                            "users": "Users"
                         }
                     }
                 },
@@ -253,7 +251,6 @@
                 "admin": {
                     "profile": "profile",
                     "siteGeneral": "about-site",
-                    "siteSEO": "seo",
                     "siteStatistics": "statistics",
                     "contentMenu": "menu",
                     "contentPages": "pages",
@@ -261,7 +258,6 @@
                     "contentEditPage": "pages/edit",
                     "contentPreviewPage": "pages/preview",
                     "users": "users",
-                    "sql": "sql",
                     "newUser": "users/new",
                     "logout": "logout"
                 },
