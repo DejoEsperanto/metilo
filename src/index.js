@@ -59,6 +59,7 @@ export default {
     entities: new Entities.AllHtmlEntities(),
     hasCache: true,
     mustacheExpress: null,
+    version: require('../package.json').version,
 
     init (_conf) {
         this.didInit = true;

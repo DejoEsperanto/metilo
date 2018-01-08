@@ -21,7 +21,7 @@
         -->
         <title>{{title}} | {{siteName}}</title>
         <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-        <link rel="stylesheet" href="/assets/css/main/global.css">
+        <link rel="stylesheet" href="/assets/css/main/global.css?v={{metiloVersion}}">
         {{#includeStyles}}
         <link rel="stylesheet" href="{{&.}}">
         {{/includeStyles}}
@@ -83,7 +83,7 @@
         </div>
         <footer>{{&copyright.local}}—{{&copyright.metilo}}</footer>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/js-cookie/2.2.0/js.cookie.min.js"></script>
-        <script src="/assets/js/main/global.js"></script>
+        <script src="/assets/js/main/global.js?v={{metiloVersion}}"></script>
         <script>C.baseURL = "{{&subsiteURL}}";</script>
         {{#includeScripts}}
         <script src="{{&.}}"></script>

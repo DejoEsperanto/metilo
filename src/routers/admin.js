@@ -188,7 +188,7 @@ export default function () {
 
         renderPage('admin/users', req, 'admin', {
             global: {
-                includeScripts: '/assets/js/admin/users.js'
+                includeScripts: '/assets/js/admin/users.js?v=' + metilo.version
             },
             main: { data: users }
         })
@@ -206,8 +206,8 @@ export default function () {
                 })
             },
             global: {
-                includeStyles: '/assets/css/admin/new-page.css',
-                includeScripts: '/assets/js/admin/new-page.js'
+                includeStyles: '/assets/css/admin/new-page.css?v=' + metilo.version,
+                includeScripts: '/assets/js/admin/new-page.js?v=' + metilo.version
             }
         })
             .then(data => res.send(data))
@@ -259,8 +259,8 @@ export default function () {
             ),
             global: {
                 title: locale.pages['admin/edit-page'].title,
-                includeStyles: '/assets/css/admin/new-page.css',
-                includeScripts: '/assets/js/admin/new-page.js'
+                includeStyles: '/assets/css/admin/new-page.css?v=' + metilo.version,
+                includeScripts: '/assets/js/admin/new-page.js?v=' + metilo.version
             }
         };
 
@@ -398,7 +398,7 @@ export default function () {
         const infoMessage = Mustache.render(info, localeMain) || false;
         renderPage('admin/pages', req, 'admin', {
             global: {
-                includeScripts: '/assets/js/admin/pages.js'
+                includeScripts: '/assets/js/admin/pages.js?v=' + metilo.version
             },
             main: {
                 info: infoMessage,
@@ -426,8 +426,8 @@ export default function () {
 
         renderPage('admin/menu', req, 'admin', {
             global: {
-                includeStyles: '/assets/css/admin/menu.css',
-                includeScripts: '/assets/js/admin/menu.js'
+                includeStyles: '/assets/css/admin/menu.css?v=' + metilo.version,
+                includeScripts: '/assets/js/admin/menu.js?v=' + metilo.version
             },
             main: {
                 hasData: hasData,

@@ -96,7 +96,8 @@ export async function renderPage (name, req, subsite, format = {}, useSubglobal 
                     name: metilo.localeInfo[x].name,
                     active: x === locale
                 };
-            })
+            }),
+            metiloVersion: metilo.version
         },
         format.global || {}
     );
