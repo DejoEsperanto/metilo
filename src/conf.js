@@ -33,6 +33,7 @@ export default {
     defaultPhoneCode: [ 'US', 1 ],
     timezone: 'UTC',
     customPages: null, // require()
+    analyticsID: null, // Google Analytics tracking ID, set to null to disable
 
     // The following entry must be present in your own config file to override the value
     moduleDir: path.join(__dirname, '../node_modules'),

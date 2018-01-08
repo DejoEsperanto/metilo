@@ -109,7 +109,7 @@ export async function renderPage (name, req, subsite, format = {}, useSubglobal 
 export function formatRecursive (format, view) {
     const out = {};
     for (let key in format) {
-        if (Object.getPrototypeOf(format[key]) === Object.prototype) {
+        if (format[key] && Object.getPrototypeOf(format[key]) === Object.prototype) {
             out[key] = formatRecursive(format[key], view);
         } else if (typeof format[key] === 'string') {
             if (!metilo.hasCache) { Mustache.clearCache(); }
@@ -188,7 +188,8 @@ export function getMainPageFormat (title, pageRevisionContent, url = null) {
             hideLanguage: hideLanguage,
             menu: menu,
             hasSubmenu: hasSubmenu,
-            submenu: submenu
+            submenu: submenu,
+            analyticsID: metilo.conf.analyticsID
         },
         main: {
             rows: rows
