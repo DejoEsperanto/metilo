@@ -32,14 +32,5 @@ export default function () {
 
     router.use('/img', express.static(metilo.conf.imgDir));
 
-    // Static files
-    router.get('/module/js.cookie.js', (req, res) => {
-        res.sendFile(path.join(metilo.conf.moduleDir, 'js-cookie/src/js.cookie.js'));
-    });
-
-    router.get('/module/picomodal.js', (req, res) => {
-        res.sendFile(path.join(metilo.conf.moduleDir, 'picomodal/src/picoModal.js'));
-    });
-
     return router;
 };
