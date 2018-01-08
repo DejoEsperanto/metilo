@@ -42,7 +42,6 @@
                         },
                         "aboutSite": {
                             "main": "Pri la retejo",
-                            "general": "La retejo ĝenerale",
                             "statistics": "Statistiko"
                         },
                         "siteContent": {
@@ -250,7 +249,6 @@
             "urls": {
                 "admin": {
                     "profile": "profilo",
-                    "siteGeneral": "pri-retejo",
                     "siteStatistics": "statistiko",
                     "contentMenu": "menuo",
                     "contentPages": "paghoj",
