@@ -40,10 +40,6 @@
                             "main": "About you",
                             "profileSettings": "Profile and settings"
                         },
-                        "aboutSite": {
-                            "main": "About the website",
-                            "statistics": "Statistics"
-                        },
                         "siteContent": {
                             "main": "Website content",
                             "menu": "Menu",
@@ -249,7 +245,6 @@
             "urls": {
                 "admin": {
                     "profile": "profile",
-                    "siteStatistics": "statistics",
                     "contentMenu": "menu",
                     "contentPages": "pages",
                     "contentNewPage": "pages/new",

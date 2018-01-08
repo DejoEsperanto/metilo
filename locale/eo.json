@@ -40,10 +40,6 @@
                             "main": "Pri vi",
                             "profileSettings": "Profilo kaj agordoj"
                         },
-                        "aboutSite": {
-                            "main": "Pri la retejo",
-                            "statistics": "Statistiko"
-                        },
                         "siteContent": {
                             "main": "Retejenhavo",
                             "menu": "Menuo",
@@ -249,7 +245,6 @@
             "urls": {
                 "admin": {
                     "profile": "profilo",
-                    "siteStatistics": "statistiko",
                     "contentMenu": "menuo",
                     "contentPages": "paghoj",
                     "contentNewPage": "paghoj/nova",

@@ -40,10 +40,6 @@
                             "main": "Om dig",
                             "profileSettings": "Profil og indstillinger"
                         },
-                        "aboutSite": {
-                            "main": "Om hjemmesiden",
-                            "statistics": "Statistik"
-                        },
                         "siteContent": {
                             "main": "Hjemmesidens indhold",
                             "menu": "Menu",
@@ -249,7 +245,6 @@
             "urls": {
                 "admin": {
                     "profile": "profil",
-                    "siteStatistics": "statistik",
                     "contentMenu": "menu",
                     "contentPages": "sider",
                     "contentNewPage": "sider/ny",
