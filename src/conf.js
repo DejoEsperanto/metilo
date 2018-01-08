@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Mia Nordentoft, Metilo contributors
+ * Copyright (C) 2017-2018 Mia Nordentoft, Metilo contributors
  *
  * This file is part of Metilo.
  *
@@ -62,19 +62,19 @@ export default {
         localeStrings: {
             'da-dk': {
                 copyright: {
-                    local: '&copy; 2017. <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.da">CC BY-SA 4.0</a>'
+                    local: '&copy; 2018. <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.da">CC BY-SA 4.0</a>'
                 },
                 siteName: 'Metilo'
             },
             'en-us': {
                 copyright: {
-                    local: '&copy; 2017. <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a>'
+                    local: '&copy; 2018. <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en">CC BY-SA 4.0</a>'
                 },
                 siteName: 'Metilo'
             },
             'eo': {
                 copyright: {
-                    local: '&copy; 2017. <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.eo">CC BY-SA 4.0</a>'
+                    local: '&copy; 2018. <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.eo">CC BY-SA 4.0</a>'
                 },
                 siteName: 'Metilo'
             }
