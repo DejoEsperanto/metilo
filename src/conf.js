@@ -34,6 +34,8 @@ export default {
     timezone: 'UTC',
     customPages: null, // require()
     analyticsID: null, // Google Analytics tracking ID, set to null to disable
+    twitterUsername: null, // Twitter username if present, for use in meta data
+    keywords: '', // Comma separated string of keywords for use in met data
 
     // The following entry must be present in your own config file to override the value
     baseDir: path.join(__dirname, '../data'),

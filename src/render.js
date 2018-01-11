@@ -97,7 +97,11 @@ export async function renderPage (name, req, subsite, format = {}, useSubglobal 
                     active: x === locale
                 };
             }),
-            metiloVersion: metilo.version
+            metiloVersion: metilo.version,
+            meta: {
+                twitterUsername: metilo.conf.twitterUsername,
+                keywords: metilo.conf.keywords
+            }
         },
         format.global || {}
     );

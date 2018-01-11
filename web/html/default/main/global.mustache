@@ -29,6 +29,21 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
         <meta property="og:type" content="website">
         <meta http-equiv="content-language" content="{{locale}}">
+        <meta property="og:site_name" content="{{siteName}}">
+        <meta property="og:title" content="{{title}}">
+        <meta property="og:description" content="{{title}} | {{siteName}}">
+        <meta property="og:image" content="/assets/img/favicon.png">
+
+        <meta name="twitter:card" content="summary">
+        {{#meta.twitterUsername}}
+        <meta name="twitter:site" content="@{{meta.twitterUsername}}">
+        {{/meta.twitterUsername}}
+        <meta name="twitter:title" content="{{title}}">
+        <meta name="twitter:description" content="{{title}} | {{siteName}}">
+        <meta name="twitter:image" content="/assets/img/favicon.png">
+
+        <meta name="description" content="{{title}} | {{siteName}}">
+        <meta name="keywords" content="{{meta.keywords}}">
         {{#analyticsID}}
         <script async src="https://www.googletagmanager.com/gtag/js?id={{.}}"></script>
         <script>
