@@ -27,6 +27,13 @@
                             "video": "Embed video",
                             "blockquote": "Insert quote",
                             "clean": "Clear formatting"
+                        },
+                        "imageURL": "Insert image URL"
+                    },
+                    "modal": {
+                        "buttons": {
+                            "cancel": "Cancel",
+                            "insert": "Insert"
                         }
                     }
                 },

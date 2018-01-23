@@ -27,6 +27,13 @@
                             "video": "Enmeti filmeton",
                             "blockquote": "Enmeti citaĵon",
                             "clean": "Forigi aspekton"
+                        },
+                        "imageURL": "Enigu retadreson de bildo"
+                    },
+                    "modal": {
+                        "buttons": {
+                            "cancel": "Nuligi",
+                            "insert": "Enmeti"
                         }
                     }
                 },

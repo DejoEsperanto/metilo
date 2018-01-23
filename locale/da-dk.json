@@ -27,6 +27,13 @@
                             "video": "Indsæt video",
                             "blockquote": "Indsæt citat",
                             "clean": "Ryd formattering"
+                        },
+                        "imageURL": "Indtast adresse på billede"
+                    },
+                    "modal": {
+                        "buttons": {
+                            "cancel": "Annuller",
+                            "insert": "Indsæt"
                         }
                     }
                 },

@@ -51,7 +51,18 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.30.0/mode/xml/xml.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.30.0/mode/htmlmixed/htmlmixed.min.js"></script>
         <script src="/assets/js/admin/global.js?v={{metiloVersion}}"></script>
-        <script>C.baseURL = "{{&subsiteURL}}";</script>
+        <script>
+            C.baseURL = "{{&subsiteURL}}";
+            C.str = {
+                imageURL: "{{textEditor.imageURL}}",
+                modal: {
+                    buttons: {
+                        cancel: "{{modal.buttons.cancel}}",
+                        insert: "{{modal.buttons.insert}}"
+                    }
+                }
+            };
+        </script>
         {{#includeScripts}}
         <script src="{{&.}}"></script>
         {{/includeScripts}}

@@ -149,12 +149,16 @@ const insertTypeInner = (el, type, insertNewRow = true, defaultValue = null) => 
             el.appendChild(editor);
             el.classList.add('nostyle');
             if (double) { el2.remove(); }
-            new Quill(editor, {
+
+            const quill = new Quill(editor, {
                 theme: 'snow',
                 modules: {
                     toolbar: toolbar
                 }
             });
+            const toolbarModule = quill.getModule('toolbar');
+            toolbarModule.addHandler('image', customImageHandler);
+            
             if (defaultValue) {
                 $('.ql-editor', editor).innerHTML = defaultValue;
             }

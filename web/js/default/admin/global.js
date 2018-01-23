@@ -209,7 +209,8 @@ let els = {
 
 // Constants
 const C = {
-    subsite: document.body.dataset.subsite
+    subsite: document.body.dataset.subsite,
+    str: {}
 };
 
 // Header
@@ -245,6 +246,7 @@ for (let form of $$('.form-with-help')) {
 // Quill
 // https://stackoverflow.com/a/37814768/1248084
 const QuillInline = Quill.import('blots/inline');
+
 class SmallCaps extends QuillInline {
     static create(value) {
         let node = super.create(value);
@@ -263,7 +265,7 @@ class SmallCaps extends QuillInline {
         }
     }
 
-    formats() {
+    formats () {
         let formats = super.formats();
         formats['smallcaps'] = SmallCaps.formats(this.domNode);
         return formats;
@@ -273,3 +275,21 @@ SmallCaps.blotName = 'smallcaps';
 SmallCaps.className = 'smallcaps';
 SmallCaps.tagName = 'span';
 Quill.register({ 'formats/smallcaps': SmallCaps });
+
+const customImageHandler = function () {
+    const quill = this.quill;
+    const range = quill.getSelection();
+    const content = `
+    <p>${C.str.imageURL}</p>
+    <input data-value>
+    <p class="footer">
+        <button class="cancel">${C.str.modal.buttons.cancel}</button>
+        <button class="ok">${C.str.modal.buttons.insert}</button>
+    </p>
+    `;
+    inputDialog(content).then(r => {
+        if (!r) { return; }
+
+        quill.insertEmbed(range.index, 'image', r[0], Quill.sources.USER);
+    });
+};
