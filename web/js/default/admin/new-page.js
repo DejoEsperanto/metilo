@@ -291,7 +291,6 @@ on(window, 'beforeunload', e => {
     if (doBeforeUnload) {
         // Barely any browsers support custom messages, but we sit it just in case
         e.returnValue = beforeUnloadMessage;
-        console.log(e.returnValue);
         return beforeUnloadMessage;
     }
 });
