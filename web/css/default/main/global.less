@@ -29,7 +29,6 @@
 
 body {
     min-height: 100vh;
-    min-width: 500px;
     display: flex;
     flex-direction: column;
 }
@@ -47,11 +46,13 @@ body {
 }
 
 main {
+    width: 100%;
     margin-top: 32px;
     min-height: calc(~"100% - 64px");
     display: flex;
 
     &>section  {
+        box-sizing: border-box;
         width: 100%;
 
         &:not(:first-child) {
@@ -74,6 +75,10 @@ main {
         font-size: 18px;
         text-align: justify;
         line-height: 24px;
+
+        @media (max-width: 500px) {
+            text-align: left;
+        }
 
         &>li {
             &.ql-indent-1 {
@@ -101,6 +106,10 @@ main {
     padding: 24px 48px;
     margin: 0 auto;
     max-width: 1000px;
+
+    @media (max-width: 700px) {
+        padding: 24px;
+    }
 }
 
 .page-row {
@@ -162,6 +171,10 @@ nav {
     text-align: center;
     width: 100%;
     font-family: @font;
+
+    ul {
+        z-index: 1;
+    }
 
     &>ul>li>ul {
         &>li:first-child {
@@ -250,6 +263,10 @@ p, b {
     font-size: 18px;
     text-align: justify;
     line-height: 24px;
+
+    @media (max-width: 500px) {
+        text-align: left;
+    }
 }
 
 b {
@@ -265,12 +282,15 @@ header>:first-child {
     display: block;
     margin-right: 16px;
     background: url('../../img/logo.svg') no-repeat 0% 0% / contain;
-    height: 120px;
-    width: 435px;
+    max-height: 120px;
+    max-width: 435px;
+    height: calc(~"120/435 * (100vw - 2*48px)");
+    width: calc(~"100vw - 2*48px");
     margin-left: calc(~"(100vw - 1000px) / 2");
 
     @media (max-width: 1096px) { // 1000px + 48px * 2
         margin-left: 48px;
+        margin-right: 48px;
     }
 }
 
