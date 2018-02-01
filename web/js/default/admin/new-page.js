@@ -28,8 +28,11 @@ els = Object.assign(els, {
     previewButton: $('#page-preview'),
     pageName:      $('#page-name'),
     pageTitle:     $('#page-title'),
-    pageChanges:   $('#page-changes')
+    pageChanges:   $('#page-changes'),
+    jsonData:      $('#json-data')
 });
+
+const jsonData = JSON.parse(els.jsonData.innerText);
 
 let doBeforeUnload = true;
 const codeEditors = {};
