@@ -36,6 +36,7 @@ import moment from 'moment-timezone';
 import defConf from './conf';
 import * as routers from './routers';
 import Database from './db/database.js';
+import { renderPage, getMainPageFormat } from './render';
 
 export default {
     didInit: false,
@@ -190,6 +191,48 @@ export default {
         }
 
         this.app.use('/assets', routers['assets']());
+
+        // Error pages
+        const showError = (req, res, status) => {
+            res.status(status);
+
+            const localeData = this.getLocaleTheme(req.locale.main).pages['main/error'];
+
+            let header, text;
+            if (status === 404) {
+                header = localeData.header404;
+                text = localeData.text404;
+            } else {
+                header = localeData.headerGeneric;
+                text = localeData.textGeneric;
+            }
+
+            const content = [{
+                type: 'html',
+                value: `
+                <h1>${header}</h1>
+                <br>
+                <p>${text}</p>
+                `,
+                width: 2,
+                x: 0,
+                y: 0
+            }];
+            const format = getMainPageFormat(localeData.title, content, req.originalUrl);
+
+            renderPage('main/page', req, 'main', format)
+                .then(data => res.send(data))
+                .catch(err => next(err));
+        };
+        const notFoundHandler = (req, res, next) => {
+            showError(req, res, 404);
+        };
+        const errorHandler = (err, req, res, next) => {
+            console.error(err.stack);
+            showError(req, res, 500);
+        };
+        this.app.use(notFoundHandler);
+        this.app.use(errorHandler);
 
         this.app.listen(this.conf.port, () => {
             console.log('Metilo running on port %s', this.conf.port);

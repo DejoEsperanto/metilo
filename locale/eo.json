@@ -252,6 +252,13 @@
                     "title": "Profilo",
                     "profileHeader": "Profilo kaj agordoj",
                     "registeredInfoText": "La ĉi-subaj informoj estas pri vi registritaj. Se vi volas ŝanĝi tiujn aŭ rekrei vian pasvorton, bonvolu kontakti vian retejadministranton, kies kontaktinformoj troviĝas en la frontpaĝo. Pro sekureco vi ne povas ŝanĝi vian pasvorton al io, kion vi mem elektis."
+                },
+                "main/error": {
+                    "title": "Okazis eraro",
+                    "header404": "Ni ne povis trovi la paĝon, kiun vi serĉis",
+                    "text404": "Se vi sekvis ligilon la paĝo eble ne plu ekzistas. Se vi mem enigis la adreson kontrolu ĉu okazis tajperaro.",
+                    "headerGeneric": "Okazis nekonata eraro",
+                    "textGeneric": "Vi povas eventuale kontakti nin provizante la nunan horon por help nin solvi la eraron."
                 }
             },
             "urls": {

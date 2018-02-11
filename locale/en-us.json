@@ -252,6 +252,13 @@
                     "title": "Profile",
                     "profileHeader": "Profile and settings",
                     "registeredInfoText": "The following below information about you are on record. If you wish to modify these or reset your password, please contact your website administrator, whose contact information can be found on the dashboard. You're unable to change your password to something of your own choice for security reasons."
+                },
+                "main/error": {
+                    "title": "An error occured",
+                    "header404": "We couldn't find the page you're looking for.",
+                    "text404": "If you followed a link the page may no longer exist. If you typed in the address yourself, check for typos.",
+                    "headerGeneric": "An unknown error occured",
+                    "textGeneric": "You can optionally contact us and tell us the time at which the error occured to aid us in resolving the error."
                 }
             },
             "urls": {
