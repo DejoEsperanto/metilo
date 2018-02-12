@@ -180,8 +180,23 @@ export default {
 
         // Custom pages
         if (this.conf.customPages) {
+            const showMain = (req, res, title, url, html) => {
+                const content = [{
+                    type: 'html',
+                    value: html,
+                    width: 2,
+                    x: 0,
+                    y: 0
+                }];
+                const format = getMainPageFormat(title, content, url);
+
+                renderPage('main/page', req, 'main', format)
+                    .then(data => res.send(data))
+                    .catch(err => next(err));
+            };
+
             for (let page in this.conf.customPages) {
-                this.conf.customPages[page](this.app, this);
+                this.conf.customPages[page](this.app, this, showMain);
             }
         }
 
