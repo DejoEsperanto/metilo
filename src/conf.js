@@ -42,6 +42,7 @@ export default {
     imgDir: path.join(__dirname, '../img'),
 
     // The following settings may be changed if needed
+    trustLocalProxy: false,
     loginLimit: {
         max: 20,
         time: 15 * 60, // 15 minutes

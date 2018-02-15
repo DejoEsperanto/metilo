@@ -71,6 +71,11 @@ export default {
         this.app.set('views', path.join(__dirname, '../web/html/', this.conf.content.theme))
         this.app.set('view engine', 'mustache');
 
+        // Trust local proxies
+        if (this.conf.trustLocalProxy) {
+            app.set('trust proxy', 'loopback');
+        }
+
         const dbPath = path.join(this.conf.baseDir, this.conf.dbFile);
         fs.ensureDirSync(this.conf.baseDir);
         if (!fs.existsSync(dbPath)) {
