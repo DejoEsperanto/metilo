@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 Mia Nordentoft, Metilo contributors
+ * Copyright (C) Mia Nordentoft, Metilo contributors
  *
  * This file is part of Metilo.
  *
