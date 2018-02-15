@@ -18,6 +18,7 @@
  */
 
 import express from 'express';
+import fs from 'fs-extra-promise';
 import path from 'path';
 
 import metilo from '..';
@@ -30,6 +31,11 @@ export default function () {
 
     // Files
     router.use(`/${urls.files}`, express.static(path.join(metilo.conf.baseDir, 'files')));
+
+    // .well-known
+    const wellKnownPath = path.join(metilo.conf.baseDir, '.well-known');
+    fs.ensureDirSync(wellKnownPath);
+    router.use(`/.well-known`, express.static(wellKnownPath));
 
     // Frontpage
     router.get(/(\/.*)/, (req, res, next) => {
