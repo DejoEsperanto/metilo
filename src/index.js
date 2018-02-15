@@ -73,7 +73,7 @@ export default {
 
         // Trust local proxies
         if (this.conf.trustLocalProxy) {
-            app.set('trust proxy', 'loopback');
+            this.app.set('trust proxy', 'loopback');
         }
 
         const dbPath = path.join(this.conf.baseDir, this.conf.dbFile);
