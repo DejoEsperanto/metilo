@@ -80,23 +80,53 @@ main {
             text-align: left;
         }
 
-        &>li {
-            &.ql-indent-1 {
-                padding-left: 2.5em;    
-            }
+        &>li:before {
+            content: '\2022';
+            margin-left: -1.5em;
+            margin-right: .3em;
+            text-align: right;
+            display: inline-block;
+            white-space: nowrap;
+            width: 1.2em;
+        }
+    }
 
-            &.ql-indent-2 {
-                padding-left: 5em;    
-            }
+    ul>li, ol>li {
+        &.ql-indent-1 {
+            padding-left: 2.5em;    
+        }
+
+        &.ql-indent-2 {
+            padding-left: 5em;    
+        }
+    }
+
+    ol {
+        margin: 16px 0;
+        font-family: @font;
+        font-size: 18px;
+        text-align: justify;
+        line-height: 24px;
+
+        @media (max-width: 500px) {
+            text-align: left;
+        }
+
+        li {
+            counter-reset: list-1 list-2;
+            counter-increment: list-0;
 
             &:before {
-                content: '\2022';
-                margin-left: -1.5em;
-                margin-right: .3em;
-                text-align: right;
-                display: inline-block;
-                white-space: nowrap;
-                width: 1.2em;
+                content: counter(list-0, decimal) '. ';
+            }
+
+            &.ql-indent-1 {
+                counter-reset: list-2;
+                counter-increment: list-1;
+
+                &:before {
+                    content: counter(list-1, lower-alpha) '. ';
+                }
             }
         }
     }
